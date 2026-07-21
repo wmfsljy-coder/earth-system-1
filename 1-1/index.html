@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>지구의 탄생과 진화 — 관측 스테이션</title>
+<link rel="stylesheet" href="../assets/theme.css">
+</head>
+<body>
+
+<div class="app">
+  <nav class="rail" id="rail">
+    <div class="brand">
+      <a class="home" href="../">← 지구시스템과학1</a>
+      <div class="eyebrow" style="margin-top:8px">Ⅰ-1 · 지구 탄생과 생동하는 지구</div>
+      <h1 class="display">지구의 탄생과<br>물질의 순환</h1>
+    </div>
+    <button class="tab-btn active" data-tab="0"><span class="num">01</span> 지구의 탄생</button>
+    <button class="tab-btn" data-tab="1"><span class="num">02</span> 산소 농도의 진화</button>
+    <button class="tab-btn" data-tab="2"><span class="num">03</span> 탄소와 물의 순환</button>
+  </nav>
+
+  <main>
+    <section class="tab-panel" data-panel="0">
+      <div class="stage-head">
+        <div class="eyebrow">01 · 46억 년 전, 먼지에서 행성으로</div>
+        <h2 class="display">지구의 탄생과 진화</h2>
+        <p>타임라인의 각 단계를 클릭해 지구가 어떻게 미행성의 집적에서부터 오늘날의 모습으로 진화했는지 확인해 보세요.</p>
+      </div>
+      <div class="stage-card">
+        <div class="canvas-wrap"><canvas id="c0" width="900" height="380"></canvas></div>
+        <div class="info-card" id="c0-info">단계를 클릭해 보세요.</div>
+      </div>
+    </section>
+
+    <section class="tab-panel" data-panel="1" hidden>
+      <div class="stage-head">
+        <div class="eyebrow">02 · 대산소화 사건</div>
+        <h2 class="display">대기 중 산소 농도는 어떻게 늘어났을까?</h2>
+        <p>시간 슬라이더를 움직여 지구 대기의 산소 농도가 지질 시대에 걸쳐 어떻게 변해 왔는지 확인해 보세요.</p>
+      </div>
+      <div class="stage-card">
+        <div class="canvas-wrap"><canvas id="c1" width="900" height="380"></canvas></div>
+        <div class="controls">
+          <div class="ctrl-group">
+            <div class="ctrl-label">시간(억 년 전)<span class="val" id="c1-t-val">46</span></div>
+            <input type="range" id="c1-t" min="0" max="46" step="1" value="46">
+          </div>
+        </div>
+        <div class="info-card" id="c1-info"></div>
+      </div>
+    </section>
+
+    <section class="tab-panel" data-panel="2" hidden>
+      <div class="stage-head">
+        <div class="eyebrow">03 · 지구시스템 속 물질의 순환</div>
+        <h2 class="display">탄소와 물은 어디를 순환할까?</h2>
+        <p>기권·수권·지권·생물권 사이를 오가는 탄소와 물의 순환 경로를 클릭해 확인해 보세요.</p>
+      </div>
+      <div class="stage-card">
+        <div class="canvas-wrap"><canvas id="c2" width="900" height="420"></canvas></div>
+        <div class="controls">
+          <div class="ctrl-group">
+            <div class="ctrl-label">순환 물질</div>
+            <div class="seg" id="c2-mat">
+              <button class="on" data-m="carbon">탄소 순환</button>
+              <button data-m="water">물의 순환</button>
+            </div>
+          </div>
+        </div>
+        <div class="info-card" id="c2-info">저장고나 화살표를 클릭해 보세요.</div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<button class="theme-toggle" id="themeToggle">라이트 모드</button>
+<script src="../assets/theme.js"></script>
+<script>
+(function () {
+"use strict";
+
+/* TAB0 지구의 탄생 */
+(function () {
+  var canvas = document.getElementById("c0");
+  var ctx = setupCanvas(canvas);
+  var W = canvas._w, H = canvas._h;
+  var info = document.getElementById("c0-info");
+  var stages = [
+    { name: "미행성의 집적", desc: "태양계 성운 속 먼지와 가스가 뭉쳐 미행성체가 만들어지고, 이들이 충돌·합체하며 원시 지구가 성장했습니다." },
+    { name: "마그마 바다", desc: "미행성체의 충돌 에너지와 방사성 원소의 붕괴열로 원시 지구 전체가 녹아 마그마 바다 상태가 되었습니다." },
+    { name: "핵과 맨틀의 분리", desc: "밀도가 큰 철·니켈 성분은 중심으로 가라앉아 핵을, 밀도가 작은 규산염 성분은 위로 떠올라 맨틀을 이루었습니다(밀도에 따른 층상 분리)." },
+    { name: "원시 대기와 바다의 형성", desc: "화산 활동으로 수증기·이산화 탄소 등이 방출되어 원시 대기를 이루었고, 지구가 식으면서 수증기가 응결해 원시 바다가 형성되었습니다." },
+    { name: "생명체의 출현", desc: "원시 바다에서 최초의 생명체가 출현했고, 이후 광합성 생물의 등장으로 대기 조성이 크게 달라지기 시작했습니다." }
+  ];
+  canvas.addEventListener("click", function (e) {
+    var rect = canvas.getBoundingClientRect();
+    var scaleX = canvas._w / rect.width;
+    var mx = (e.clientX - rect.left) * scaleX;
+    var x0 = 60, x1 = W - 60;
+    stages.forEach(function (s, i) {
+      var x = x0 + (i / (stages.length - 1)) * (x1 - x0);
+      if (Math.abs(x - mx) < 40) info.innerHTML = "<b>" + s.name + "</b> — " + s.desc;
+    });
+  });
+  function render() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
+    var x0 = 60, x1 = W - 60, y = H / 2;
+    ctx.strokeStyle = cssVar("--line"); ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke();
+    stages.forEach(function (s, i) {
+      var x = x0 + (i / (stages.length - 1)) * (x1 - x0);
+      var up = i % 2 === 0;
+      ctx.save(); ctx.fillStyle = cssVar("--teal"); ctx.beginPath(); ctx.arc(x, y, 10, 0, 7); ctx.fill(); ctx.restore();
+      ctx.font = "700 11px Segoe UI"; ctx.fillStyle = cssVar("--foam"); ctx.textAlign = "center";
+      wrapText(ctx, s.name, x, up ? y - 30 : y + 40, 140, 14);
+    });
+    function wrapText(ctx, text, x, y, maxW, lh) {
+      var line = "", lines = [];
+      for (var i = 0; i < text.length; i++) {
+        var test = line + text[i];
+        if (ctx.measureText(test).width > maxW && line.length > 0) { lines.push(line); line = text[i]; } else line = test;
+      }
+      lines.push(line);
+      lines.forEach(function (l, i) { ctx.fillText(l, x, y + i * lh); });
+    }
+  }
+  render();
+})();
+
+/* TAB1 산소농도 진화 */
+(function () {
+  var canvas = document.getElementById("c1");
+  var ctx = setupCanvas(canvas);
+  var W = canvas._w, H = canvas._h;
+  var t = 46;
+  var info = document.getElementById("c1-info");
+  document.getElementById("c1-t").addEventListener("input", function (e) { t = +e.target.value; document.getElementById("c1-t-val").textContent = t; render(); });
+
+  function o2Level(agoBillion) {
+    var x = 46 - agoBillion;
+    if (x < 20) return 0.5;
+    if (x < 24) return 0.5 + (x - 20) / 4 * 3;
+    if (x < 41) return 3.5;
+    return 3.5 + (x - 41) / 5 * 17.5;
+  }
+  function render() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
+    var x0 = 60, x1 = W - 60, y0 = 40, y1 = H - 60;
+    ctx.strokeStyle = cssVar("--line"); ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x0, y1); ctx.lineTo(x1, y1); ctx.stroke();
+    ctx.font = "11px Segoe UI"; ctx.fillStyle = cssVar("--mist"); ctx.textAlign = "left"; ctx.fillText("46억 년 전", x0, y1 + 26);
+    ctx.textAlign = "right"; ctx.fillText("현재", x1, y1 + 26);
+    ctx.save(); ctx.translate(24, (y0 + y1) / 2); ctx.rotate(-Math.PI / 2); ctx.textAlign = "center"; ctx.fillText("대기 중 산소 농도(%)", 0, 0); ctx.restore();
+
+    ctx.beginPath();
+    for (var px = 0; px <= 200; px++) {
+      var ago = 46 - px / 200 * 46;
+      var o2 = o2Level(ago);
+      var xx = x0 + px / 200 * (x1 - x0), yy = y1 - o2 / 21 * (y1 - y0);
+      if (px === 0) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy);
+    }
+    ctx.strokeStyle = cssVar("--teal"); ctx.lineWidth = 2.5; ctx.stroke();
+
+    var curX = x0 + (46 - t) / 46 * (x1 - x0), curY = y1 - o2Level(t) / 21 * (y1 - y0);
+    ctx.fillStyle = cssVar("--coral"); ctx.beginPath(); ctx.arc(curX, curY, 7, 0, 7); ctx.fill();
+
+    var mark1 = x0 + (46 - 24) / 46 * (x1 - x0);
+    var mark2 = x0 + (46 - 41) / 46 * (x1 - x0);
+    ctx.save(); ctx.strokeStyle = cssVar("--violet"); ctx.setLineDash([4, 4]);
+    ctx.beginPath(); ctx.moveTo(mark1, y0); ctx.lineTo(mark1, y1); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(mark2, y0); ctx.lineTo(mark2, y1); ctx.stroke();
+    ctx.setLineDash([]); ctx.restore();
+    ctx.font = "10px Segoe UI"; ctx.fillStyle = cssVar("--violet"); ctx.textAlign = "center";
+    ctx.fillText("대산소화 사건(약 24억 년 전)", mark1, y0 - 10);
+    ctx.fillText("신생대 산소 급증(약 5억 년 전)", mark2, y0 - 24);
+
+    info.innerHTML = "약 " + t + "억 년 전, 대기 중 산소 농도는 약 <b>" + o2Level(t).toFixed(1) + "%</b>였습니다. 광합성을 하는 남세균(시아노박테리아)이 만든 산소가 바다와 대기에 쌓이며 약 24억 년 전 <b>대산소화 사건</b>이 일어났고, 이후 오존층이 형성되어 생물이 육상으로 진출할 수 있는 환경이 마련되었습니다.";
+  }
+  render();
+})();
+
+/* TAB2 탄소/물 순환 */
+(function () {
+  var canvas = document.getElementById("c2");
+  var ctx = setupCanvas(canvas);
+  var W = canvas._w, H = canvas._h;
+  var mat = "carbon";
+  var info = document.getElementById("c2-info");
+  document.querySelectorAll("#c2-mat button").forEach(function (b) {
+    b.addEventListener("click", function () { mat = b.getAttribute("data-m"); document.querySelectorAll("#c2-mat button").forEach(function (x) { x.classList.toggle("on", x === b); }); render(); });
+  });
+
+  var reservoirsCarbon = [
+    { name: "대기(CO₂)", x: W / 2, y: 90, desc: "대기 중 이산화 탄소는 광합성으로 흡수되고, 호흡·연소로 다시 방출됩니다." },
+    { name: "생물권", x: 180, y: 250, desc: "식물과 동물의 몸을 구성하며, 사체가 분해되거나 화석 연료로 저장됩니다." },
+    { name: "해양", x: W - 180, y: 250, desc: "대기와 이산화 탄소를 교환하며, 일부는 석회질 생물의 껍데기로 침전됩니다." },
+    { name: "암석권(석회암 등)", x: W / 2, y: 380, desc: "탄산염 광물(석회암)이나 화석 연료의 형태로 오랜 시간 저장됩니다." }
+  ];
+  var reservoirsWater = [
+    { name: "대기(수증기)", x: W / 2, y: 90, desc: "증발한 물이 수증기로 존재하다가 응결하여 구름과 강수를 만듭니다." },
+    { name: "육지(하천·지하수·빙하)", x: 180, y: 250, desc: "강수의 일부가 하천이나 지하수로 흐르거나 빙하로 저장됩니다." },
+    { name: "해양", x: W - 180, y: 250, desc: "지구 물의 대부분을 차지하며, 증발을 통해 대기로 물을 공급합니다." },
+    { name: "생물권", x: W / 2, y: 380, desc: "생물의 몸속 수분과 증산 작용으로 물의 순환에 관여합니다." }
+  ];
+  function reservoirs() { return mat === "carbon" ? reservoirsCarbon : reservoirsWater; }
+  canvas.addEventListener("click", function (e) {
+    var rect = canvas.getBoundingClientRect();
+    var scaleX = canvas._w / rect.width, scaleY = canvas._h / rect.height;
+    var mx = (e.clientX - rect.left) * scaleX, my = (e.clientY - rect.top) * scaleY;
+    reservoirs().forEach(function (r) { if (Math.hypot(mx - r.x, my - r.y) < 55) info.innerHTML = "<b>" + r.name + "</b> — " + r.desc; });
+  });
+  function render() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
+    var rs = reservoirs();
+    var edges = [[0, 1], [0, 2], [1, 2], [1, 3], [2, 3], [0, 3]];
+    edges.forEach(function (e) {
+      var A = rs[e[0]], B = rs[e[1]];
+      ctx.strokeStyle = cssVar("--line"); ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.stroke();
+    });
+    rs.forEach(function (r) {
+      ctx.save();
+      ctx.fillStyle = cssVar(mat === "carbon" ? "--teal" : "--cold"); ctx.globalAlpha = .85;
+      ctx.beginPath(); ctx.arc(r.x, r.y, 52, 0, 7); ctx.fill();
+      ctx.restore();
+      ctx.font = "700 12px Segoe UI"; ctx.fillStyle = cssVar("--abyss"); ctx.textAlign = "center";
+      wrapText(ctx, r.name, r.x, r.y + 4, 90, 14);
+    });
+    function wrapText(ctx, text, x, y, maxW, lh) {
+      var line = "", lines = [];
+      for (var i = 0; i < text.length; i++) {
+        var test = line + text[i];
+        if (ctx.measureText(test).width > maxW && line.length > 0) { lines.push(line); line = text[i]; } else line = test;
+      }
+      lines.push(line);
+      var totalH = lines.length * lh;
+      lines.forEach(function (l, i) { ctx.fillText(l, x, y - totalH / 2 + i * lh + lh); });
+    }
+  }
+  render();
+})();
+
+})();
+</script>
+</body>
+</html>

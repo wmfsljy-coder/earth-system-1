@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>판 구조 운동과 지구 내부 구조 — 관측 스테이션</title>
+<link rel="stylesheet" href="../assets/theme.css">
+</head>
+<body>
+
+<div class="app">
+  <nav class="rail" id="rail">
+    <div class="brand">
+      <a class="home" href="../">← 지구시스템과학1</a>
+      <div class="eyebrow" style="margin-top:8px">Ⅰ-2 · 지구 탄생과 생동하는 지구</div>
+      <h1 class="display">판 구조 운동과<br>지구 내부</h1>
+    </div>
+    <button class="tab-btn active" data-tab="0"><span class="num">01</span> 판구조론과 플룸구조론</button>
+    <button class="tab-btn" data-tab="1"><span class="num">02</span> 화산 활동과 암석의 순환</button>
+    <button class="tab-btn" data-tab="2"><span class="num">03</span> 지진파와 지구 내부 구조</button>
+  </nav>
+
+  <main>
+    <section class="tab-panel" data-panel="0">
+      <div class="stage-head">
+        <div class="eyebrow">01 · 지구 운동을 설명하는 두 이론</div>
+        <h2 class="display">판구조론과 플룸구조론</h2>
+        <p>판구조론은 지각과 상부 맨틀의 판이 움직이는 것을, 플룸구조론은 맨틀 전체 규모의 거대한 상승·하강류를 설명합니다. 버튼을 눌러 비교해 보세요.</p>
+      </div>
+      <div class="stage-card">
+        <div class="canvas-wrap"><canvas id="c0" width="900" height="400"></canvas></div>
+        <div class="controls">
+          <div class="ctrl-group">
+            <div class="ctrl-label">이론 선택</div>
+            <div class="seg" id="c0-theory">
+              <button class="on" data-t="plate">판구조론</button>
+              <button data-t="plume">플룸구조론</button>
+            </div>
+          </div>
+        </div>
+        <div class="info-card" id="c0-info"></div>
+      </div>
+    </section>
+
+    <section class="tab-panel" data-panel="1" hidden>
+      <div class="stage-head">
+        <div class="eyebrow">02 · 마그마가 만드는 암석</div>
+        <h2 class="display">화산 활동과 암석의 순환</h2>
+        <p>화산이 만들어지는 세 가지 위치를 클릭해 각각 어떤 마그마가 생성되는지 확인해 보세요.</p>
+      </div>
+      <div class="stage-card">
+        <div class="canvas-wrap"><canvas id="c1" width="900" height="380"></canvas></div>
+        <div class="info-card" id="c1-info">화산 위치를 클릭해 보세요.</div>
+      </div>
+    </section>
+
+    <section class="tab-panel" data-panel="2" hidden>
+      <div class="stage-head">
+        <div class="eyebrow">03 · 지진파로 밝혀낸 지구 속</div>
+        <h2 class="display">지진파와 지구 내부 구조</h2>
+        <p>깊이 슬라이더를 움직여 지구 내부 층상 구조와, 그 깊이에서 지진파가 어떻게 통과하는지 확인해 보세요.</p>
+      </div>
+      <div class="stage-card">
+        <div class="canvas-wrap"><canvas id="c2" width="900" height="440"></canvas></div>
+        <div class="controls">
+          <div class="ctrl-group">
+            <div class="ctrl-label">깊이(km)<span class="val" id="c2-d-val">0</span></div>
+            <input type="range" id="c2-d" min="0" max="6371" step="10" value="0">
+          </div>
+        </div>
+        <div class="info-card" id="c2-info"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<button class="theme-toggle" id="themeToggle">라이트 모드</button>
+<script src="../assets/theme.js"></script>
+<script>
+(function () {
+"use strict";
+
+/* TAB0 판구조론/플룸구조론 */
+(function () {
+  var canvas = document.getElementById("c0");
+  var ctx = setupCanvas(canvas);
+  var W = canvas._w, H = canvas._h;
+  var theory = "plate";
+  var info = document.getElementById("c0-info");
+  var texts = {
+    plate: "<b>판구조론</b>: 지구 표면은 여러 개의 단단한 판(암석권)으로 나뉘어 있고, 이 판들이 맨틀의 대류를 따라 1년에 수 cm씩 움직입니다. 판의 경계(발산형·수렴형·보존형)에서 지진, 화산 등 지각 변동이 활발하게 일어납니다.",
+    plume: "<b>플룸구조론</b>: 판구조론만으로 설명하기 어려운 현상(하와이처럼 판 경계가 아닌 곳의 화산 활동 등)을 설명하기 위해 등장했습니다. 맨틀과 핵의 경계 부근에서 뜨거운 물질이 기둥 모양(플룸)으로 상승하거나(핫 플룸), 차가운 판이 가라앉아 하강하는(콜드 플룸) 맨틀 전체 규모의 대류를 설명합니다."
+  };
+  document.querySelectorAll("#c0-theory button").forEach(function (b) {
+    b.addEventListener("click", function () { theory = b.getAttribute("data-t"); document.querySelectorAll("#c0-theory button").forEach(function (x) { x.classList.toggle("on", x === b); }); render(); });
+  });
+
+  function render() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
+    info.innerHTML = texts[theory];
+
+    if (theory === "plate") {
+      var y0 = 60, y1 = H - 40;
+      ctx.fillStyle = cssVar("--coral"); ctx.fillRect(60, y0, W - 120, 30);
+      ctx.font = "11px Segoe UI"; ctx.fillStyle = cssVar("--abyss"); ctx.textAlign = "center";
+      ctx.fillText("암석권(지각+상부 맨틀, 여러 개의 판으로 조각남)", W / 2, y0 + 20);
+
+      for (var i = 0; i < 4; i++) {
+        var x = 140 + i * 200;
+        ctx.save(); ctx.strokeStyle = cssVar("--teal"); ctx.fillStyle = cssVar("--teal"); ctx.lineWidth = 3;
+        var dir = i % 2 === 0 ? 1 : -1;
+        drawArrow(ctx, x - dir * 20, y0 + 60, x + dir * 20, y0 + 60, 8);
+        ctx.restore();
+      }
+      ctx.font = "11px Segoe UI"; ctx.fillStyle = cssVar("--mist"); ctx.textAlign = "center";
+      ctx.fillText("맨틀 대류를 따라 판이 수평으로 이동", W / 2, y0 + 100);
+
+      // convection loop
+      ctx.save(); ctx.strokeStyle = cssVar("--line"); ctx.setLineDash([4, 4]);
+      ctx.beginPath(); ctx.ellipse(W / 2, y0 + 180, 300, 100, 0, 0, 7); ctx.stroke();
+      ctx.setLineDash([]); ctx.restore();
+      ctx.font = "11px Segoe UI"; ctx.fillStyle = cssVar("--mist"); ctx.fillText("맨틀 대류", W / 2, y0 + 190);
+    } else {
+      var cx = W / 2, cy = H / 2 + 20;
+      ctx.strokeStyle = cssVar("--line"); ctx.lineWidth = 2;
+      [160, 100].forEach(function (r) { ctx.beginPath(); ctx.arc(cx, cy, r, 0, 7); ctx.stroke(); });
+      ctx.font = "10px Segoe UI"; ctx.fillStyle = cssVar("--mist"); ctx.textAlign = "center";
+      ctx.fillText("맨틀", cx, cy - 130);
+      ctx.fillText("핵", cx, cy - 10);
+
+      ctx.save(); ctx.strokeStyle = cssVar("--coral"); ctx.fillStyle = cssVar("--coral"); ctx.lineWidth = 4;
+      drawArrow(ctx, cx - 60, cy + 90, cx - 60, cy - 170, 10);
+      ctx.restore();
+      ctx.font = "11px Segoe UI"; ctx.fillStyle = cssVar("--coral"); ctx.textAlign = "center";
+      ctx.fillText("핫 플룸(상승)", cx - 60, cy - 180);
+
+      ctx.save(); ctx.strokeStyle = cssVar("--cold"); ctx.fillStyle = cssVar("--cold"); ctx.lineWidth = 4;
+      drawArrow(ctx, cx + 90, cy - 170, cx + 90, cy + 90, 10);
+      ctx.restore();
+      ctx.font = "11px Segoe UI"; ctx.fillStyle = cssVar("--cold");
+      ctx.fillText("콜드 플룸(하강)", cx + 90, cy + 110);
+    }
+  }
+  render();
+})();
+
+/* TAB1 화산과 암석순환 */
+(function () {
+  var canvas = document.getElementById("c1");
+  var ctx = setupCanvas(canvas);
+  var W = canvas._w, H = canvas._h;
+  var info = document.getElementById("c1-info");
+  var spots = [
+    { name: "발산형 경계(해령)", x: 200, y: 200, desc: "맨틀 물질이 상승하며 압력이 낮아져 부분 용융이 일어나 현무암질 마그마가 생성됩니다. 대표적으로 대서양 중앙 해령이 있습니다." },
+    { name: "수렴형 경계(섭입대)", x: 500, y: 200, desc: "섭입하는 판에서 빠져나온 물이 맨틀의 용융점을 낮춰 부분 용융이 일어나 주로 안산암질 마그마가 생성됩니다. 예) 일본 열도의 화산." },
+    { name: "열점(하와이 등)", x: 750, y: 200, desc: "판의 경계와 무관하게, 맨틀 플룸이 상승하는 곳에서 지속적으로 화산 활동이 일어납니다. 판이 이동하면서 화산섬이 열을 지어 만들어집니다." }
+  ];
+  canvas.addEventListener("click", function (e) {
+    var rect = canvas.getBoundingClientRect();
+    var scaleX = canvas._w / rect.width, scaleY = canvas._h / rect.height;
+    var mx = (e.clientX - rect.left) * scaleX, my = (e.clientY - rect.top) * scaleY;
+    spots.forEach(function (s) { if (Math.hypot(mx - s.x, my - s.y) < 60) info.innerHTML = "<b>" + s.name + "</b> — " + s.desc; });
+  });
+  function render() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
+    spots.forEach(function (s) {
+      ctx.save(); ctx.fillStyle = cssVar("--coral"); ctx.globalAlpha = .85;
+      ctx.beginPath();
+      ctx.moveTo(s.x, s.y - 50); ctx.lineTo(s.x - 45, s.y + 40); ctx.lineTo(s.x + 45, s.y + 40); ctx.closePath(); ctx.fill();
+      ctx.restore();
+      ctx.font = "700 12px Segoe UI"; ctx.fillStyle = cssVar("--foam"); ctx.textAlign = "center";
+      wrapText(ctx, s.name, s.x, s.y + 70, 150, 15);
+    });
+    function wrapText(ctx, text, x, y, maxW, lh) {
+      var line = "", lines = [];
+      for (var i = 0; i < text.length; i++) {
+        var test = line + text[i];
+        if (ctx.measureText(test).width > maxW && line.length > 0) { lines.push(line); line = text[i]; } else line = test;
+      }
+      lines.push(line);
+      lines.forEach(function (l, i) { ctx.fillText(l, x, y + i * lh); });
+    }
+  }
+  render();
+})();
+
+/* TAB2 지구내부구조 */
+(function () {
+  var canvas = document.getElementById("c2");
+  var ctx = setupCanvas(canvas);
+  var W = canvas._w, H = canvas._h;
+  var depth = 0;
+  var info = document.getElementById("c2-info");
+  document.getElementById("c2-d").addEventListener("input", function (e) { depth = +e.target.value; document.getElementById("c2-d-val").textContent = depth; render(); });
+
+  var layers = [
+    { name: "지각", from: 0, to: 35, color: "--coral", desc: "P파 속도 약 6~7km/s. 대륙 지각은 두껍고(약 35km), 해양 지각은 얇습니다(약 5~10km)." },
+    { name: "맨틀", from: 35, to: 2890, color: "--teal", desc: "P파와 S파가 모두 통과하는 고체 상태입니다. 지구 부피의 약 82%를 차지합니다." },
+    { name: "외핵", from: 2890, to: 5150, color: "--violet", desc: "액체 상태로, S파는 통과하지 못합니다(S파 그림자대의 원인). 이 액체 철의 대류가 지구 자기장을 만듭니다." },
+    { name: "내핵", from: 5150, to: 6371, color: "--cold", desc: "엄청난 압력으로 다시 고체 상태가 됩니다. P파 속도가 다시 빨라집니다." }
+  ];
+
+  function currentLayer() {
+    for (var i = 0; i < layers.length; i++) if (depth >= layers[i].from && depth <= layers[i].to) return layers[i];
+    return layers[layers.length - 1];
+  }
+  function render() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
+    var cx = 220, cy = H / 2, R = 170;
+    layers.slice().reverse().forEach(function (l) {
+      var r = R * (l.to / 6371);
+      ctx.fillStyle = cssVar(l.color); ctx.globalAlpha = .8;
+      ctx.beginPath(); ctx.arc(cx, cy, r, 0, 7); ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    var markR = R * (depth / 6371);
+    ctx.save(); ctx.strokeStyle = cssVar("--foam"); ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(cx, cy, markR, 0, 7); ctx.stroke(); ctx.restore();
+
+    var cl = currentLayer();
+    ctx.font = "700 13px Segoe UI"; ctx.fillStyle = cssVar("--foam"); ctx.textAlign = "left";
+    ctx.fillText("현재 깊이가 위치한 층: " + cl.name, 450, 80);
+    ctx.font = "12px Segoe UI"; ctx.fillStyle = cssVar("--mist");
+    wrapTextL(ctx, cl.desc, 450, 110, 380, 20);
+
+    // P/S wave illustration
+    var sWaveBlocked = depth >= 2890 && depth < 5150;
+    ctx.font = "700 12px Segoe UI"; ctx.fillStyle = cssVar("--teal");
+    ctx.fillText("P파: 이 깊이에서도 통과 가능", 450, H - 90);
+    ctx.fillStyle = sWaveBlocked ? cssVar("--coral") : cssVar("--cold");
+    ctx.fillText("S파: " + (sWaveBlocked ? "통과하지 못함 (액체 상태의 외핵)" : "통과 가능"), 450, H - 60);
+
+    function wrapTextL(ctx, text, x, y, maxW, lh) {
+      var line = "", lines = [];
+      for (var i = 0; i < text.length; i++) {
+        var test = line + text[i];
+        if (ctx.measureText(test).width > maxW && line.length > 0) { lines.push(line); line = text[i]; } else line = test;
+      }
+      lines.push(line);
+      lines.forEach(function (l, i) { ctx.fillText(l, x, y + i * lh); });
+    }
+    info.innerHTML = cl.name + " (" + cl.from + "~" + cl.to + "km): " + cl.desc;
+  }
+  render();
+})();
+
+})();
+</script>
+</body>
+</html>
