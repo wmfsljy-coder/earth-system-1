@@ -18,6 +18,7 @@
     <button class="tab-btn active" data-tab="0"><span class="num">01</span> 지구의 탄생</button>
     <button class="tab-btn" data-tab="1"><span class="num">02</span> 산소 농도의 진화</button>
     <button class="tab-btn" data-tab="2"><span class="num">03</span> 탄소와 물의 순환</button>
+    <button class="tab-btn" data-tab="3"><span class="num">04</span> 산소의 순환과 대산소화 사건</button>
   </nav>
 
   <main>
@@ -70,6 +71,19 @@
         </div>
         <div class="info-card" id="c2-info">저장고나 화살표를 클릭해 보세요.</div>
       </div>
+    </section>
+
+    <section class="tab-panel" data-panel="3" hidden>
+      <div class="stage-head">
+        <div class="eyebrow">04 · 지구를 바꾼 기체, 산소</div>
+        <h2 class="display">산소의 순환과 호상철광층</h2>
+        <p>광합성으로 만들어진 산소가 어디로 이동해 어떤 흔적을 남겼는지, 단계를 클릭해 확인해 보세요.</p>
+      </div>
+      <div class="stage-card">
+        <div class="canvas-wrap"><canvas id="c3" width="900" height="420"></canvas></div>
+        <div class="info-card" id="c3-info">저장고나 화살표를 클릭해 보세요.</div>
+      </div>
+      <p class="foot-note">핵심 용어: 남세균 · 호상철광층 · 대산소화 사건 · 얼음덩어리 지구(눈덩이 지구)</p>
     </section>
   </main>
 </div>
@@ -228,6 +242,56 @@
       ctx.restore();
       ctx.font = "700 12px Segoe UI"; ctx.fillStyle = cssVar("--abyss"); ctx.textAlign = "center";
       wrapText(ctx, r.name, r.x, r.y + 4, 90, 14);
+    });
+    function wrapText(ctx, text, x, y, maxW, lh) {
+      var line = "", lines = [];
+      for (var i = 0; i < text.length; i++) {
+        var test = line + text[i];
+        if (ctx.measureText(test).width > maxW && line.length > 0) { lines.push(line); line = text[i]; } else line = test;
+      }
+      lines.push(line);
+      var totalH = lines.length * lh;
+      lines.forEach(function (l, i) { ctx.fillText(l, x, y - totalH / 2 + i * lh + lh); });
+    }
+  }
+  render();
+})();
+
+
+/* TAB3 산소의 순환과 호상철광층 */
+(function () {
+  var canvas = document.getElementById("c3");
+  var ctx = setupCanvas(canvas);
+  var W = canvas._w, H = canvas._h;
+  var info = document.getElementById("c3-info");
+  var nodes = [
+    { name: "생물권(남세균의 광합성)", x: 180, y: 110, desc: "약 27억 년 전 광합성을 하는 남세균(시아노박테리아)이 번성하며 바다에 산소를 방출하기 시작했습니다." },
+    { name: "해양(용존 철 산화)", x: 180, y: 320, desc: "당시 바다에는 철 이온(Fe²⁺)이 많이 녹아 있었는데, 산소와 만나 산화철(Fe³⁺)로 침전되었습니다. 이 과정에서 바다의 산소가 소모되어 대기 중 산소 농도는 한동안 크게 늘지 않았습니다." },
+    { name: "지권(호상철광층 퇴적)", x: 720, y: 320, desc: "침전된 산화철이 해저에 줄무늬 모양으로 쌓여 만들어진 것이 호상철광층(BIF)입니다. 오늘날 철광석의 주요 원료로, 대산소화 사건의 결정적 증거입니다." },
+    { name: "대기(산소 축적·오존층)", x: 720, y: 110, desc: "바닷속 철 이온이 모두 산화되어 소모된 뒤부터는 산소가 본격적으로 대기에 쌓이기 시작했습니다(대산소화 사건, 약 24억 년 전). 이후 오존층이 형성되어 자외선을 막아 생물이 육상으로 진출할 수 있었습니다." }
+  ];
+  var edges = [[0,1],[1,2],[2,3],[3,0]];
+  canvas.addEventListener("click", function (e) {
+    var rect = canvas.getBoundingClientRect();
+    var scaleX = canvas._w / rect.width, scaleY = canvas._h / rect.height;
+    var mx = (e.clientX - rect.left) * scaleX, my = (e.clientY - rect.top) * scaleY;
+    nodes.forEach(function (n) { if (Math.hypot(mx - n.x, my - n.y) < 60) info.innerHTML = "<b>" + n.name + "</b> — " + n.desc; });
+  });
+  function render() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
+    edges.forEach(function (e) {
+      var A = nodes[e[0]], B = nodes[e[1]];
+      ctx.save(); ctx.strokeStyle = cssVar("--teal"); ctx.fillStyle = cssVar("--teal"); ctx.lineWidth = 3;
+      drawArrow(ctx, A.x, A.y, B.x, B.y, 9);
+      ctx.restore();
+    });
+    nodes.forEach(function (n) {
+      ctx.save(); ctx.fillStyle = cssVar("--cold"); ctx.globalAlpha = .85;
+      ctx.beginPath(); ctx.arc(n.x, n.y, 58, 0, 7); ctx.fill();
+      ctx.restore();
+      ctx.font = "700 12px Segoe UI"; ctx.fillStyle = cssVar("--abyss"); ctx.textAlign = "center";
+      wrapText(ctx, n.name, n.x, n.y + 4, 100, 14);
     });
     function wrapText(ctx, text, x, y, maxW, lh) {
       var line = "", lines = [];
