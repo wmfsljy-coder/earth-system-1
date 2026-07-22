@@ -32,6 +32,16 @@
         <div class="canvas-wrap"><canvas id="c0" width="900" height="380"></canvas></div>
         <div class="info-card" id="c0-info">단계를 클릭해 보세요.</div>
       </div>
+      <div class="stage-card">
+        <div class="canvas-wrap"><canvas id="c0b" width="900" height="380"></canvas></div>
+        <div class="controls">
+          <div class="ctrl-group">
+            <div class="ctrl-label">지구 형성 후 경과 시간(백만 년)<span class="val" id="c0b-t-val">50</span></div>
+            <input type="range" id="c0b-t" min="0" max="1000" step="5" value="50">
+          </div>
+        </div>
+        <div class="info-card" id="c0b-info"></div>
+      </div>
     </section>
 
     <section class="tab-panel" data-panel="1" hidden>
@@ -82,6 +92,20 @@
       <div class="stage-card">
         <div class="canvas-wrap"><canvas id="c3" width="900" height="420"></canvas></div>
         <div class="info-card" id="c3-info">저장고나 화살표를 클릭해 보세요.</div>
+      </div>
+      <div class="stage-card">
+        <div class="canvas-wrap"><canvas id="c3b" width="900" height="380"></canvas></div>
+        <div class="controls">
+          <div class="ctrl-group">
+            <div class="ctrl-label">광합성에 의한 산소 생산 속도<span class="val" id="c3b-src-val">4</span></div>
+            <input type="range" id="c3b-src" min="1" max="10" step="1" value="4">
+          </div>
+          <div class="ctrl-group">
+            <div class="ctrl-label">경과 시간(임의 단위)<span class="val" id="c3b-t-val">10</span></div>
+            <input type="range" id="c3b-t" min="0" max="200" step="2" value="10">
+          </div>
+        </div>
+        <div class="info-card" id="c3b-info"></div>
       </div>
       <p class="foot-note">핵심 용어: 남세균 · 호상철광층 · 대산소화 사건 · 얼음덩어리 지구(눈덩이 지구)</p>
     </section>
@@ -139,6 +163,103 @@
       lines.push(line);
       lines.forEach(function (l, i) { ctx.fillText(l, x, y + i * lh); });
     }
+  }
+  render();
+})();
+
+/* TAB0b 지구 분화 타임라인 */
+(function () {
+  var canvas = document.getElementById("c0b");
+  var ctx = setupCanvas(canvas);
+  var W = canvas._w, H = canvas._h;
+  var t = 50;
+  var info = document.getElementById("c0b-info");
+  document.getElementById("c0b-t").addEventListener("input", function (e) { t = +e.target.value; document.getElementById("c0b-t-val").textContent = t; render(); });
+
+  var stagesByTime = [
+    { max: 10, name: "미행성의 집적", desc: "먼지와 가스가 뭉쳐 미행성체가 만들어지고, 충돌·합체하며 원시 지구가 성장하는 시기입니다." },
+    { max: 30, name: "마그마 바다", desc: "충돌 에너지와 방사성 붕괴열로 지구 전체가 녹아 마그마 바다 상태가 된 시기입니다." },
+    { max: 100, name: "핵과 맨틀의 분리", desc: "밀도가 큰 철·니켈은 가라앉아 핵을, 밀도가 작은 규산염은 떠올라 맨틀을 이루는 시기입니다." },
+    { max: 500, name: "원시 대기와 바다의 형성", desc: "화산 활동으로 방출된 수증기·이산화 탄소가 원시 대기를 이루고, 식으면서 원시 바다가 형성됩니다." },
+    { max: Infinity, name: "생명체의 출현", desc: "원시 바다에서 최초의 생명체가 출현하는 시기입니다(약 35억~38억 년 전 무렵으로 추정)." }
+  ];
+  function stageOf(myr) { for (var i = 0; i < stagesByTime.length; i++) if (myr <= stagesByTime[i].max) return stagesByTime[i]; return stagesByTime[stagesByTime.length - 1]; }
+  // 분화 진행도: 30~100백만년 사이에 핵-맨틀 분리가 진행된다고 가정한 단순 모델
+  function diffProgress(myr) {
+    if (myr <= 10) return 0;
+    if (myr >= 100) return 1;
+    return (myr - 10) / (100 - 10);
+  }
+
+  function render() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
+
+    var prog = diffProgress(t);
+    var cx = W / 2 - 140, cy = H / 2, R = 130;
+
+    if (prog <= 0) {
+      // 아직 분화 전: 균질하게 섞인 마그마 바다(암석질+금속질이 뒤섞인 모습)
+      ctx.save();
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, 7); ctx.clip();
+      ctx.fillStyle = cssVar("--panel-2"); ctx.fillRect(cx - R, cy - R, R * 2, R * 2);
+      var rand = mulberry32(7);
+      for (var i = 0; i < 260; i++) {
+        var ang = rand() * Math.PI * 2, rad = Math.sqrt(rand()) * R;
+        ctx.fillStyle = i % 2 === 0 ? cssVar("--coral") : cssVar("--mist");
+        ctx.globalAlpha = 0.7;
+        ctx.beginPath(); ctx.arc(cx + Math.cos(ang) * rad, cy + Math.sin(ang) * rad, 2.2, 0, 7); ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      ctx.restore();
+    } else {
+      // 분화가 진행됨: 핵(중심)과 맨틀(바깥쪽)이 반지름 비율에 따라 뚜렷해짐
+      var coreR = 0.15 * R + prog * 0.35 * R;
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, 7);
+      ctx.fillStyle = cssVar("--teal"); ctx.fill();
+      ctx.beginPath(); ctx.arc(cx, cy, coreR, 0, 7);
+      ctx.fillStyle = cssVar("--coral"); ctx.fill();
+      if (prog > 0.85) {
+        ctx.lineWidth = 5; ctx.strokeStyle = cssVar("--violet");
+        ctx.beginPath(); ctx.arc(cx, cy, R - 3, 0, 7); ctx.stroke();
+      }
+    }
+    ctx.strokeStyle = cssVar("--line"); ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, 7); ctx.stroke();
+    ctx.font = "700 12px Segoe UI"; ctx.fillStyle = cssVar("--foam"); ctx.textAlign = "center";
+    ctx.fillText(prog <= 0 ? "균질한 마그마 바다" : (prog < 1 ? "핵·맨틀 분리 진행 중 (" + Math.round(prog * 100) + "%)" : "핵·맨틀·지각 분리 완료"), cx, cy + R + 30);
+
+    // 타임라인
+    var x0 = W - 480, x1 = W - 60, y = H - 70;
+    ctx.strokeStyle = cssVar("--line"); ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke();
+    var bounds = [10, 30, 100, 500];
+    function xOf(myr) { return x0 + Math.min(myr, 1000) / 1000 * (x1 - x0); }
+    bounds.forEach(function (b) {
+      var bx = xOf(b);
+      ctx.save(); ctx.strokeStyle = cssVar("--violet"); ctx.setLineDash([3, 3]);
+      ctx.beginPath(); ctx.moveTo(bx, y - 60); ctx.lineTo(bx, y + 6); ctx.stroke();
+      ctx.restore();
+    });
+    var curX = xOf(t);
+    ctx.fillStyle = cssVar("--coral"); ctx.beginPath(); ctx.arc(curX, y, 7, 0, 7); ctx.fill();
+    ctx.font = "10.5px Segoe UI"; ctx.fillStyle = cssVar("--mist"); ctx.textAlign = "left";
+    ctx.fillText("형성 시점(0)", x0, y + 22);
+    ctx.textAlign = "right"; ctx.fillText("10억 년 후", x1, y + 22);
+
+    var st = stageOf(t);
+    ctx.font = "700 13px Segoe UI"; ctx.fillStyle = cssVar("--foam"); ctx.textAlign = "center";
+    ctx.fillText(st.name, (x0 + x1) / 2, y - 76);
+
+    info.innerHTML = "지구 형성 후 약 <b>" + t + "백만 년</b>이 지난 시점, <b>" + st.name + "</b> 단계입니다. " + st.desc + (t > 10 && t < 100 ? " 이 시기 핵·맨틀 분리 진행도는 약 <b>" + Math.round(prog * 100) + "%</b>입니다." : "");
+  }
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      var tt = Math.imul(a ^ (a >>> 15), 1 | a);
+      tt = (tt + Math.imul(tt ^ (tt >>> 7), 61 | tt)) ^ tt;
+      return ((tt ^ (tt >>> 14)) >>> 0) / 4294967296;
+    };
   }
   render();
 })();
@@ -303,6 +424,59 @@
       var totalH = lines.length * lh;
       lines.forEach(function (l, i) { ctx.fillText(l, x, y - totalH / 2 + i * lh + lh); });
     }
+  }
+  render();
+})();
+
+/* TAB3b 대기-해양 산소 수지 모형 */
+(function () {
+  var canvas = document.getElementById("c3b");
+  var ctx = setupCanvas(canvas);
+  var W = canvas._w, H = canvas._h;
+  var src = 4, t = 10;
+  var info = document.getElementById("c3b-info");
+  document.getElementById("c3b-src").addEventListener("input", function (e) { src = +e.target.value; document.getElementById("c3b-src-val").textContent = src; render(); });
+  document.getElementById("c3b-t").addEventListener("input", function (e) { t = +e.target.value; document.getElementById("c3b-t-val").textContent = t; render(); });
+
+  var FE_TOTAL = 100; // 바닷속에 녹아있던 철 이온의 총량(임의 단위)
+  function ironRemaining(s, tt) { return Math.max(0, FE_TOTAL - s * tt); }
+  function atmO2(s, tt) { return Math.max(0, s * tt - FE_TOTAL) * 0.4; }
+
+  function render() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
+
+    var fe = ironRemaining(src, t), o2 = atmO2(src, t);
+    var barX1 = 160, barX2 = W - 260, barY = 60, barW = 140, barH = 260;
+
+    // 철 이온 잔량 바
+    ctx.strokeStyle = cssVar("--line"); ctx.lineWidth = 2; ctx.strokeRect(barX1, barY, barW, barH);
+    var feH = fe / FE_TOTAL * barH;
+    ctx.fillStyle = cssVar("--coral"); ctx.fillRect(barX1, barY + barH - feH, barW, feH);
+    ctx.font = "700 12px Segoe UI"; ctx.fillStyle = cssVar("--foam"); ctx.textAlign = "center";
+    ctx.fillText("바닷속 잔여 철 이온(Fe²⁺)", barX1 + barW / 2, barY - 16);
+    ctx.fillText(fe.toFixed(0) + " / " + FE_TOTAL, barX1 + barW / 2, barY + barH + 26);
+
+    // 대기 산소 축적 바
+    var o2Max = 60;
+    ctx.strokeStyle = cssVar("--line"); ctx.lineWidth = 2; ctx.strokeRect(barX2, barY, barW, barH);
+    var o2H = Math.min(o2, o2Max) / o2Max * barH;
+    ctx.fillStyle = cssVar("--teal"); ctx.fillRect(barX2, barY + barH - o2H, barW, o2H);
+    ctx.font = "700 12px Segoe UI"; ctx.fillStyle = cssVar("--foam"); ctx.textAlign = "center";
+    ctx.fillText("대기 중 산소 축적량", barX2 + barW / 2, barY - 16);
+    ctx.fillText(o2.toFixed(1) + " (임의 단위)", barX2 + barW / 2, barY + barH + 26);
+
+    // 중간 화살표: 광합성 생산 -> 철 산화 소모 -> (철 고갈 후) 대기 축적
+    ctx.save(); ctx.strokeStyle = cssVar("--violet"); ctx.fillStyle = cssVar("--violet"); ctx.lineWidth = 3;
+    drawArrow(ctx, barX1 + barW + 20, barY + barH / 2, barX2 - 20, barY + barH / 2, 9);
+    ctx.restore();
+    ctx.font = "11px Segoe UI"; ctx.fillStyle = cssVar("--mist"); ctx.textAlign = "center";
+    ctx.fillText("광합성 산소가 철 이온 산화에 먼저 소모됨", (barX1 + barW + barX2) / 2, barY + barH / 2 - 14);
+
+    var depleted = fe <= 0;
+    info.innerHTML = depleted
+      ? "바닷속 철 이온이 모두 산화되어 소모되었습니다(잔량 0). 이제부터 광합성으로 만들어지는 산소는 <b>대기 중에 그대로 쌓이기 시작</b>합니다 — 이것이 <b>대산소화 사건</b>입니다. 현재 대기 산소 축적량은 " + o2.toFixed(1) + "입니다."
+      : "바닷속에 아직 철 이온이 " + fe.toFixed(0) + "만큼 남아 있어, 광합성으로 만들어진 산소는 대기에 쌓이지 못하고 <b>철 이온을 산화시키는 데 먼저 소모</b>됩니다(호상철광층 형성). 산소 생산 속도를 높이거나 시간을 더 늘리면 철이 먼저 고갈됩니다.";
   }
   render();
 })();

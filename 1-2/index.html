@@ -83,6 +83,16 @@
         <div class="canvas-wrap"><canvas id="c2" width="900" height="380"></canvas></div>
         <div class="info-card" id="c2-info">화산 위치를 클릭해 보세요.</div>
       </div>
+      <div class="stage-card">
+        <div class="canvas-wrap"><canvas id="c2b" width="900" height="420"></canvas></div>
+        <div class="controls">
+          <div class="ctrl-group" style="flex:1 1 100%">
+            <div class="ctrl-label">마그마의 SiO₂ 함량(%)<span class="val" id="c2b-sio2-val">50</span></div>
+            <input type="range" id="c2b-sio2" min="45" max="70" step="1" value="50">
+          </div>
+        </div>
+        <div class="info-card" id="c2b-info"></div>
+      </div>
     </section>
 
     <!-- TAB3: 지진파의 종류와 관측 (신규) -->
@@ -383,6 +393,91 @@
       lines.push(line);
       lines.forEach(function (l, i) { ctx.fillText(l, x, y + i * lh); });
     }
+  }
+  render();
+})();
+
+/* TAB2b: 마그마 점성과 분출 양식 */
+(function () {
+  var canvas = document.getElementById("c2b");
+  var ctx = setupCanvas(canvas);
+  var W = canvas._w, H = canvas._h;
+  var sio2 = 50;
+  var info = document.getElementById("c2b-info");
+  document.getElementById("c2b-sio2").addEventListener("input", function (e) {
+    sio2 = +e.target.value;
+    document.getElementById("c2b-sio2-val").textContent = sio2;
+    render();
+  });
+
+  // SiO2 함량이 높을수록 점성이 크게(로그 스케일로) 증가한다는 실제 경향을 단순화한 모형
+  function viscosity(s) { return Math.pow(10, (s - 45) / 10); }
+  function classify(s) {
+    if (s < 52) return { magma: "현무암질 마그마", shape: "shield", volcano: "순상 화산", style: "용암류 위주의 조용한 분출(효과적 분출)", rock: "현무암" };
+    if (s < 63) return { magma: "안산암질 마그마", shape: "composite", volcano: "성층 화산", style: "용암류와 화산 쇄설물이 번갈아 쌓이는 분출", rock: "안산암" };
+    return { magma: "유문암질 마그마", shape: "dome", volcano: "종상 화산", style: "가스가 잘 빠져나가지 못해 격렬하게 터지는 폭발적 분출", rock: "유문암" };
+  }
+
+  function render() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
+
+    var visc = viscosity(sio2);
+    var info2 = classify(sio2);
+    var baseY = H - 90, cx = W / 2 - 160;
+
+    // 점성 게이지
+    var gx = 60, gy = 60, gw = W - 120, gh = 20;
+    var grad = ctx.createLinearGradient(gx, 0, gx + gw, 0);
+    grad.addColorStop(0, cssVar("--teal")); grad.addColorStop(1, cssVar("--coral"));
+    ctx.fillStyle = grad; ctx.fillRect(gx, gy, gw, gh);
+    var markX = gx + (sio2 - 45) / (70 - 45) * gw;
+    ctx.save(); ctx.strokeStyle = cssVar("--foam"); ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(markX, gy - 6); ctx.lineTo(markX, gy + gh + 6); ctx.stroke(); ctx.restore();
+    ctx.font = "11px Segoe UI"; ctx.fillStyle = cssVar("--mist"); ctx.textAlign = "left";
+    ctx.fillText("45% · 낮은 점성(현무암질)", gx, gy + gh + 22);
+    ctx.textAlign = "right"; ctx.fillText("70% · 높은 점성(유문암질)", gx + gw, gy + gh + 22);
+    ctx.textAlign = "center"; ctx.font = "700 12px Segoe UI"; ctx.fillStyle = cssVar("--foam");
+    ctx.fillText("상대 점성 지수 ≈ " + visc.toFixed(1), (gx + markX) / 2 + gw / 4, gy - 12);
+
+    // 화산 단면(형태가 점성에 따라 변함)
+    var shapeParam = (sio2 - 45) / (70 - 45); // 0(순상, 완만) ~ 1(종상, 급경사)
+    var halfBase = 220 - shapeParam * 130;
+    var height = 60 + shapeParam * 170;
+    ctx.beginPath();
+    ctx.moveTo(cx - halfBase, baseY);
+    ctx.lineTo(cx, baseY - height);
+    ctx.lineTo(cx + halfBase, baseY);
+    ctx.closePath();
+    ctx.fillStyle = cssVar("--panel-2"); ctx.fill();
+    ctx.strokeStyle = cssVar("--line"); ctx.lineWidth = 2; ctx.stroke();
+
+    if (shapeParam < 0.4) {
+      // 순상화산: 용암류가 넓게 퍼짐
+      ctx.save(); ctx.strokeStyle = cssVar("--coral"); ctx.lineWidth = 6; ctx.globalAlpha = .8;
+      ctx.beginPath(); ctx.moveTo(cx, baseY - height); ctx.lineTo(cx - halfBase * 0.9, baseY - 4); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(cx, baseY - height); ctx.lineTo(cx + halfBase * 0.9, baseY - 4); ctx.stroke();
+      ctx.restore();
+    } else if (shapeParam < 0.75) {
+      // 성층화산: 용암류 + 약한 분연
+      ctx.save(); ctx.strokeStyle = cssVar("--coral"); ctx.lineWidth = 4; ctx.globalAlpha = .7;
+      ctx.beginPath(); ctx.moveTo(cx, baseY - height); ctx.lineTo(cx - halfBase * 0.5, baseY - 6); ctx.stroke();
+      ctx.restore();
+      ctx.save(); ctx.fillStyle = cssVar("--mist"); ctx.globalAlpha = .55;
+      for (var i = 0; i < 5; i++) { ctx.beginPath(); ctx.arc(cx + i * 6 - 12, baseY - height - 20 - i * 16, 16 + i * 3, 0, 7); ctx.fill(); }
+      ctx.restore();
+    } else {
+      // 종상/칼데라: 강한 폭발성 분연주
+      ctx.save(); ctx.fillStyle = cssVar("--mist"); ctx.globalAlpha = .75;
+      for (var j = 0; j < 8; j++) { ctx.beginPath(); ctx.arc(cx + (j % 3 - 1) * 14, baseY - height - 30 - j * 22, 20 + j * 4, 0, 7); ctx.fill(); }
+      ctx.restore();
+      ctx.save(); ctx.fillStyle = cssVar("--coral"); ctx.globalAlpha = .85;
+      ctx.beginPath(); ctx.arc(cx, baseY - height, 10, 0, 7); ctx.fill(); ctx.restore();
+    }
+    ctx.font = "700 14px Segoe UI"; ctx.fillStyle = cssVar("--foam"); ctx.textAlign = "center";
+    ctx.fillText(info2.volcano, cx, baseY + 30);
+
+    info.innerHTML = "SiO₂ 함량 " + sio2 + "%는 <b>" + info2.magma + "</b>에 해당하며, 상대 점성 지수는 약 <b>" + visc.toFixed(1) + "</b>입니다. 점성이 " + (shapeParam < 0.4 ? "낮아" : shapeParam < 0.75 ? "중간 정도라" : "높아") + " " + info2.style + "이 나타나고, 굳으면 <b>" + info2.rock + "</b>이 됩니다.";
   }
   render();
 })();
