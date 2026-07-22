@@ -5,6 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>판 구조 운동과 지구 내부 구조 — 관측 스테이션</title>
 <link rel="stylesheet" href="../assets/theme.css">
+<style>
+  .mission-cards { display: flex; gap: 10px; flex-wrap: wrap; padding: 18px 20px 0; }
+  .mission-card { flex: 1 1 160px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 12px; line-height: 1.55; color: var(--mist); cursor: pointer; transition: all .15s; }
+  .mission-card:hover { border-color: var(--teal-dim); }
+  .mission-card.selected { border-color: var(--teal); box-shadow: 0 0 0 2px var(--teal) inset; }
+  .mission-slots { display: flex; gap: 10px; flex-wrap: wrap; padding: 16px 20px 0; }
+  .mission-slot { flex: 1 1 160px; min-height: 90px; border: 1.5px dashed var(--line); border-radius: 10px; padding: 10px 12px; cursor: pointer; transition: all .15s; }
+  .mission-slot .slot-title { font-size: 12.5px; font-weight: 700; color: var(--foam); margin-bottom: 6px; }
+  .mission-slot .slot-body { font-size: 11.5px; line-height: 1.5; color: var(--mist); }
+  .mission-slot.filled { border-style: solid; background: var(--panel-2); }
+  .mission-slot.correct { border-color: var(--teal); }
+  .mission-slot.wrong { border-color: var(--coral); }
+  .station-row { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px 20px 0; }
+  .station-chip { background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; font-size: 12px; cursor: pointer; transition: all .15s; color: var(--mist); }
+  .station-chip.on { border-color: var(--teal); color: var(--foam); }
+  .station-chip.correct { border-color: var(--teal); background: rgba(63,201,176,.15); }
+  .station-chip.wrong { border-color: var(--coral); background: rgba(242,150,92,.15); }
+</style>
 </head>
 <body>
 
@@ -46,6 +64,21 @@
         <div class="info-card" id="c0-info"></div>
       </div>
       <p class="foot-note">교과서 그림 Ⅰ-8(대륙 이동 증거)·Ⅰ-11(고지자기 줄무늬)·Ⅰ-12(해양 지각 나이, 무지개색 지도)를 참고해 구성했습니다.</p>
+
+      <div class="stage-head" style="margin-top:30px;">
+        <div class="eyebrow">🔎 미션 · 관측 기기의 발달과 증거</div>
+        <h2 class="display" style="font-size:20px;">이 증거는 어떤 관측 방법으로 얻어졌을까요?</h2>
+        <p>판구조론은 여러 시대의 서로 다른 관측 기술이 쌓이며 정립되었습니다. 단서 카드를 클릭해 선택한 뒤, 알맞은 증거 칸을 클릭해 짝지어 보세요.</p>
+      </div>
+      <div class="stage-card">
+        <div class="mission-cards" id="c0m-cards"></div>
+        <div class="mission-slots" id="c0m-slots"></div>
+        <div class="toggle-row" style="margin:14px 20px 0;">
+          <button class="chip" id="c0m-check">채점하기</button>
+          <button class="chip" id="c0m-new">카드 새로 섞기</button>
+        </div>
+        <div class="info-card" id="c0m-info">단서를 클릭해 선택한 뒤, 놓을 칸을 클릭하세요.</div>
+      </div>
     </section>
 
     <!-- TAB1: 판의 경계와 이동의 원동력 -->
@@ -113,6 +146,21 @@
         <div class="info-card" id="c3-info"></div>
       </div>
       <p class="foot-note">교과서 그림 Ⅰ-28 주시 곡선 데이터를 바탕으로 재구성했습니다. P파(빨강)가 S파(파랑)보다 항상 먼저 도착합니다.</p>
+
+      <div class="stage-head" style="margin-top:30px;">
+        <div class="eyebrow">🔎 미션 · PS시로 진앙 거리 구하기</div>
+        <h2 class="display" style="font-size:20px;">이 관측소의 진앙 거리는 얼마일까요?</h2>
+        <p>어느 관측소에서 P파와 S파의 도착 시각 차이(PS시)를 측정했습니다. 위 주시 곡선을 참고하여 진앙 거리로 가장 알맞은 값을 선택해 보세요.</p>
+      </div>
+      <div class="stage-card">
+        <div class="info-card" id="c3m-data" style="margin:18px 20px 0;"></div>
+        <div class="seg" id="c3m-choices" style="margin:14px 20px 0;"></div>
+        <div class="toggle-row" style="margin:14px 20px 0;">
+          <button class="chip" id="c3m-check">정답 확인</button>
+          <button class="chip" id="c3m-new">새 관측 자료</button>
+        </div>
+        <div class="info-card" id="c3m-info">보기 중 하나를 선택한 뒤 [정답 확인]을 눌러 보세요.</div>
+      </div>
     </section>
 
     <!-- TAB4: 지진파로 밝혀낸 지구 내부 구조 (기존 + 그림자대 보강) -->
@@ -137,6 +185,20 @@
         <div class="info-card" id="c4-info"></div>
       </div>
       <p class="foot-note">S파 그림자대: 103°~180° (외핵이 액체라 통과 못함). P파 그림자대: 103°~142° (핵-맨틀 경계에서 굴절).</p>
+
+      <div class="stage-head" style="margin-top:30px;">
+        <div class="eyebrow">🔎 미션 · 그림자대 자료로 핵 추론하기</div>
+        <h2 class="display" style="font-size:20px;">어느 관측소가 P파 그림자대에 들어갈까요?</h2>
+        <p>지진으로부터의 각거리가 서로 다른 관측소 6곳이 있습니다. P파 그림자대(103°~142°)에 해당하는 관측소를 모두 클릭해 선택한 뒤 채점해 보세요.</p>
+      </div>
+      <div class="stage-card">
+        <div class="station-row" id="c4m-stations"></div>
+        <div class="toggle-row" style="margin:14px 20px 0;">
+          <button class="chip" id="c4m-check">채점하기</button>
+          <button class="chip" id="c4m-new">관측소 새로 배치</button>
+        </div>
+        <div class="info-card" id="c4m-info">그림자대에 해당한다고 생각하는 관측소를 클릭해 선택하세요.</div>
+      </div>
     </section>
   </main>
 </div>
@@ -252,6 +314,116 @@
     }
   }
   render();
+})();
+
+/* TAB0 미션 — 관측 방법 매칭 */
+(function () {
+  var cardsEl = document.getElementById("c0m-cards");
+  var slotsEl = document.getElementById("c0m-slots");
+  var checkBtn = document.getElementById("c0m-check");
+  var newBtn = document.getElementById("c0m-new");
+  if (!cardsEl) return;
+
+  var slotNames = { continents: "대륙 이동의 증거", convection: "맨틀 대류설", magnetic: "고지자기 줄무늬", age: "해양 지각의 나이" };
+  var slotOrder = ["continents", "convection", "magnetic", "age"];
+  var clues = {
+    continents: "여러 대륙의 해안선 모양과 지층·화석 분포를 지도 위에 겹쳐 비교했습니다. 지도 제작과 현장 지질 조사가 핵심 도구였습니다.",
+    convection: "지구 내부의 온도 차이로 맨틀 물질이 서서히 순환한다는 이론으로, 지진파 관측 자료를 바탕으로 내부 온도·물성 차이를 추정해 뒷받침되었습니다.",
+    magnetic: "해저를 오가며 자력계로 암석에 남은 고지자기의 방향과 세기를 측정했더니, 해령을 중심으로 대칭인 줄무늬 패턴이 나타났습니다.",
+    age: "해저를 시추해 얻은 퇴적물·암석 시료를 방사성 동위원소로 연대 측정한 결과, 해령에서 멀어질수록 해양 지각의 나이가 많아짐을 확인했습니다."
+  };
+
+  var pool = [];
+  var slots = {};
+  var selected = null;
+
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  function reset() {
+    pool = shuffle(slotOrder.slice());
+    slots = { continents: null, convection: null, magnetic: null, age: null };
+    selected = null;
+    var info = document.getElementById("c0m-info");
+    info.style.color = "";
+    info.textContent = "단서를 클릭해 선택한 뒤, 놓을 칸을 클릭하세요.";
+    render();
+  }
+
+  function render() {
+    cardsEl.innerHTML = "";
+    pool.forEach(function (key) {
+      var card = document.createElement("div");
+      card.className = "mission-card" + (selected === key ? " selected" : "");
+      card.textContent = clues[key];
+      card.addEventListener("click", function () {
+        selected = (selected === key) ? null : key;
+        render();
+      });
+      cardsEl.appendChild(card);
+    });
+
+    slotsEl.innerHTML = "";
+    slotOrder.forEach(function (targetKey) {
+      var slot = document.createElement("div");
+      var filledKey = slots[targetKey];
+      slot.className = "mission-slot" + (filledKey ? " filled" : "");
+      var title = document.createElement("div");
+      title.className = "slot-title";
+      title.textContent = slotNames[targetKey];
+      slot.appendChild(title);
+      var body = document.createElement("div");
+      body.className = "slot-body";
+      body.textContent = filledKey ? clues[filledKey] : "여기를 클릭해 선택한 카드를 놓으세요.";
+      slot.appendChild(body);
+      slot.addEventListener("click", function () {
+        if (filledKey) {
+          pool.push(filledKey);
+          slots[targetKey] = null;
+          render();
+        } else if (selected) {
+          slots[targetKey] = selected;
+          pool = pool.filter(function (k) { return k !== selected; });
+          selected = null;
+          render();
+        }
+      });
+      slotsEl.appendChild(slot);
+    });
+  }
+
+  checkBtn.addEventListener("click", function () {
+    var info = document.getElementById("c0m-info");
+    if (pool.length > 0) {
+      info.style.color = "";
+      info.textContent = "아직 배치하지 않은 카드가 있습니다. 4장을 모두 알맞은 칸에 놓아 주세요.";
+      return;
+    }
+    var correctCount = 0;
+    slotsEl.querySelectorAll(".mission-slot").forEach(function (slotEl, i) {
+      var targetKey = slotOrder[i];
+      var ok = slots[targetKey] === targetKey;
+      slotEl.classList.remove("correct", "wrong");
+      slotEl.classList.add(ok ? "correct" : "wrong");
+      if (ok) correctCount++;
+    });
+    if (correctCount === 4) {
+      info.style.color = "var(--teal)";
+      info.innerHTML = "<b>4장 모두 정답입니다!</b> 판구조론은 지도 제작부터 지진파·고지자기·방사성 연대 측정까지 여러 관측 기술이 쌓이며 통합 이론으로 정립되었습니다.";
+    } else {
+      info.style.color = "var(--coral)";
+      info.innerHTML = correctCount + " / 4 칸이 맞았습니다. 빨간 테두리 칸을 다시 살펴보고 카드를 옮겨 보세요.";
+    }
+  });
+
+  newBtn.addEventListener("click", reset);
+  reset();
 })();
 
 /* TAB1: 판의 경계와 이동의 원동력 */
@@ -557,6 +729,91 @@
   render();
 })();
 
+/* TAB3 미션 — PS시로 진앙 거리 구하기 */
+(function () {
+  var dataEl = document.getElementById("c3m-data");
+  var choicesEl = document.getElementById("c3m-choices");
+  var checkBtn = document.getElementById("c3m-check");
+  var newBtn = document.getElementById("c3m-new");
+  if (!dataEl) return;
+
+  var anchors = [0, 1000, 2000, 4000, 6000, 8000, 10000];
+  var pMin = [0, 2.0, 3.5, 6.3, 9.0, 10.2, 11.5];
+  var sMin = [0, 3.5, 6.2, 11.5, 16.5, 19.0, 22.0];
+  function interp(arr, d) {
+    for (var i = 0; i < anchors.length - 1; i++) {
+      if (d >= anchors[i] && d <= anchors[i+1]) {
+        var t = (d - anchors[i]) / (anchors[i+1] - anchors[i]);
+        return arr[i] + t * (arr[i+1] - arr[i]);
+      }
+    }
+    return arr[arr.length-1];
+  }
+
+  var trueDist = 1500;
+  var choices = [];
+  var picked = null;
+
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  function newQuestion() {
+    trueDist = 500 + Math.round(Math.random() * 90) * 100;
+    var ps = interp(sMin, trueDist) - interp(pMin, trueDist);
+    dataEl.innerHTML = "어느 관측소에서 측정한 PS시(초기 미동 계속 시간)는 <b>" + ps.toFixed(1) + "분</b>이었습니다.";
+    var decoys = [];
+    while (decoys.length < 3) {
+      var d = 500 + Math.round(Math.random() * 90) * 100;
+      if (Math.abs(d - trueDist) > 800 && decoys.indexOf(d) === -1 && d !== trueDist) decoys.push(d);
+    }
+    choices = shuffle([trueDist].concat(decoys));
+    picked = null;
+    renderChoices();
+    var info = document.getElementById("c3m-info");
+    info.style.color = "";
+    info.textContent = "보기 중 하나를 선택한 뒤 [정답 확인]을 눌러 보세요.";
+  }
+
+  function renderChoices() {
+    choicesEl.innerHTML = "";
+    choices.forEach(function (d) {
+      var btn = document.createElement("button");
+      btn.className = picked === d ? "on" : "";
+      btn.textContent = d.toLocaleString() + " km";
+      btn.addEventListener("click", function () {
+        picked = d;
+        renderChoices();
+      });
+      choicesEl.appendChild(btn);
+    });
+  }
+
+  checkBtn.addEventListener("click", function () {
+    var info = document.getElementById("c3m-info");
+    if (picked === null) {
+      info.style.color = "";
+      info.textContent = "먼저 보기 중 하나를 선택하세요.";
+      return;
+    }
+    if (picked === trueDist) {
+      info.style.color = "var(--teal)";
+      info.innerHTML = "<b>정답입니다!</b> 진앙 거리 " + trueDist.toLocaleString() + " km에서는 PS시가 " + (interp(sMin, trueDist) - interp(pMin, trueDist)).toFixed(1) + "분이 됩니다. PS시가 길수록 진앙에서 먼 곳입니다.";
+    } else {
+      info.style.color = "var(--coral)";
+      info.innerHTML = "다시 생각해 보세요. 정답은 <b>" + trueDist.toLocaleString() + " km</b>입니다. 위 주시 곡선에서 PS시 값을 찾아 그에 해당하는 거리를 읽어보세요.";
+    }
+  });
+
+  newBtn.addEventListener("click", newQuestion);
+  newQuestion();
+})();
+
 /* TAB4: 지구내부구조 + 그림자대 */
 (function () {
   var canvas = document.getElementById("c4");
@@ -647,6 +904,74 @@
     info.innerHTML = "깊이 " + depth + "km(" + cl.name + ")과 각거리 " + ang + "°에서의 상태를 함께 보여줍니다. 진앙으로부터 <b>103°~142°</b>는 P파가 핵-맨틀 경계에서 굴절해 도달하지 못하는 <b>P파 그림자대</b>이고, <b>103°~180°</b>는 S파가 액체인 외핵을 통과하지 못해 전혀 도달하지 못하는 <b>S파 그림자대</b>입니다. 이 두 그림자대의 범위를 분석해 외핵이 액체라는 사실을 알아냈습니다.";
   }
   render();
+})();
+
+/* TAB4 미션 — 그림자대 관측소 판별 */
+(function () {
+  var stationsEl = document.getElementById("c4m-stations");
+  var checkBtn = document.getElementById("c4m-check");
+  var newBtn = document.getElementById("c4m-new");
+  if (!stationsEl) return;
+
+  var PSHADOW = [103, 142];
+  var stations = [];
+  var picked = {};
+
+  function isShadow(ang) { return ang >= PSHADOW[0] && ang <= PSHADOW[1]; }
+
+  function newRound() {
+    stations = [];
+    picked = {};
+    var used = [];
+    while (stations.length < 6) {
+      var ang = Math.round(Math.random() * 170) + 5;
+      var tooClose = used.some(function (u) { return Math.abs(u - ang) < 12; });
+      if (tooClose) continue;
+      used.push(ang);
+      stations.push(ang);
+    }
+    render();
+    var info = document.getElementById("c4m-info");
+    info.style.color = "";
+    info.textContent = "그림자대에 해당한다고 생각하는 관측소를 클릭해 선택하세요.";
+  }
+
+  function render() {
+    stationsEl.innerHTML = "";
+    stations.forEach(function (ang, i) {
+      var chip = document.createElement("div");
+      chip.className = "station-chip" + (picked[i] ? " on" : "");
+      chip.textContent = "관측소 " + (i + 1) + " (" + ang + "°)";
+      chip.addEventListener("click", function () {
+        picked[i] = !picked[i];
+        render();
+      });
+      stationsEl.appendChild(chip);
+    });
+  }
+
+  checkBtn.addEventListener("click", function () {
+    var info = document.getElementById("c4m-info");
+    var correct = 0;
+    var chips = stationsEl.querySelectorAll(".station-chip");
+    stations.forEach(function (ang, i) {
+      var shouldPick = isShadow(ang);
+      var didPick = !!picked[i];
+      chips[i].classList.remove("correct", "wrong");
+      if (shouldPick === didPick) { chips[i].classList.add("correct"); correct++; }
+      else { chips[i].classList.add("wrong"); }
+    });
+    if (correct === stations.length) {
+      info.style.color = "var(--teal)";
+      info.innerHTML = "<b>모두 정답입니다!</b> 103°~142° 범위의 관측소들은 P파가 핵-맨틀 경계에서 굴절해 도달하지 못하는 그림자대에 속합니다. 이 범위를 분석해 지구에 액체 외핵이 있음을 알아냈습니다.";
+    } else {
+      info.style.color = "var(--coral)";
+      info.innerHTML = correct + " / " + stations.length + " 곳을 맞혔습니다. 빨간 테두리 관측소의 각거리를 다시 확인해 보세요. (P파 그림자대: 103°~142°)";
+    }
+  });
+
+  newBtn.addEventListener("click", newRound);
+  newRound();
 })();
 
 })();
