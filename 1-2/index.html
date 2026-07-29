@@ -66,6 +66,71 @@
       <p class="foot-note">교과서 그림 Ⅰ-8(대륙 이동 증거)·Ⅰ-11(고지자기 줄무늬)·Ⅰ-12(해양 지각 나이, 무지개색 지도)를 참고해 구성했습니다.</p>
 
       <div class="stage-head" style="margin-top:30px;">
+        <div class="eyebrow">🧲 심화 탐구 · 고지자기로 확인하는 대륙 이동</div>
+        <h2 class="display" style="font-size:20px;">복각과 겉보기 극이동 곡선 직접 만들어보기</h2>
+        <p>암석이 만들어질 때 그 시대 지구 자기장의 방향(복각)이 기록됩니다. 대륙별로 시대에 따른 <b>겉보기 극이동 곡선</b>을 그려보면 북아메리카와 유럽에서 구한 곡선이 서로 다르게 나타나는데, 이는 극이 이동한 것이 아니라 <b>대륙이 이동했기 때문</b>입니다. 직접 조작하며 확인해 보세요.</p>
+      </div>
+
+      <div class="stage-card">
+        <div class="controls" style="padding-bottom:4px;">
+          <div class="ctrl-group" style="flex:1 1 100%">
+            <div class="ctrl-label">01 · 복각 탐구판</div>
+          </div>
+        </div>
+        <p style="margin:0 20px 14px;color:var(--mist);font-size:13px;line-height:1.6;">🖱️ 지구 단면의 점을 드래그해 위도를 바꿔보세요. 복각(자침이 수평면과 이루는 각)이 <b style="color:var(--foam)">tan I = 2 tan λ</b> (I=복각, λ=위도) 관계로 변합니다.</p>
+        <div class="canvas-wrap" style="padding:16px;">
+          <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+            <svg id="c0x-inclSvg" viewBox="0 0 300 300" style="flex:1 1 260px;max-width:320px;width:100%;"></svg>
+            <div class="info-card" id="c0x-inclReadout" style="flex:1 1 220px;margin:0;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-card">
+        <div class="controls" style="padding-bottom:4px;">
+          <div class="ctrl-group" style="flex:1 1 100%">
+            <div class="ctrl-label">02 · 겉보기 극이동 곡선 만들기 — 북아메리카 · 유럽</div>
+          </div>
+        </div>
+        <p style="margin:0 20px 14px;color:var(--mist);font-size:13px;line-height:1.6;">왼쪽(실제 위치)에서 두 대륙을 각각 <b style="color:var(--foam)">드래그로 이동</b>, <b style="color:var(--foam)">손잡이(◆)로 회전</b>시켜 보세요. 나이를 고르고 "기록"을 누르면 오른쪽(기준판)에 그 시대의 겉보기 극 위치가 찍힙니다.</p>
+        <div class="canvas-wrap" style="padding:16px;">
+          <div style="display:flex;flex-wrap:wrap;gap:16px;">
+            <div style="flex:1 1 280px;max-width:340px;">
+              <div style="font-size:11px;color:var(--mist);text-align:center;margin-bottom:4px;">🌍 실제 위치 (드래그 · 회전 가능)</div>
+              <svg id="c0x-worldSvg" viewBox="0 0 320 320" style="width:100%;"></svg>
+            </div>
+            <div style="flex:1 1 280px;max-width:340px;">
+              <div style="font-size:11px;color:var(--mist);text-align:center;margin-bottom:4px;">📌 기준판 — 항상 같은 방향으로 그린 대륙</div>
+              <svg id="c0x-frameSvg" viewBox="0 0 320 320" style="width:100%;"></svg>
+            </div>
+          </div>
+        </div>
+        <div class="controls">
+          <div class="ctrl-group" style="flex:1 1 100%">
+            <div class="ctrl-label">이 위치들의 나이</div>
+            <div class="seg" id="c0x-ageGroup"></div>
+          </div>
+        </div>
+        <div class="toggle-row" style="margin:0 20px 16px;flex-wrap:wrap;">
+          <button class="chip" id="c0x-recordBtn">📍 이 위치들 기록</button>
+          <button class="chip" id="c0x-reconBtn">🌍 판게아로 복원해서 겹쳐보기</button>
+          <button class="chip" id="c0x-demoBtn">▶ 예시 자동 재생</button>
+          <button class="chip" id="c0x-resetBtn">↺ 초기화</button>
+        </div>
+        <div class="info-card" id="c0x-frameReadout"></div>
+        <div style="display:flex;gap:8px;align-items:flex-start;margin:12px 20px 0;flex-wrap:wrap;">
+          <span style="font-size:12px;color:var(--coral);font-weight:700;white-space:nowrap;">● 북아메리카 기록</span>
+          <div id="c0x-recListNA" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:flex-start;margin:8px 20px 20px;flex-wrap:wrap;">
+          <span style="font-size:12px;color:var(--cold);font-weight:700;white-space:nowrap;">● 유럽 기록</span>
+          <div id="c0x-recListEU" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+        </div>
+      </div>
+      <p class="foot-note">겉보기 극이동 곡선(Apparent Polar Wander Curve): 두 대륙에서 각각 구한 곡선은 오늘날 위치를 기준으로 하면 서로 어긋나지만, 판게아로 복원하면 거의 일치합니다 — 대륙이동설을 뒷받침한 대표적 고지자기 증거입니다. (모식도이며 실제 위·경도 좌표는 아닙니다.)</p>
+
+
+      <div class="stage-head" style="margin-top:30px;">
         <div class="eyebrow">🔎 미션 · 관측 기기의 발달과 증거</div>
         <h2 class="display" style="font-size:20px;">이 증거는 어떤 관측 방법으로 얻어졌을까요?</h2>
         <p>판구조론은 여러 시대의 서로 다른 관측 기술이 쌓이며 정립되었습니다. 단서 카드를 클릭해 선택한 뒤, 알맞은 증거 칸을 클릭해 짝지어 보세요.</p>
@@ -972,6 +1037,364 @@
 
   newBtn.addEventListener("click", newRound);
   newRound();
+})();
+
+/* TAB0 심화 — 고지자기: 복각 탐구판 + 겉보기 극이동 곡선 만들기 */
+(function () {
+  var hostSvg = document.getElementById("c0x-inclSvg");
+  if (!hostSvg) return; // 이 탭이 없는 페이지에서는 건너뜀
+
+  var NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+  function svgPoint(svg, evt) {
+    var pt = svg.createSVGPoint();
+    pt.x = evt.clientX; pt.y = evt.clientY;
+    return pt.matrixTransform(svg.getScreenCTM().inverse());
+  }
+  var D2R = Math.PI / 180, R2D = 180 / Math.PI;
+  function rot(thetaDeg, v) {
+    var th = thetaDeg * D2R, c = Math.cos(th), s = Math.sin(th);
+    return [v[0] * c - v[1] * s, v[0] * s + v[1] * c];
+  }
+  function add2(a, b) { return [a[0] + b[0], a[1] + b[1]]; }
+  function sub2(a, b) { return [a[0] - b[0], a[1] - b[1]]; }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  /* ---------- 01. 복각 탐구판 ---------- */
+  (function () {
+    var svg = hostSvg;
+    var cx = 150, cy = 150, R = 110;
+    var latitude = 35;
+
+    function draw() {
+      svg.innerHTML = "";
+      svg.appendChild(el('circle', { cx: cx, cy: cy, r: R, style: 'fill:var(--panel);stroke:var(--line);stroke-width:2' }));
+
+      svg.appendChild(el('line', { x1: cx, y1: cy - R - 14, x2: cx, y2: cy + R + 14, style: 'stroke:var(--line);stroke-width:1.5;stroke-dasharray:3 4' }));
+      var nLbl = el('text', { x: cx, y: cy - R - 20, 'text-anchor': 'middle', 'font-size': 11, style: 'fill:var(--mist)' }); nLbl.textContent = 'N'; svg.appendChild(nLbl);
+      var sLbl = el('text', { x: cx, y: cy + R + 30, 'text-anchor': 'middle', 'font-size': 11, style: 'fill:var(--mist)' }); sLbl.textContent = 'S'; svg.appendChild(sLbl);
+
+      [55, 80, 105].forEach(function (bulge) {
+        svg.appendChild(el('path', { d: 'M ' + cx + ' ' + (cy - R) + ' C ' + (cx + bulge) + ' ' + (cy - R * 0.55) + ', ' + (cx + bulge) + ' ' + (cy + R * 0.55) + ', ' + cx + ' ' + (cy + R), style: 'fill:none;stroke:var(--cold);stroke-width:1.2;opacity:.55' }));
+        svg.appendChild(el('path', { d: 'M ' + cx + ' ' + (cy - R) + ' C ' + (cx - bulge) + ' ' + (cy - R * 0.55) + ', ' + (cx - bulge) + ' ' + (cy + R * 0.55) + ', ' + cx + ' ' + (cy + R), style: 'fill:none;stroke:var(--cold);stroke-width:1.2;opacity:.55' }));
+      });
+
+      svg.appendChild(el('line', { x1: cx - R, y1: cy, x2: cx + R, y2: cy, style: 'stroke:var(--line);stroke-width:1.3;stroke-dasharray:4 4' }));
+      var eqLbl = el('text', { x: cx + R + 8, y: cy + 4, 'font-size': 11, style: 'fill:var(--mist)' }); eqLbl.textContent = '적도'; svg.appendChild(eqLbl);
+
+      var th = latitude * D2R;
+      var sx = cx + R * Math.cos(th), sy = cy - R * Math.sin(th);
+      var tangent = [-Math.sin(th), -Math.cos(th)];
+      var inward = [-Math.cos(th), Math.sin(th)];
+      var incl = R2D * Math.atan(2 * Math.tan(th));
+      var inclRad = incl * D2R;
+
+      var hLen = 42;
+      svg.appendChild(el('line', {
+        x1: sx - tangent[0] * hLen, y1: sy - tangent[1] * hLen,
+        x2: sx + tangent[0] * hLen, y2: sy + tangent[1] * hLen,
+        style: 'stroke:var(--mist);stroke-width:1.3;stroke-dasharray:3 3'
+      }));
+
+      var nLen = 46;
+      var dirx = Math.cos(inclRad) * tangent[0] + Math.sin(inclRad) * inward[0];
+      var diry = Math.cos(inclRad) * tangent[1] + Math.sin(inclRad) * inward[1];
+      var ex = sx + dirx * nLen, ey = sy + diry * nLen;
+      svg.appendChild(el('line', { x1: sx, y1: sy, x2: ex, y2: ey, style: 'stroke:var(--teal);stroke-width:3' }));
+      svg.appendChild(el('circle', { cx: ex, cy: ey, r: 4, style: 'fill:var(--teal)' }));
+
+      var dot = el('circle', { cx: sx, cy: sy, r: 9, style: 'fill:var(--panel);stroke:var(--teal);stroke-width:3;cursor:grab' });
+      dot.addEventListener('pointerdown', function (e) { dragging = true; svg.setPointerCapture(e.pointerId); });
+      svg.appendChild(dot);
+
+      var readout = document.getElementById('c0x-inclReadout');
+      readout.innerHTML = '위도 <b>' + latitude.toFixed(0) + '°</b> &nbsp;→&nbsp; 복각 <b>' + incl.toFixed(1) + '°</b><br>' +
+        (latitude >= 0 ? '북반구: 자침 N극이 아래로 기웁니다.' : '남반구: 자침 N극이 위로 들립니다.');
+    }
+
+    var dragging = false;
+    svg.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      var p = svgPoint(svg, e);
+      var theta = Math.atan2(-(p.y - cy), p.x - cx) * R2D;
+      theta = Math.max(-90, Math.min(90, theta));
+      latitude = theta;
+      draw();
+    });
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (evt) {
+      svg.addEventListener(evt, function () { dragging = false; });
+    });
+
+    draw();
+  })();
+
+  /* ---------- 02. 겉보기 극이동 곡선 만들기 (북아메리카 · 유럽) ---------- */
+  (function () {
+    var worldSvg = document.getElementById('c0x-worldSvg');
+    var frameSvg = document.getElementById('c0x-frameSvg');
+    if (!worldSvg || !frameSvg) return;
+
+    var P = [180, 50];
+    var BASE = [[-40, -25], [-10, -38], [28, -30], [46, -5], [40, 26], [6, 42], [-32, 36], [-50, 6]];
+    var HANDLE_LOCAL = [0, -66];
+
+    var continents = {
+      NA: {
+        label: '북아메리카', colorVar: 'var(--coral)',
+        state: { cx: 90, cy: 255, theta: -20 },
+        siteB: [110, 220], siteBRecon: [175, 205], deltaTheta: -28,
+        records: {}
+      },
+      EU: {
+        label: '유럽', colorVar: 'var(--cold)',
+        state: { cx: 255, cy: 235, theta: 15 },
+        siteB: [250, 190], siteBRecon: null, deltaTheta: 0,
+        records: {}
+      }
+    };
+
+    var AGES = [500, 400, 300, 200, 100, 0];
+    var PRESETS = {
+      NA: { 500: [253.0, 230.0, -30], 400: [188.7, 233.6, -19], 300: [127.1, 221.1, -9], 200: [76.9, 190.8, 1], 100: [43.4, 148.6, 11], 0: [24.7, 103.6, 20] },
+      EU: { 500: [270, 250, 16], 400: [262, 232, 10], 300: [252, 218, 3], 200: [244, 204, -4], 100: [236, 190, -10], 0: [228, 178, -16] }
+    };
+
+    var selectedAge = 300;
+    var dragTarget = null;
+    var demoRunning = false;
+    var reconT = 0;
+    var reconAnimating = false;
+
+    function worldPoly(cx, cy, thetaDeg) {
+      return BASE.map(function (p) { return add2([cx, cy], rot(thetaDeg, p)); });
+    }
+    function ptsStr(pts) { return pts.map(function (p) { return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' '); }
+
+    function computeFramePoint(c) {
+      var cx = c.state.cx, cy = c.state.cy, theta = c.state.theta;
+      var v = sub2(P, [cx, cy]);
+      var local = rot(-theta, v);
+      return add2(c.siteB, local);
+    }
+    function reconstruct(c, pt, t) {
+      if (c.siteBRecon == null || t <= 0) return pt;
+      var local = sub2(pt, c.siteB);
+      var rotated = rot(c.deltaTheta * t, local);
+      var site = [lerp(c.siteB[0], c.siteBRecon[0], t), lerp(c.siteB[1], c.siteBRecon[1], t)];
+      return add2(site, rotated);
+    }
+
+    function drawWorld() {
+      worldSvg.innerHTML = '';
+      var starT = el('text', { x: P[0], y: P[1] - 10, 'text-anchor': 'middle', 'font-size': 20, style: 'fill:var(--violet)' }); starT.textContent = '★'; worldSvg.appendChild(starT);
+      var starL = el('text', { x: P[0], y: P[1] - 24, 'text-anchor': 'middle', 'font-size': 10.5, style: 'fill:var(--mist)' }); starL.textContent = '실제 북극'; worldSvg.appendChild(starL);
+
+      var readoutHtml = '';
+      Object.keys(continents).forEach(function (key) {
+        var c = continents[key];
+        var poly = worldPoly(c.state.cx, c.state.cy, c.state.theta);
+        var polygon = el('polygon', { points: ptsStr(poly), style: 'fill:' + c.colorVar + ';opacity:.32;stroke:' + c.colorVar + ';stroke-width:1.8;cursor:grab' });
+        polygon.addEventListener('pointerdown', function (e) { dragTarget = { key: key, mode: 'move' }; worldSvg.setPointerCapture(e.pointerId); });
+        worldSvg.appendChild(polygon);
+        worldSvg.appendChild(el('circle', { cx: c.state.cx, cy: c.state.cy, r: 4, style: 'fill:' + c.colorVar }));
+        var lbl = el('text', { x: c.state.cx, y: c.state.cy + 50, 'text-anchor': 'middle', 'font-size': 11, style: 'fill:' + c.colorVar + ';font-weight:bold' }); lbl.textContent = c.label; worldSvg.appendChild(lbl);
+
+        var h = add2([c.state.cx, c.state.cy], rot(c.state.theta, HANDLE_LOCAL));
+        worldSvg.appendChild(el('line', { x1: c.state.cx, y1: c.state.cy, x2: h[0], y2: h[1], style: 'stroke:' + c.colorVar + ';stroke-width:1.5' }));
+        var handle = el('circle', { cx: h[0], cy: h[1], r: 8, style: 'fill:var(--panel);stroke:' + c.colorVar + ';stroke-width:2.5;cursor:grab' });
+        handle.addEventListener('pointerdown', function (e) { dragTarget = { key: key, mode: 'rotate' }; worldSvg.setPointerCapture(e.pointerId); e.stopPropagation(); });
+        worldSvg.appendChild(handle);
+
+        var v = sub2(P, [c.state.cx, c.state.cy]);
+        var dist = Math.hypot(v[0], v[1]);
+        var colat = Math.min(dist / 280 * 90, 90);
+        var lat = 90 - colat;
+        var incl = R2D * Math.atan(2 * Math.tan(lat * D2R));
+        readoutHtml += '<b style="color:' + c.colorVar + '">' + c.label + '</b> 위도 ' + lat.toFixed(0) + '° 복각 ' + incl.toFixed(1) + '° &nbsp;&nbsp;';
+      });
+      document.getElementById('c0x-frameReadout').innerHTML = readoutHtml + (selectedAge != null ? '| 선택한 나이: <b>' + selectedAge + ' Ma</b>' : '');
+    }
+
+    function drawFrame() {
+      frameSvg.innerHTML = '';
+      Object.keys(continents).forEach(function (key) {
+        var c = continents[key];
+        var polyBase = worldPoly(c.siteB[0], c.siteB[1], 0);
+        var poly = polyBase.map(function (p) { return reconstruct(c, p, reconT); });
+        frameSvg.appendChild(el('polygon', { points: ptsStr(poly), style: 'fill:' + c.colorVar + ';opacity:.24;stroke:' + c.colorVar + ';stroke-width:1.6' }));
+        var sitePt = reconstruct(c, c.siteB, reconT);
+        frameSvg.appendChild(el('circle', { cx: sitePt[0], cy: sitePt[1], r: 4, style: 'fill:' + c.colorVar }));
+
+        var entries = AGES.filter(function (a) { return c.records[a]; }).map(function (a) { return { age: a, pt: reconstruct(c, c.records[a], reconT) }; });
+        for (var i = 0; i < entries.length - 1; i++) {
+          frameSvg.appendChild(el('line', { x1: entries[i].pt[0], y1: entries[i].pt[1], x2: entries[i + 1].pt[0], y2: entries[i + 1].pt[1], style: 'stroke:' + c.colorVar + ';stroke-width:2.2;stroke-dasharray:5 4' }));
+        }
+        entries.forEach(function (en) {
+          frameSvg.appendChild(el('circle', { cx: en.pt[0], cy: en.pt[1], r: 6.5, style: 'fill:var(--panel);stroke:' + c.colorVar + ';stroke-width:2.5' }));
+          var t = el('text', { x: en.pt[0] + 8, y: en.pt[1] - 8, 'font-size': 10, style: 'fill:' + c.colorVar + ';font-weight:bold' }); t.textContent = en.age + 'Ma'; frameSvg.appendChild(t);
+        });
+      });
+    }
+
+    function renderLists() {
+      ['NA', 'EU'].forEach(function (key) {
+        var list = document.getElementById('c0x-recList' + key);
+        list.innerHTML = '';
+        var c = continents[key];
+        AGES.filter(function (a) { return c.records[a]; }).sort(function (a, b) { return b - a; }).forEach(function (age) {
+          var chip = document.createElement('span');
+          chip.setAttribute('style', 'display:inline-flex;align-items:center;gap:6px;background:var(--panel-2);border:1px solid var(--line);border-radius:20px;padding:4px 6px 4px 12px;font-size:12px;color:var(--mist);');
+          chip.innerHTML = age + ' Ma';
+          var del = document.createElement('button');
+          del.setAttribute('style', 'border:none;background:transparent;color:var(--coral);cursor:pointer;font-size:13px;padding:0 4px;');
+          del.textContent = '×';
+          del.addEventListener('click', function () { delete c.records[age]; renderLists(); drawFrame(); });
+          chip.appendChild(del);
+          list.appendChild(chip);
+        });
+      });
+    }
+
+    function render() { drawWorld(); drawFrame(); }
+
+    worldSvg.addEventListener('pointermove', function (e) {
+      if (!dragTarget || demoRunning) return;
+      var c = continents[dragTarget.key];
+      var p = svgPoint(worldSvg, e);
+      if (dragTarget.mode === 'move') {
+        c.state.cx = Math.max(20, Math.min(300, p.x));
+        c.state.cy = Math.max(20, Math.min(300, p.y));
+      } else {
+        var ang = Math.atan2(p.y - c.state.cy, p.x - c.state.cx) * R2D;
+        c.state.theta = ang + 90;
+      }
+      drawWorld();
+    });
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (evt) {
+      worldSvg.addEventListener(evt, function () { dragTarget = null; });
+    });
+
+    var ageGroup = document.getElementById('c0x-ageGroup');
+    AGES.forEach(function (age) {
+      var b = document.createElement('button');
+      b.className = age === selectedAge ? 'on' : '';
+      b.textContent = age + ' Ma';
+      b.addEventListener('click', function () {
+        selectedAge = age;
+        ageGroup.querySelectorAll('button').forEach(function (x) { x.classList.remove('on'); });
+        b.classList.add('on');
+        drawWorld();
+      });
+      ageGroup.appendChild(b);
+    });
+
+    document.getElementById('c0x-recordBtn').addEventListener('click', function () {
+      if (selectedAge == null) return;
+      Object.keys(continents).forEach(function (key) { continents[key].records[selectedAge] = computeFramePoint(continents[key]); });
+      renderLists();
+      drawFrame();
+    });
+
+    document.getElementById('c0x-resetBtn').addEventListener('click', function () {
+      continents.NA.state = { cx: 90, cy: 255, theta: -20 };
+      continents.EU.state = { cx: 255, cy: 235, theta: 15 };
+      continents.NA.records = {};
+      continents.EU.records = {};
+      reconT = 0;
+      updateReconBtn();
+      renderLists();
+      render();
+    });
+
+    function updateReconBtn() {
+      var btn = document.getElementById('c0x-reconBtn');
+      btn.textContent = reconT < 0.5 ? '🌍 판게아로 복원해서 겹쳐보기' : '🌏 원래(분리된) 위치로 보기';
+    }
+
+    function animateRecon(target) {
+      if (reconAnimating) return;
+      reconAnimating = true;
+      var start = reconT;
+      var t0 = performance.now(), dur = 800;
+      function step(now) {
+        var p = Math.min(1, (now - t0) / dur);
+        var eased = p < 0.5 ? 2 * p * p : -1 + (4 - 2 * p) * p;
+        reconT = start + (target - start) * eased;
+        drawFrame();
+        if (p < 1) requestAnimationFrame(step);
+        else { reconT = target; reconAnimating = false; updateReconBtn(); drawFrame(); }
+      }
+      requestAnimationFrame(step);
+    }
+    document.getElementById('c0x-reconBtn').addEventListener('click', function () {
+      animateRecon(reconT < 0.5 ? 1 : 0);
+    });
+
+    function tweenState(from, to, dur, onUpdate, onDone) {
+      var t0 = performance.now();
+      function step(now) {
+        var p = Math.min(1, (now - t0) / dur);
+        var eased = p < 0.5 ? 2 * p * p : -1 + (4 - 2 * p) * p;
+        onUpdate({
+          cx: from.cx + (to.cx - from.cx) * eased,
+          cy: from.cy + (to.cy - from.cy) * eased,
+          theta: from.theta + (to.theta - from.theta) * eased
+        });
+        if (p < 1) requestAnimationFrame(step); else onDone && onDone();
+      }
+      requestAnimationFrame(step);
+    }
+
+    document.getElementById('c0x-demoBtn').addEventListener('click', function () {
+      if (demoRunning) return;
+      demoRunning = true;
+      document.getElementById('c0x-demoBtn').disabled = true;
+      continents.NA.records = {}; continents.EU.records = {};
+      reconT = 0; updateReconBtn();
+      renderLists();
+      var order = [500, 400, 300, 200, 100, 0];
+      var i = 0;
+      function nextStep() {
+        if (i >= order.length) {
+          setTimeout(function () {
+            animateRecon(1);
+            setTimeout(function () {
+              demoRunning = false;
+              document.getElementById('c0x-demoBtn').disabled = false;
+            }, 900);
+          }, 400);
+          return;
+        }
+        var age = order[i];
+        selectedAge = age;
+        ageGroup.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', parseInt(x.textContent) === age); });
+        var doneCount = 0;
+        ['NA', 'EU'].forEach(function (key) {
+          var c = continents[key];
+          var from = { cx: c.state.cx, cy: c.state.cy, theta: c.state.theta };
+          var to = { cx: PRESETS[key][age][0], cy: PRESETS[key][age][1], theta: PRESETS[key][age][2] };
+          tweenState(from, to, 800, function (s) { c.state = s; drawWorld(); }, function () {
+            c.records[age] = computeFramePoint(c);
+            doneCount++;
+            if (doneCount === 2) {
+              renderLists(); drawFrame();
+              i++;
+              setTimeout(nextStep, 350);
+            }
+          });
+        });
+      }
+      nextStep();
+    });
+
+    render();
+    renderLists();
+    updateReconBtn();
+  })();
 })();
 
 })();
