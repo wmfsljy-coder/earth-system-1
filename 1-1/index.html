@@ -32,6 +32,7 @@
     <button class="tab-btn" data-tab="1"><span class="num">02</span> 산소 농도의 진화</button>
     <button class="tab-btn" data-tab="2"><span class="num">03</span> 탄소와 물의 순환</button>
     <button class="tab-btn" data-tab="3"><span class="num">04</span> 산소의 순환과 대산소화 사건</button>
+    <button class="tab-btn" data-tab="4"><span class="num">05</span> 정리하기</button>
   </nav>
 
   <main>
@@ -40,6 +41,8 @@
         <div class="eyebrow">01 · 46억 년 전, 먼지에서 행성으로</div>
         <h2 class="display">지구의 탄생과 진화</h2>
         <p>타임라인의 각 단계를 클릭해 지구가 어떻게 미행성의 집적에서부터 오늘날의 모습으로 진화했는지 확인해 보세요.</p>
+      
+        <span class="std-chip">12지시01-01</span><span class="std-chip">12지시01-02</span><div class="std-note"><b>[12지시01-01]</b> 지구의 탄생 이후 지구 대기, 원시 바다, 생명체 탄생 등의 과정을 설명할 수 있다.  (확인 필요 — 학생용 교과서만 있어 교사용 원문과 대조하지 못했습니다)<br><b>[12지시01-02]</b> 물, 탄소, 산소의 순환 과정을 설명할 수 있다.  (확인 필요 — 학생용 교과서만 있어 교사용 원문과 대조하지 못했습니다)</div><div class="terms"><b>미행성 충돌</b><b>원시 바다</b><b>산소 농도</b><b>탄소 순환</b></div>
       </div>
       <div class="stage-card">
         <div class="canvas-wrap"><canvas id="c0" width="900" height="380"></canvas></div>
@@ -136,6 +139,15 @@
         <div class="info-card" id="c3b-info"></div>
       </div>
       <p class="foot-note">핵심 용어: 남세균 · 호상철광층 · 대산소화 사건 · 얼음덩어리 지구(눈덩이 지구)</p>
+    </section>
+
+    <section class="tab-panel" data-panel="4" hidden>
+      <div class="stage-head">
+        <div class="eyebrow">05 · 오늘 알아낸 것을 문장으로</div>
+        <h2 class="display">정리하기</h2>
+        <p>조작한 것을 말이나 글로 옮기지 않으면 남지 않습니다. 아래를 채우고 <b>답안 복사</b>를 눌러 제출하세요. 쓰는 동안 자동으로 저장됩니다.</p>
+      </div>
+      <div class="stage-card" style="padding:6px 0 4px"><div id="wk"></div></div>
     </section>
   </main>
 </div>
@@ -619,6 +631,36 @@
   render();
 })();
 
+})();
+</script>
+
+<script>
+(function () {
+  window.sthUnit("esys-1-1");
+  window.sthWork({
+    mount: "wk",
+    unitLabel: "[지구시스템과학] 지구의 탄생과 진화",
+    items: [
+      {
+            "id": "w1",
+            "label": "산소 농도가 늘어난 계기",
+            "hint": "대기 중 산소 농도 그래프에서 크게 꺾이는 지점을 짚고, 무엇이 그 변화를 만들었는지 쓰세요.",
+            "ph": ""
+      },
+      {
+            "id": "w2",
+            "label": "탄소가 머무는 곳",
+            "hint": "탄소가 가장 많이 저장된 곳과 가장 빠르게 움직이는 경로를 각각 쓰고 근거를 대세요.",
+            "ph": ""
+      },
+      {
+            "id": "w3",
+            "label": "아직 헷갈리는 것",
+            "hint": "다음 시간에 여기서부터 시작합니다.",
+            "ph": ""
+      }
+]
+  });
 })();
 </script>
 </body>
