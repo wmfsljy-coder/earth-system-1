@@ -5,24 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>판 구조 운동과 지구 내부 구조 — 관측 스테이션</title>
 <link rel="stylesheet" href="../assets/theme.css">
-<style>
-  .mission-cards { display: flex; gap: 10px; flex-wrap: wrap; padding: 18px 20px 0; }
-  .mission-card { flex: 1 1 160px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 12px; line-height: 1.55; color: var(--mist); cursor: pointer; transition: all .15s; }
-  .mission-card:hover { border-color: var(--teal-dim); }
-  .mission-card.selected { border-color: var(--teal); box-shadow: 0 0 0 2px var(--teal) inset; }
-  .mission-slots { display: flex; gap: 10px; flex-wrap: wrap; padding: 16px 20px 0; }
-  .mission-slot { flex: 1 1 160px; min-height: 90px; border: 1.5px dashed var(--line); border-radius: 10px; padding: 10px 12px; cursor: pointer; transition: all .15s; }
-  .mission-slot .slot-title { font-size: 12.5px; font-weight: 700; color: var(--foam); margin-bottom: 6px; }
-  .mission-slot .slot-body { font-size: 11.5px; line-height: 1.5; color: var(--mist); }
-  .mission-slot.filled { border-style: solid; background: var(--panel-2); }
-  .mission-slot.correct { border-color: var(--teal); }
-  .mission-slot.wrong { border-color: var(--coral); }
-  .station-row { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px 20px 0; }
-  .station-chip { background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; font-size: 12px; cursor: pointer; transition: all .15s; color: var(--mist); }
-  .station-chip.on { border-color: var(--teal); color: var(--foam); }
-  .station-chip.correct { border-color: var(--teal); background: rgba(63,201,176,.15); }
-  .station-chip.wrong { border-color: var(--coral); background: rgba(242,150,92,.15); }
-</style>
+<link rel="stylesheet" href="../assets/story.css">
 </head>
 <body>
 
@@ -33,1413 +16,425 @@
       <div class="eyebrow" style="margin-top:8px">Ⅰ-2 · 지구 탄생과 생동하는 지구</div>
       <h1 class="display">판 구조 운동과<br>지구 내부</h1>
     </div>
-    <button class="tab-btn active" data-tab="0"><span class="num">01</span> 판구조론 정립의 증거</button>
-    <button class="tab-btn" data-tab="1"><span class="num">02</span> 판의 경계와 이동의 원동력</button>
-    <button class="tab-btn" data-tab="2"><span class="num">03</span> 화산 활동과 암석의 순환</button>
-    <button class="tab-btn" data-tab="3"><span class="num">04</span> 지진파의 종류와 관측</button>
-    <button class="tab-btn" data-tab="4"><span class="num">05</span> 지진파로 밝혀낸 지구 내부</button>
-    <button class="tab-btn" data-tab="5"><span class="num">06</span> 정리하기</button>
+    <button class="tab-btn active" data-tab="0"><span class="num">01</span> 대륙을 움직인 범인</button>
+    <button class="tab-btn" data-tab="1"><span class="num">02</span> 굽은 화산 열</button>
+    <button class="tab-btn" data-tab="2"><span class="num">03</span> 한라산과 백두산</button>
+    <button class="tab-btn" data-tab="3"><span class="num">04</span> 지구 속을 본 지진파</button>
+    <button class="tab-btn" data-tab="4"><span class="num">05</span> 정리하기</button>
+    <button class="tab-btn" data-tab="5"><span class="num">06</span> 우리 반</button>
   </nav>
 
   <main>
-    <!-- TAB0: 판구조론 정립의 증거 -->
+    <!-- =====================================================================
+         01 판구조론 정립의 증거 — 이야기 「대륙을 움직인 범인」
+         ===================================================================== -->
     <section class="tab-panel" data-panel="0">
       <div class="stage-head">
-        <div class="eyebrow">01 · 대륙은 움직인다는 증거들</div>
-        <h2 class="display">판구조론 정립의 증거</h2>
-        <p>베게너의 대륙 이동설부터 해양저 확장설까지, 판구조론이 정립되기까지 제시된 증거를 순서대로 살펴보세요.</p>
-      
-        <span class="std-chip">12지시01-03</span><span class="std-chip">12지시01-04</span><span class="std-chip">12지시01-05</span><div class="std-note"><b>[12지시01-03]</b> 판구조론의 발달사와 관련지어 판을 움직이는 맨틀의 상부 운동과 플룸에 의한 구조 운동을 구분할 수 있다.<br><b>[12지시01-04]</b> 암석의 순환 과정에서 화산 활동의 역할과 화산 활동으로 생성되는 암석의 특성을 추론할 수 있다.<br><b>[12지시01-05]</b> 지진파의 종류와 특성을 이해하고, 지진파를 이용하여 지구 내부구조를 알아내는 과정을 탐구할 수 있다.</div><p class="std-note" style="margin-top:6px">※ 성취기준은 2022 개정 과학과 교육과정 원문입니다. 이 과목은 학생용 교과서만 있어 오개념 지도 상자는 싣지 못했습니다.</p><div class="terms"><b>판구조론</b><b>플룸 구조론</b><b>암석의 순환</b><b>지진파</b></div>
+        <div class="eyebrow">01 · 판구조론 정립의 증거 · 이야기 한 편</div>
+        <h2 class="display">대륙을 움직인 범인</h2>
+        <p>1912년 베게너는 “대륙이 움직였다”고 외쳤지만, <b>무엇이 대륙을 움직였는지</b> 답하지 못해 외면당했습니다. 여러분은 그 뒤 50년 동안 쌓인 증거를 하나씩 직접 재어 보며, 베게너가 놓친 범인을 잡아냅니다.</p>
+        <span class="std-chip">12지시01-03</span><div class="std-note"><b>[12지시01-03]</b> 판구조론의 발달사와 관련지어 판을 움직이는 맨틀의 상부 운동과 플룸에 의한 구조 운동을 구분할 수 있다.</div><p class="std-note" style="margin-top:6px">※ 성취기준은 2022 개정 과학과 교육과정 원문입니다. 이 과목은 학생용 교과서만 있어 오개념 지도 상자는 싣지 못했습니다.</p><div class="terms"><b>대륙 이동설</b><b>고지자기와 복각</b><b>겉보기 극이동 곡선</b><b>해양저 확장설</b></div>
       </div>
-      <div class="stage-card">
-        <div class="canvas-wrap"><canvas id="c0" width="900" height="440"></canvas></div>
-        <div class="controls">
-          <div class="ctrl-group" style="flex:1 1 100%">
-            <div class="ctrl-label">증거</div>
-            <div class="seg" id="c0-ev">
-              <button class="on" data-e="continents">대륙 이동의 증거</button>
-              <button data-e="convection">맨틀 대류설</button>
-              <button data-e="magnetic">고지자기 줄무늬</button>
-              <button data-e="age">해양 지각의 나이</button>
+
+      <div class="episode" id="ep1">
+        <section class="scene" data-title="1912년, 베게너가 펼친 지도">
+          <div class="story narr"><div class="who">🗺️</div><div class="say"><span class="name">이야기</span>독일의 기상학자 <b>베게너</b>는 세계 지도를 보다가 이상한 것을 발견했습니다. 남아메리카의 동쪽 해안과 아프리카의 서쪽 해안이 퍼즐 조각처럼 들어맞았던 것입니다. 그는 여러 대륙이 원래 하나였다가 갈라졌다고 주장하며 그 초대륙에 <b>판게아</b>라는 이름을 붙였습니다.</div></div>
+          <div class="case-file"><b class="k">증거 ①</b> 대서양 양쪽 해안선이 들어맞는다 (특히 수심 2,000 m 등심선으로 맞추면 더 잘 맞는다)<br><b class="k">증거 ②</b> 민물에 살던 파충류 <b>메소사우루스</b> 화석이 남아메리카와 아프리카 양쪽에서만 나온다<br><b class="k">증거 ③</b> 고생대 말 <b>빙하가 긁고 간 자국</b>이 지금은 적도 부근인 인도·아프리카·남아메리카·오스트레일리아에 남아 있고, 그 방향이 한 점에서 퍼져 나간다<br><b class="k">증거 ④</b> 대서양으로 끊긴 산맥과 지층이 반대편 대륙에서 이어진다</div>
+          <div class="story"><div class="who">👨‍🔬</div><div class="say"><span class="name">지질학회 회원</span>“증거는 그럴듯하오, 베게너 군. 그런데 <b>딱딱한 대륙이 무엇에 밀려 단단한 해저를 헤치고 나아간단 말이오?</b> 힘의 정체를 대지 못하면 그건 과학이 아니라 공상이오.”</div></div>
+          <div class="story"><div class="who">🧑‍🔬</div><div class="say"><span class="name">고지자기 연구원 도윤</span>“이 사건은 50년이나 미제로 남았습니다. 우리가 다시 엽니다. 단서는 <b>암석 속에 굳어 버린 나침반</b>이에요. 시작하기 전에 조사관님 생각을 먼저 적어 두죠.”</div></div>
+          <div class="gate loose" id="g1"></div>
+        </section>
+
+        <section class="scene" data-title="단서 ① — 암석에 굳어 버린 나침반">
+          <div class="story"><div class="who">🧑‍🔬</div><div class="say"><span class="name">도윤</span>“용암이 식어 굳을 때, 그 속의 자성 광물은 그 순간 <b>그 자리의 지구 자기장 방향</b>을 가리킨 채 얼어붙습니다. 자침이 수평면과 이루는 각을 <b>복각</b>이라 해요. 복각은 위도에 따라 정해집니다 — 적도에서 0°, 자극에서 90°. 식과 그림으로 확인해 보세요.”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="a-c1" width="900" height="380"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group" style="flex:1 1 100%">
+                <div class="ctrl-label">암석이 만들어진 자리의 위도 (+북반구 / −남반구)<span class="val" id="a-lat-val">0°</span></div>
+                <input type="range" id="a-lat" min="-90" max="90" step="1" value="0">
+              </div>
             </div>
+            <div class="info-card" id="a-c1-info"></div>
           </div>
-        </div>
-        <div class="info-card" id="c0-info"></div>
-      </div>
-      <p class="foot-note">교과서 그림 Ⅰ-8(대륙 이동 증거)·Ⅰ-11(고지자기 줄무늬)·Ⅰ-12(해양 지각 나이, 무지개색 지도)를 참고해 구성했습니다.</p>
+          <div class="mission" id="m1-2"><span class="m-tag">미션</span>복각 자료 두 건의 위도를 각각 알아내세요. 슬라이더를 옮기면 그 자리에서 잴 복각이 계산됩니다.<ul><li id="m1-2a">㉮ <b>오늘</b> 노르웨이 남부에서 잰 복각 <b>73.9°</b> — 지금 위도는?</li><li id="m1-2b">㉯ 같은 곳의 <b>3억 년 전</b> 용암에 기록된 복각 <b>36.1°</b> — 그때 위도는?</li></ul></div>
+        </section>
 
-      <div class="stage-head" style="margin-top:30px;">
-        <div class="eyebrow">🧲 심화 탐구 · 고지자기로 확인하는 대륙 이동</div>
-        <h2 class="display" style="font-size:20px;">복각과 겉보기 극이동 곡선 직접 만들어보기</h2>
-        <p>암석이 만들어질 때 그 시대 지구 자기장의 방향(복각)이 기록됩니다. 대륙별로 시대에 따른 <b>겉보기 극이동 곡선</b>을 그려보면 북아메리카와 유럽에서 구한 곡선이 서로 다르게 나타나는데, 이는 극이 이동한 것이 아니라 <b>대륙이 이동했기 때문</b>입니다. 직접 조작하며 확인해 보세요.</p>
-      </div>
-
-      <div class="stage-card">
-        <div class="controls" style="padding-bottom:4px;">
-          <div class="ctrl-group" style="flex:1 1 100%">
-            <div class="ctrl-label">01 · 복각 탐구판</div>
-          </div>
-        </div>
-        <p style="margin:0 20px 14px;color:var(--mist);font-size:13px;line-height:1.6;">🖱️ 지구 단면의 점을 드래그해 위도를 바꿔보세요. 복각(자침이 수평면과 이루는 각)이 <b style="color:var(--foam)">tan I = 2 tan λ</b> (I=복각, λ=위도) 관계로 변합니다.</p>
-        <div class="canvas-wrap" style="padding:16px;">
-          <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
-            <svg id="c0x-inclSvg" viewBox="0 0 300 300" style="flex:1 1 260px;max-width:320px;width:100%;"></svg>
-            <div class="info-card" id="c0x-inclReadout" style="flex:1 1 220px;margin:0;"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="stage-card">
-        <div class="controls" style="padding-bottom:4px;">
-          <div class="ctrl-group" style="flex:1 1 100%">
-            <div class="ctrl-label">02 · 겉보기 극이동 곡선 만들기 — 북아메리카 · 유럽</div>
-          </div>
-        </div>
-        <p style="margin:0 20px 14px;color:var(--mist);font-size:13px;line-height:1.6;">왼쪽(실제 위치)에서 두 대륙을 각각 <b style="color:var(--foam)">드래그로 이동</b>, <b style="color:var(--foam)">손잡이(◆)로 회전</b>시켜 보세요. 나이를 고르고 "기록"을 누르면 오른쪽(기준판)에 그 시대의 겉보기 극 위치가 찍힙니다.</p>
-        <div class="canvas-wrap" style="padding:16px;">
-          <div style="display:flex;flex-wrap:wrap;gap:16px;">
-            <div style="flex:1 1 280px;max-width:340px;">
-              <div style="font-size:11px;color:var(--mist);text-align:center;margin-bottom:4px;">🌍 실제 위치 (드래그 · 회전 가능)</div>
-              <svg id="c0x-worldSvg" viewBox="0 0 320 320" style="width:100%;"></svg>
+        <section class="scene" data-title="단서 ② — 어긋난 두 개의 극이동 곡선">
+          <div class="story"><div class="who">🧑‍🔬</div><div class="say"><span class="name">도윤</span>“시대별 암석의 복각으로 <b>그 시대 자북극이 어디였는지</b>를 거꾸로 계산해 이어 그린 것이 <b>겉보기 극이동 곡선</b>입니다. 그런데 북아메리카에서 구한 곡선과 유럽에서 구한 곡선이 <b>서로 어긋나요.</b> 지구에 자북극이 두 개였을 리는 없는데 말이죠.”</div></div>
+          <div class="story"><div class="who">🧑‍🔬</div><div class="say"><span class="name">도윤</span>“북아메리카를 고정해 두고, 유럽을 <b>대서양이 닫히는 쪽으로</b> 되돌려 보세요. 두 곡선이 어떻게 되는지 보면 답이 나옵니다.”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="a-c2" width="900" height="420"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group" style="flex:1 1 100%">
+                <div class="ctrl-label">대서양을 닫아 유럽을 되돌린 정도<span class="val" id="a-close-val">0%</span></div>
+                <input type="range" id="a-close" min="0" max="100" step="1" value="0">
+              </div>
             </div>
-            <div style="flex:1 1 280px;max-width:340px;">
-              <div style="font-size:11px;color:var(--mist);text-align:center;margin-bottom:4px;">📌 기준판 — 항상 같은 방향으로 그린 대륙</div>
-              <svg id="c0x-frameSvg" viewBox="0 0 320 320" style="width:100%;"></svg>
+            <div class="info-card" id="a-c2-info"></div>
+          </div>
+          <div class="mission" id="m1-3"><span class="m-tag">미션</span><ul><li id="m1-3a">두 극이동 곡선의 <b>어긋남을 3.0° 이하</b>로 줄이세요.</li><li id="m1-3b">아래 물음에 답하세요.</li></ul></div>
+          <div class="stage-card" style="margin-top:14px"><div id="a-q1"></div></div>
+        </section>
+
+        <section class="scene" data-title="단서 ③ — 바다 밑 줄무늬가 잰 속도">
+          <div class="story"><div class="who">👩‍✈️</div><div class="say"><span class="name">해양 탐사선 항해사</span>“조사관님, 배에 자력계를 달고 해령을 가로질러 봤습니다. 해저 암석에 남은 자기 방향이 <b>정자극기와 역자극기가 번갈아 나타나는 줄무늬</b>였고, 해령을 축으로 <b>좌우 대칭</b>이었어요. 시추해서 잰 해양 지각의 나이도 해령에서 멀어질수록 많아집니다.”</div></div>
+          <div class="story"><div class="who">🧑‍🔬</div><div class="say"><span class="name">도윤</span>“바로 그겁니다. 해령에서 새 해양 지각이 만들어져 양옆으로 밀려 나간다는 <b>해양저 확장설</b>이죠. 나이와 거리를 알면 <b>확장 속도</b>를 잴 수 있습니다. 두 바다의 자료에 각각 맞춰 보세요. (1 cm/년 = 10 km/100만 년)”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="a-c3" width="900" height="400"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group">
+                <div class="ctrl-label">🟠 대서양 중앙 해령의 확장 속도 (cm/년, 한쪽 방향)<span class="val" id="a-va-val">1.0</span></div>
+                <input type="range" id="a-va" min="0.5" max="10" step="0.1" value="1.0">
+              </div>
+              <div class="ctrl-group">
+                <div class="ctrl-label">🔵 동태평양 해령의 확장 속도 (cm/년, 한쪽 방향)<span class="val" id="a-vp-val">1.0</span></div>
+                <input type="range" id="a-vp" min="0.5" max="10" step="0.1" value="1.0">
+              </div>
             </div>
+            <div class="info-card" id="a-c3-info"></div>
           </div>
-        </div>
-        <div class="controls">
-          <div class="ctrl-group" style="flex:1 1 100%">
-            <div class="ctrl-label">이 위치들의 나이</div>
-            <div class="seg" id="c0x-ageGroup"></div>
+          <div class="mission" id="m1-4"><span class="m-tag">미션</span>두 해령의 확장 속도를 각각 찾아내세요. 계산선이 관측점 위를 지나가면 맞습니다. (슬라이더는 하나씩 맞추면 됩니다)<ul><li id="m1-4a">🟠 대서양 중앙 해령</li><li id="m1-4b">🔵 동태평양 해령</li></ul></div>
+        </section>
+
+        <section class="scene" data-title="결말 — 움직인 것은 대륙이 아니라 판이었다">
+          <div class="ending">
+            <h4>🔎 범인은 ‘대륙을 미는 힘’이 아니라 ‘새로 만들어지는 바닥’이었다</h4>
+            <p>베게너가 막힌 지점은 <b>대륙이 해저를 헤치고 나아간다</b>는 그림이었습니다. 실제로는 대륙이 해저를 뚫고 가는 것이 아니라, <b>해령에서 새 해양 지각이 만들어져 바닥째 옮겨 가고</b> 그 위에 얹힌 대륙이 함께 실려 간 것입니다. 고지자기 줄무늬의 좌우 대칭, 해령에서 멀어질수록 많아지는 해양 지각의 나이, 그리고 판게아로 되돌렸을 때 겹쳐지는 두 대륙의 겉보기 극이동 곡선이 이를 증명했습니다.</p>
+            <p>이렇게 <b>대륙 이동설 → 맨틀 대류설 → 해양저 확장설</b>이 이어지며, 1960년대에 지구의 겉을 여러 장의 단단한 <b>판</b>으로 보고 그 움직임으로 지진·화산·산맥을 함께 설명하는 <b>판구조론</b>이 자리 잡았습니다.</p>
+            <div class="vs" id="a-vs"></div>
+            <span class="stamp">사건 파일 ① 해결</span>
           </div>
-        </div>
-        <div class="toggle-row" style="margin:0 20px 16px;flex-wrap:wrap;">
-          <button class="chip" id="c0x-recordBtn">📍 이 위치들 기록</button>
-          <button class="chip" id="c0x-reconBtn">🌍 판게아로 복원해서 겹쳐보기</button>
-          <button class="chip" id="c0x-demoBtn">▶ 예시 자동 재생</button>
-          <button class="chip" id="c0x-resetBtn">↺ 초기화</button>
-        </div>
-        <div class="info-card" id="c0x-frameReadout"></div>
-        <div style="display:flex;gap:8px;align-items:flex-start;margin:12px 20px 0;flex-wrap:wrap;">
-          <span style="font-size:12px;color:var(--coral);font-weight:700;white-space:nowrap;">● 북아메리카 기록</span>
-          <div id="c0x-recListNA" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
-        </div>
-        <div style="display:flex;gap:8px;align-items:flex-start;margin:8px 20px 20px;flex-wrap:wrap;">
-          <span style="font-size:12px;color:var(--cold);font-weight:700;white-space:nowrap;">● 유럽 기록</span>
-          <div id="c0x-recListEU" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
-        </div>
+          <div class="info-card" style="margin:0 0 14px">📎 과학자의 눈: 이 화면의 지도와 극이동 곡선은 실제 위도·경도가 아니라 <b>북극에서 내려다본 모식도</b>입니다. 실제 겉보기 극이동 곡선은 대륙마다 수십 개의 암석 시료에서 구한 평균값을 잇고, 되돌릴 때에도 오일러 극을 중심으로 한 회전을 씁니다. 확장 속도도 실제로는 시대마다 조금씩 달랐습니다.</div>
+          <div class="stage-card" style="padding:6px 0 4px;margin-top:16px"><div id="wk1"></div></div>
+        </section>
       </div>
-      <p class="foot-note">겉보기 극이동 곡선(Apparent Polar Wander Curve): 두 대륙에서 각각 구한 곡선은 오늘날 위치를 기준으로 하면 서로 어긋나지만, 판게아로 복원하면 거의 일치합니다 — 대륙이동설을 뒷받침한 대표적 고지자기 증거입니다. (모식도이며 실제 위·경도 좌표는 아닙니다.)</p>
-
-
-      <div class="stage-head" style="margin-top:30px;">
-        <div class="eyebrow">🔎 미션 · 관측 기기의 발달과 증거</div>
-        <h2 class="display" style="font-size:20px;">이 증거는 어떤 관측 방법으로 얻어졌을까요?</h2>
-        <p>판구조론은 여러 시대의 서로 다른 관측 기술이 쌓이며 정립되었습니다. 단서 카드를 클릭해 선택한 뒤, 알맞은 증거 칸을 클릭해 짝지어 보세요.</p>
-      </div>
-      <div class="stage-card">
-        <div class="mission-cards" id="c0m-cards"></div>
-        <div class="mission-slots" id="c0m-slots"></div>
-        <div class="toggle-row" style="margin:14px 20px 0;">
-          <button class="chip" id="c0m-check">채점하기</button>
-          <button class="chip" id="c0m-new">카드 새로 섞기</button>
-        </div>
-        <div class="info-card" id="c0m-info">단서를 클릭해 선택한 뒤, 놓을 칸을 클릭하세요.</div>
-      </div>
+      <p class="teacher-note">교사용: 주소 끝에 <a href="?open=1">?open=1</a> 을 붙이면 모든 장면이 열립니다.</p>
     </section>
 
-    <!-- TAB1: 판의 경계와 이동의 원동력 -->
+    <!-- =====================================================================
+         02 판의 경계와 원동력 · 플룸 — 이야기 「굽은 화산 열」
+         ===================================================================== -->
     <section class="tab-panel" data-panel="1" hidden>
       <div class="stage-head">
-        <div class="eyebrow">02 · 판은 왜, 어떻게 움직일까?</div>
-        <h2 class="display">판의 경계와 이동의 원동력</h2>
-        <p>세계 지도 위 판 경계를 클릭해 유형을 확인하고, 판을 움직이는 힘과 플룸 구조론까지 비교해 보세요.</p>
+        <div class="eyebrow">02 · 판의 경계와 이동의 원동력 · 이야기 한 편</div>
+        <h2 class="display">굽은 화산 열</h2>
+        <p>태평양 한가운데, 어느 판 경계와도 멀리 떨어진 곳에 화산섬과 해산이 <b>6,000 km나 줄지어</b> 있습니다. 게다가 그 줄은 도중에 한 번 꺾여 있습니다. 판의 경계와 원동력을 확인한 뒤, 이 굽은 줄이 기록한 판의 속도와 방향을 직접 읽어 냅니다.</p>
+        <span class="std-chip">12지시01-03</span><div class="std-note"><b>[12지시01-03]</b> 판구조론의 발달사와 관련지어 판을 움직이는 맨틀의 상부 운동과 플룸에 의한 구조 운동을 구분할 수 있다.</div><div class="terms"><b>판구조론</b><b>발산형·수렴형·보존형 경계</b><b>해령 밀기와 판 끌기</b><b>플룸 구조론</b></div>
       </div>
-      <div class="stage-card">
-        <div class="canvas-wrap"><canvas id="c1" width="900" height="420"></canvas></div>
-        <div class="controls">
-          <div class="ctrl-group" style="flex:1 1 100%">
-            <div class="ctrl-label">보기</div>
-            <div class="seg" id="c1-view">
-              <button class="on" data-v="boundary">판 경계 유형(지도 클릭)</button>
-              <button data-v="force">판 이동의 원동력</button>
-              <button data-v="plume">플룸 구조론</button>
+
+      <div class="episode" id="ep2">
+        <section class="scene" data-title="판 경계에서 3,000 km 떨어진 화산">
+          <div class="story narr"><div class="who">🌋</div><div class="say"><span class="name">이야기</span>하와이섬의 <b>킬라우에아</b>는 오늘도 용암을 흘려보냅니다. 그런데 하와이는 태평양판의 한가운데, 가장 가까운 판 경계에서도 수천 km 떨어져 있습니다. 하와이에서 서북서로 배를 타고 가면 점점 오래된 섬과 물에 잠긴 해산이 줄지어 이어지고, 약 3,500 km 지점에서 그 줄이 갑자기 <b>북쪽으로 꺾입니다</b>(엠퍼러 해산열).</div></div>
+          <div class="case-file"><b class="k">열점에서의 거리 — 화산체의 나이</b><br>킬라우에아(하와이섬) 0 km — 지금도 분출 중 &nbsp;|&nbsp; 미드웨이섬 약 <b>2,400 km</b> — 약 <b>28</b>백만 년<br>줄이 꺾인 지점 약 <b>3,500 km</b> — 약 <b>47</b>백만 년 &nbsp;|&nbsp; 엠퍼러 해산열 북쪽 끝 약 <b>6,000 km</b> — 약 <b>81</b>백만 년</div>
+          <div class="story"><div class="who">👩‍🔬</div><div class="say"><span class="name">해양지질학자 세연</span>“판 경계에서는 지진도 화산도 활발합니다. 그런데 하와이는 경계가 아니에요. 이 줄이 무엇을 기록한 것인지가 오늘의 사건입니다. 먼저 조사관님 예상부터.”</div></div>
+          <div class="gate loose" id="g2"></div>
+        </section>
+
+        <section class="scene" data-title="판이 만나는 세 가지 방식">
+          <div class="story"><div class="who">👩‍🔬</div><div class="say"><span class="name">세연</span>“본론에 들어가기 전에 기본을 확인합시다. 두 판이 만나는 경계는 <b>상대 운동의 방향</b> 하나로 갈립니다. 서로 멀어지면 <b>발산형</b>, 다가서면 <b>수렴형</b>, 스쳐 지나가면 <b>보존형</b>이에요. 각도를 돌려 가며 세 경계를 모두 만들어 보세요.”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="b-c1" width="900" height="420"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group">
+                <div class="ctrl-label">두 판의 상대 운동 방향 θ (0°=정면으로 다가섬, 180°=정반대로 멀어짐)<span class="val" id="b-ang-val">0°</span></div>
+                <input type="range" id="b-ang" min="0" max="180" step="5" value="0">
+              </div>
+              <div class="ctrl-group">
+                <div class="ctrl-label">상대 속도 (cm/년)<span class="val" id="b-spd-val">5.0</span></div>
+                <input type="range" id="b-spd" min="1" max="12" step="0.5" value="5">
+              </div>
             </div>
+            <div class="info-card" id="b-c1-info"></div>
           </div>
-        </div>
-        <div class="info-card" id="c1-info">지도 위의 판 경계선을 클릭해 보세요.</div>
+          <div class="mission" id="m2-2"><span class="m-tag">미션</span>세 가지 경계를 모두 만들어 보세요. 각도만 바꾸면 됩니다.<ul><li id="m2-2a">🔺 <b>수렴형</b> — 해구가 생기고 지각이 사라진다</li><li id="m2-2b">↔️ <b>보존형</b> — 지각이 생기지도 사라지지도 않는다</li><li id="m2-2c">🟠 <b>발산형</b> — 해령이 생기고 새 지각이 만들어진다</li></ul></div>
+        </section>
+
+        <section class="scene" data-title="판을 움직이는 힘은 무엇인가">
+          <div class="story"><div class="who">👩‍🔬</div><div class="say"><span class="name">세연</span>“베게너가 못 댄 그 힘, 홈스는 <b>맨틀 대류</b>라고 답했습니다. 맞는 말이지만 그게 전부는 아니에요. 오늘날에는 해령에서 판을 밀어내는 <b>해령 밀기</b>와, 차갑고 무거운 판이 스스로 가라앉으며 뒤를 끌어당기는 <b>판 끌기</b>를 함께 봅니다.”</div></div>
+          <div class="story"><div class="who">👩‍🔬</div><div class="say"><span class="name">세연</span>“실제 판들의 속도를 보면 힌트가 보입니다. 판 가장자리 가운데 <b>섭입대가 차지하는 비율</b>을 바꿔 가며, 어느 판을 닮게 되는지 확인해 보세요.”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="b-c2" width="900" height="400"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group" style="flex:1 1 100%">
+                <div class="ctrl-label">판 가장자리 가운데 섭입대(해구)가 차지하는 비율<span class="val" id="b-slab-val">0%</span></div>
+                <input type="range" id="b-slab" min="0" max="100" step="5" value="0">
+              </div>
+            </div>
+            <div class="info-card" id="b-c2-info"></div>
+          </div>
+          <div class="mission" id="m2-3"><span class="m-tag">미션</span>두 가지 판을 모두 만들어 보세요.<ul><li id="m2-3a">🐢 유라시아판처럼 <b>느린 판</b> — 2.0 cm/년 이하</li><li id="m2-3b">🐇 태평양판처럼 <b>빠른 판</b> — 9.0 cm/년 이상</li></ul></div>
+        </section>
+
+        <section class="scene" data-title="굽은 줄이 기록한 판의 속도와 방향">
+          <div class="story"><div class="who">👩‍🔬</div><div class="say"><span class="name">세연</span>“이제 본 사건입니다. 맨틀 깊은 곳에 <b>거의 움직이지 않는 열기둥(열점)</b>이 있다고 해 봅시다. 그 위를 판이 지나가면 화산이 차례로 만들어지고, 다 만들어진 화산은 판을 타고 멀어지며 식어 가라앉습니다. 회색 점이 <b>관측된</b> 해산열, 색칠한 선이 <b>여러분의 모형</b>입니다. 모형이 관측을 덮도록 맞춰 보세요.”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="b-c3" width="900" height="440"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group">
+                <div class="ctrl-label">판의 이동 속도 (cm/년)<span class="val" id="b-v-val">5.0</span></div>
+                <input type="range" id="b-v" min="4" max="12" step="0.1" value="5">
+              </div>
+              <div class="ctrl-group">
+                <div class="ctrl-label">꺾인 뒤(엠퍼러 구간) 해산열이 뻗은 방위각<span class="val" id="b-dir-val">270° 서</span></div>
+                <input type="range" id="b-dir" min="270" max="360" step="5" value="270">
+              </div>
+            </div>
+            <div class="info-card" id="b-c3-info"></div>
+          </div>
+          <div class="mission" id="m2-4"><span class="m-tag">미션</span>모형을 관측 자료에 맞추세요. 슬라이더는 하나씩 맞추면 됩니다.<ul><li id="m2-4a">📏 속도 — 세 관측점의 거리 오차를 모두 <b>400 km 이내</b>로</li><li id="m2-4b">🧭 방향 — 엠퍼러 구간이 관측된 자리에 놓이게</li></ul></div>
+        </section>
+
+        <section class="scene" data-title="결말 — 위층의 운동과 아래층의 기둥">
+          <div class="story"><div class="who">👩‍🔬</div><div class="say"><span class="name">세연</span>“정리합시다. 지구의 구조 운동은 두 갈래로 봅니다. 하나는 <b>맨틀 상부의 운동</b>으로 판이 만들어지고 사라지는 판구조 운동, 다른 하나는 맨틀과 핵의 경계 부근에서 기둥처럼 솟거나 가라앉는 <b>플룸에 의한 구조 운동</b>입니다. 아래 사례를 둘로 나눠 주세요.”</div></div>
+          <div class="stage-card"><div id="b-sort"></div></div>
+          <div id="b-end-wrap" hidden>
+            <div class="ending" style="margin-top:16px">
+              <h4>🌋 하와이는 판이 아니라 판 <i>아래</i>가 만든 화산이다</h4>
+              <p>열점은 맨틀 깊은 곳에서 올라오는 <b>플룸</b> 위에 생깁니다. 열점은 거의 제자리에 있고 <b>판이 그 위를 지나가므로</b>, 화산은 판이 움직인 방향으로 차례차례 줄을 서고 멀어질수록 나이가 많아집니다. 약 47백만 년 전 그 줄이 꺾인 것은 <b>태평양판의 이동 방향이 북북서에서 서북서로 바뀌었다</b>는 기록입니다. 속도는 그 전후로 크게 달라지지 않았습니다.</p>
+              <p>그러므로 화산은 어디에 있느냐로 갈립니다. 해령·섭입대의 화산은 <b>판 경계</b>에서 맨틀 상부 운동이 만든 것이고, 하와이나 옐로스톤처럼 판 한가운데 있는 화산은 <b>플룸</b>이 만든 것입니다.</p>
+              <div class="vs" id="b-vs"></div>
+              <span class="stamp">사건 파일 ② 해결</span>
+            </div>
+            <div class="info-card" style="margin:0 0 14px">📎 과학자의 눈: 판 속도를 ‘섭입대 비율’ 하나로 정한 이 화면은 <b>단순화한 모형</b>입니다. 실제로는 해령 밀기·판 끌기·맨틀 대류의 끌림이 함께 작용하고, 판의 넓이와 대륙의 뿌리도 영향을 줍니다. 또 열점이 완전히 고정되어 있는지는 지금도 논쟁 중이며, 엠퍼러 해산열이 만들어지던 무렵에는 열점 자체도 남쪽으로 꽤 옮겨 갔다는 연구가 있습니다.</div>
+            <div class="stage-card" style="padding:6px 0 4px"><div id="wk2"></div></div>
+          </div>
+        </section>
       </div>
-      <p class="foot-note">교과서 그림 Ⅰ-14(판의 분포와 경계 유형)·Ⅰ-17(판 이동의 원동력)·Ⅰ-15(플룸 구조론 단면)을 참고했습니다.</p>
+      <p class="teacher-note">교사용: 주소 끝에 <a href="?open=1">?open=1</a> 을 붙이면 모든 장면이 열립니다.</p>
     </section>
 
-    <!-- TAB2: 화산 활동과 암석의 순환 (기존 유지) -->
+    <!-- =====================================================================
+         03 화산 활동과 암석의 순환 — 이야기 「한라산과 백두산」
+         ===================================================================== -->
     <section class="tab-panel" data-panel="2" hidden>
       <div class="stage-head">
-        <div class="eyebrow">03 · 마그마가 만드는 암석</div>
-        <h2 class="display">화산 활동과 암석의 순환</h2>
-        <p>화산이 만들어지는 세 가지 위치를 클릭해 각각 어떤 마그마가 생성되는지 확인해 보세요.</p>
+        <div class="eyebrow">03 · 화산 활동과 암석의 순환 · 이야기 한 편</div>
+        <h2 class="display">한라산과 백두산</h2>
+        <p>같은 한반도인데 제주 한라산은 넓고 완만하고, 백두산은 꼭대기가 통째로 날아가 커다란 칼데라 호수를 이고 있습니다. 마그마를 직접 만들어 보며 <b>무엇이 화산의 생김새와 암석을 정하는지</b> 알아냅니다.</p>
+        <span class="std-chip">12지시01-04</span><div class="std-note"><b>[12지시01-04]</b> 암석의 순환 과정에서 화산 활동의 역할과 화산 활동으로 생성되는 암석의 특성을 추론할 수 있다.</div><div class="terms"><b>마그마의 점성</b><b>화산체와 분출 양식</b><b>화산암과 심성암</b><b>암석의 순환</b></div>
       </div>
-      <div class="stage-card">
-        <div class="canvas-wrap"><canvas id="c2" width="900" height="380"></canvas></div>
-        <div class="info-card" id="c2-info">화산 위치를 클릭해 보세요.</div>
-      </div>
-      <div class="stage-card">
-        <div class="canvas-wrap"><canvas id="c2b" width="900" height="420"></canvas></div>
-        <div class="controls">
-          <div class="ctrl-group" style="flex:1 1 100%">
-            <div class="ctrl-label">마그마의 SiO₂ 함량(%)<span class="val" id="c2b-sio2-val">50</span></div>
-            <input type="range" id="c2b-sio2" min="45" max="70" step="1" value="50">
+
+      <div class="episode" id="ep3">
+        <section class="scene" data-title="같은 한반도, 너무 다른 두 화산">
+          <div class="story narr"><div class="who">🏔️</div><div class="say"><span class="name">이야기</span>제주 <b>한라산</b>은 밑변이 넓고 경사가 완만한 방패 모양입니다. 섬 전체에 검은 현무암이 깔려 있고, 용암이 흘러간 자리에 만들어진 용암 동굴도 있습니다. 반면 <b>백두산</b>은 946년 무렵 엄청난 분화를 일으켰고, 꼭대기가 내려앉아 생긴 칼데라에 <b>천지</b>가 담겨 있습니다. 그때 날아간 화산재는 바다 건너 일본에서도 발견됩니다.</div></div>
+          <div class="case-file"><b class="k">한라산</b> 화산체 순상 화산 · 표고 1,947 m · 밑변 매우 넓음 · 주요 암석 <b>현무암</b>(SiO₂ 약 48%) · 조용히 흘러나온 용암류<br><b class="k">백두산</b> 표고 2,744 m · 꼭대기에 지름 약 5 km 칼데라(천지) · 정상부 주요 암석 <b>조면암·유문암</b>(SiO₂ 약 70%) · 화산재와 부석이 두껍게 쌓임<br><b class="k">울릉도</b> 조면암이 많고 경사가 급함 · 나리 분지는 칼데라</div>
+          <div class="story"><div class="who">👨‍🏫</div><div class="say"><span class="name">화산암석학 연구원 하준</span>“둘 다 판 경계가 아니라 판 안쪽의 화산입니다. 그러니 ‘어디에서 터졌나’로는 설명이 안 돼요. 답은 <b>마그마 자체</b>에 있습니다. 먼저 예상해 볼까요.”</div></div>
+          <div class="gate loose" id="g3"></div>
+        </section>
+
+        <section class="scene" data-title="마그마 실험실 — 끈적임을 정하는 것들">
+          <div class="story"><div class="who">👨‍🏫</div><div class="say"><span class="name">하준</span>“마그마의 <b>점성</b>(끈적임)은 세 가지로 거의 정해집니다. <b>SiO₂ 함량</b>이 많을수록 규산염 그물이 촘촘해져 끈적해지고, <b>온도</b>가 높을수록 묽어지고, 녹아 있는 <b>물</b>이 많을수록 그물이 끊겨 묽어집니다. 값을 바꿔 가며 화산체와 암석이 어떻게 달라지는지 보세요.”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="c-c1" width="900" height="420"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group">
+                <div class="ctrl-label">SiO₂ 함량 (%)<span class="val" id="c-si-val">45</span></div>
+                <input type="range" id="c-si" min="45" max="75" step="1" value="45">
+              </div>
+              <div class="ctrl-group">
+                <div class="ctrl-label">마그마의 온도 (℃)<span class="val" id="c-temp-val">1,200</span></div>
+                <input type="range" id="c-temp" min="700" max="1300" step="10" value="1200">
+              </div>
+              <div class="ctrl-group">
+                <div class="ctrl-label">녹아 있는 물의 양 (무게 %)<span class="val" id="c-h2o-val">0.5</span></div>
+                <input type="range" id="c-h2o" min="0" max="6" step="0.5" value="0.5">
+              </div>
+            </div>
+            <div class="toggle-row" style="margin:0 22px 14px;"><button class="btn primary" id="c-erupt" type="button">🌋 이 마그마로 분출시켜 기록하기</button></div>
+            <div class="info-card" id="c-c1-info"></div>
           </div>
-        </div>
-        <div class="info-card" id="c2b-info"></div>
+          <div class="mission" id="m3-2"><span class="m-tag">미션</span>세 가지 마그마를 모두 만들어 보세요. 판정은 <b>SiO₂ 함량</b>으로 합니다(온도와 물은 점성만 바꿉니다).<ul><li id="m3-2a">🛡️ 한라산 — 현무암질 마그마 → 순상 화산 · 현무암</li><li id="m3-2b">⛰️ 안산암질 마그마 → 성층 화산 · 안산암</li><li id="m3-2c">🔔 백두산 정상부 — 유문암질 마그마 → 종상 화산 · 유문암</li></ul></div>
+        </section>
+
+        <section class="scene" data-title="946년, 백두산이 터진 밤">
+          <div class="story"><div class="who">👨‍🏫</div><div class="say"><span class="name">하준</span>“끈적한 마그마는 그 자체로는 조용합니다. 터뜨리는 것은 <b>기체</b>예요. 마그마가 올라와 압력이 낮아지면 녹아 있던 물이 기포가 되는데, 묽은 마그마에서는 기포가 쉽게 빠져나가지만 끈적한 마그마에서는 갇힙니다. 갇힌 기포가 한꺼번에 터지면 마그마가 잘게 부서져 화산재와 부석이 되죠. SiO₂ 70%짜리 백두산 마그마에 물을 넣어 보세요.”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="c-c2" width="900" height="420"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group" style="flex:1 1 100%">
+                <div class="ctrl-label">마그마에 녹아 있던 물의 양 (무게 %)<span class="val" id="c-gas-val">0.0</span></div>
+                <input type="range" id="c-gas" min="0" max="6" step="0.5" value="0">
+              </div>
+            </div>
+            <div class="toggle-row" style="margin:0 22px 14px;"><button class="btn primary" id="c-blast" type="button">💥 분출시키기</button></div>
+            <div class="info-card" id="c-c2-info"></div>
+          </div>
+          <div class="mission" id="m3-3"><span class="m-tag">미션</span>같은 성분의 마그마로 정반대의 두 분출을 만들어 보세요.<ul><li id="m3-3a">💨 946년 분화처럼 분연주가 <b>25 km 이상</b> 치솟는 폭발적 분출</li><li id="m3-3b">🥞 기체가 거의 없어 <b>용암 돔</b>이 밀려 올라오는 조용한 분출</li></ul></div>
+        </section>
+
+        <section class="scene" data-title="굵은 결정, 고운 결정 — 마그마가 굳은 깊이">
+          <div class="story"><div class="who">👨‍🏫</div><div class="say"><span class="name">하준</span>“같은 마그마라도 <b>어디에서 굳었는지</b>에 따라 다른 암석이 됩니다. 결정은 천천히 식을수록 크게 자라요. 지표로 나와 급히 식으면 결정이 작은 <b>화산암</b>, 땅속 깊이에서 천천히 식으면 결정이 굵은 <b>심성암</b>이 됩니다. 돋보기로 확인해 보세요.”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="c-c3" width="900" height="400"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group" style="flex:1 1 100%">
+                <div class="ctrl-label">마그마가 굳은 깊이 (km)<span class="val" id="c-depth-val">0.0</span></div>
+                <input type="range" id="c-depth" min="0" max="10" step="0.5" value="0">
+              </div>
+              <div class="ctrl-group" style="flex:1 1 100%">
+                <div class="ctrl-label">마그마의 성분</div>
+                <div class="seg" id="c-rock">
+                  <button class="on" type="button" data-r="b">현무암질</button>
+                  <button type="button" data-r="a">안산암질</button>
+                  <button type="button" data-r="r">유문암질</button>
+                </div>
+              </div>
+            </div>
+            <div class="toggle-row" style="margin:0 22px 14px;"><button class="btn primary" id="c-slice" type="button">🔬 얇은 조각 만들어 관찰하기</button></div>
+            <div class="info-card" id="c-c3-info"></div>
+          </div>
+          <div class="mission" id="m3-4"><span class="m-tag">미션</span>깊이를 바꿔 두 가지 암석을 모두 만들어 보세요.<ul><li id="m3-4a">🌋 지표 가까이에서 급히 굳은 <b>화산암</b> (깊이 1 km 이하)</li><li id="m3-4b">💎 깊은 곳에서 천천히 굳은 <b>심성암</b> (깊이 7 km 이상)</li></ul></div>
+        </section>
+
+        <section class="scene" data-title="결말 — 암석은 돌고 돈다">
+          <div class="story"><div class="who">👨‍🏫</div><div class="say"><span class="name">하준</span>“마지막입니다. 화산 활동은 <b>암석의 순환</b>에서 어떤 자리에 있을까요? 아래 단계를 일어나는 순서대로 놓아 보세요.”</div></div>
+          <div class="stage-card"><div id="c-order"></div></div>
+          <div id="c-end-wrap" hidden>
+            <div class="ending" style="margin-top:16px">
+              <h4>🔎 생김새를 정한 것은 높이도 나이도 아니라 ‘SiO₂와 기체’였다</h4>
+              <p>SiO₂가 적은 <b>현무암질 마그마</b>는 묽어서 기체가 쉽게 빠져나가고, 용암이 멀리까지 흘러 밑변이 넓고 경사가 완만한 <b>순상 화산</b>(한라산)을 만듭니다. SiO₂가 많은 <b>유문암질·조면암질 마그마</b>는 끈적해서 기체가 갇혔다가 한꺼번에 터지며 화산재와 부석을 쏟아내고, 경사가 급한 <b>종상 화산</b>이나 꼭대기가 내려앉은 <b>칼데라</b>(백두산 천지)를 남깁니다.</p>
+              <p>화산 활동은 암석 순환의 <b>출발점이자 되돌아오는 자리</b>입니다. 마그마가 굳어 화성암이 되고, 풍화·침식·퇴적을 거쳐 퇴적암이 되고, 열과 압력을 받아 변성암이 되며, 깊은 곳에서 다시 녹아 마그마가 됩니다. 판의 운동이 이 순환을 쉬지 않고 돌립니다.</p>
+              <div class="vs" id="c-vs"></div>
+              <span class="stamp">사건 파일 ③ 해결</span>
+            </div>
+            <div class="info-card" style="margin:0 0 14px">📎 과학자의 눈: 점성·분연주 높이·결정 크기를 구한 식은 실제 경향만 살린 <b>단순화한 모형</b>입니다. 실제 분연주 높이는 물의 양보다 <b>단위 시간에 뿜어져 나오는 마그마의 양</b>에 더 크게 좌우되고, 결정의 크기는 식는 속도뿐 아니라 결정핵이 얼마나 많이 생기는지에도 달려 있습니다. 또 울릉도·백두산의 조면암처럼 알칼리 성분이 많은 암석은 SiO₂ 함량만으로 딱 잘라 나누기 어렵습니다.</div>
+            <div class="stage-card" style="padding:6px 0 4px"><div id="wk3"></div></div>
+          </div>
+        </section>
       </div>
+      <p class="teacher-note">교사용: 주소 끝에 <a href="?open=1">?open=1</a> 을 붙이면 모든 장면이 열립니다.</p>
     </section>
 
-    <!-- TAB3: 지진파의 종류와 관측 (신규) -->
+    <!-- =====================================================================
+         04 지진파와 지구 내부 구조 — 이야기 「지구 속을 본 지진파」
+         ===================================================================== -->
     <section class="tab-panel" data-panel="3" hidden>
       <div class="stage-head">
-        <div class="eyebrow">04 · P파와 S파, 그리고 주시 곡선</div>
-        <h2 class="display">지진파의 종류와 관측</h2>
-        <p>P파·S파의 성질을 비교하고, 실제 관측소 자료로 그려진 주시 곡선에서 진앙 거리를 읽는 방법을 확인해 보세요.</p>
+        <div class="eyebrow">04 · 지진파와 지구 내부 구조 · 이야기 한 편</div>
+        <h2 class="display">지구 속을 본 지진파</h2>
+        <p>사람이 뚫어 본 가장 깊은 구멍은 12 km 남짓, 지구 반지름의 500분의 1도 되지 않습니다. 그런데 우리는 6,371 km 아래 중심까지 그려 놓았습니다. 어떻게? 지진파를 읽어서요. 관측 기록에서 진앙을 찾아내고, 지구 속으로 지진파를 쏘아 보며 층을 하나씩 밝혀냅니다.</p>
+        <span class="std-chip">12지시01-05</span><div class="std-note"><b>[12지시01-05]</b> 지진파의 종류와 특성을 이해하고, 지진파를 이용하여 지구 내부구조를 알아내는 과정을 탐구할 수 있다.</div><div class="terms"><b>P파와 S파</b><b>주시 곡선과 PS시</b><b>진앙 거리</b><b>지진파 그림자대</b></div>
       </div>
-      <div class="stage-card">
-        <div class="canvas-wrap"><canvas id="c3" width="900" height="440"></canvas></div>
-        <div class="controls">
-          <div class="ctrl-group" style="flex:1 1 100%">
-            <div class="ctrl-label">관측소 선택(진앙 거리)<span class="val" id="c3-d-val">1,500 km</span></div>
-            <input type="range" id="c3-d" min="500" max="10000" step="100" value="1500">
-          </div>
-        </div>
-        <div class="info-card" id="c3-info"></div>
-      </div>
-      <p class="foot-note">교과서 그림 Ⅰ-28 주시 곡선 데이터를 바탕으로 재구성했습니다. P파(빨강)가 S파(파랑)보다 항상 먼저 도착합니다.</p>
 
-      <div class="stage-head" style="margin-top:30px;">
-        <div class="eyebrow">🔎 미션 · PS시로 진앙 거리 구하기</div>
-        <h2 class="display" style="font-size:20px;">이 관측소의 진앙 거리는 얼마일까요?</h2>
-        <p>어느 관측소에서 P파와 S파의 도착 시각 차이(PS시)를 측정했습니다. 위 주시 곡선을 참고하여 진앙 거리로 가장 알맞은 값을 선택해 보세요.</p>
+      <div class="episode" id="ep4">
+        <section class="scene" data-title="한밤중, 바늘이 흔들렸다">
+          <div class="story narr"><div class="who">📈</div><div class="say"><span class="name">이야기</span>새벽 2시 14분, 관측소의 지진계 바늘이 잘게 떨리기 시작했습니다. 이 작은 떨림(<b>초기 미동</b>)이 한참 이어지다가, 갑자기 크게 출렁이는 흔들림(<b>주요동</b>)이 도착했습니다. 어딘가에서 지진이 났습니다. 어디일까요?</div></div>
+          <div class="case-file"><b class="k">P파</b> 매질을 앞뒤로 밀고 당기는 <b>종파</b> · 속도 약 <b>7~8 km/s</b>(지각) · <b>고체·액체·기체 모두</b> 통과 · 진폭 작음 → 초기 미동<br><b class="k">S파</b> 매질을 위아래로 흔드는 <b>횡파</b> · 속도 약 <b>3~4 km/s</b> · <b>고체만</b> 통과 · 진폭 큼 → 주요동<br><b class="k">표면파</b> 지표를 따라 퍼지며 가장 느리지만 진폭이 가장 커서 피해를 크게 냄</div>
+          <div class="story"><div class="who">👩‍💻</div><div class="say"><span class="name">지진 분석관 은서</span>“기록지 한 장이면 <b>진앙까지의 거리</b>를 알 수 있어요. 관측소 세 곳이면 <b>진앙의 위치</b>까지 나오고요. 그리고 지진파를 지구 속으로 쏘아 보면… 아무도 가 본 적 없는 곳의 지도를 그릴 수 있습니다. 먼저 예상부터 해 보시죠.”</div></div>
+          <div class="gate loose" id="g4"></div>
+        </section>
+
+        <section class="scene" data-title="주시 곡선을 읽다 — PS시와 진앙 거리">
+          <div class="story"><div class="who">👩‍💻</div><div class="say"><span class="name">은서</span>“P파와 S파는 같은 순간에 같은 곳에서 출발합니다. 그런데 P파가 더 빠르니까, 멀리 갈수록 <b>둘의 도착 시각 차이(PS시)</b>가 벌어집니다. 그러니 PS시만 재면 거리를 알 수 있어요. 슬라이더를 옮겨 우리 관측소의 기록과 같은 PS시를 만들어 보세요.”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="d-c1" width="900" height="440"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group" style="flex:1 1 100%">
+                <div class="ctrl-label">진앙 거리 (km)<span class="val" id="d-dist-val">1,000 km</span></div>
+                <input type="range" id="d-dist" min="200" max="10000" step="100" value="1000">
+              </div>
+            </div>
+            <div class="info-card" id="d-c1-info"></div>
+          </div>
+          <div class="mission" id="m4-2"><span class="m-tag">미션</span><ul><li id="m4-2a">📏 우리 관측소의 기록은 <b>PS시 5.2분</b>이었습니다. 같은 PS시가 나오는 진앙 거리를 찾으세요.</li><li id="m4-2b">아래 물음에 답하세요.</li></ul></div>
+          <div class="stage-card" style="margin-top:14px"><div id="d-q1"></div></div>
+        </section>
+
+        <section class="scene" data-title="세 관측소가 그린 원">
+          <div class="story"><div class="who">👩‍💻</div><div class="say"><span class="name">은서</span>“거리 하나로는 ‘어느 쪽’인지 모릅니다. 관측소를 중심으로 그 거리를 반지름으로 하는 <b>원</b>을 그리면, 진앙은 그 원 위 어딘가예요. 세 관측소의 원을 그리면 <b>한 점</b>에서 만납니다. 세 곳의 PS시를 각각 거리로 바꿔 반지름을 맞춰 보세요.”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="d-c2" width="900" height="440"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group">
+                <div class="ctrl-label">㉮ 관측소 반지름 (km) · PS시 1.20분<span class="val" id="d-r1-val">2,000</span></div>
+                <input type="range" id="d-r1" min="200" max="5000" step="100" value="2000">
+              </div>
+              <div class="ctrl-group">
+                <div class="ctrl-label">㉯ 관측소 반지름 (km) · PS시 2.10분<span class="val" id="d-r2-val">2,000</span></div>
+                <input type="range" id="d-r2" min="200" max="5000" step="100" value="2000">
+              </div>
+              <div class="ctrl-group">
+                <div class="ctrl-label">㉰ 관측소 반지름 (km) · PS시 3.45분<span class="val" id="d-r3-val">2,000</span></div>
+                <input type="range" id="d-r3" min="200" max="5000" step="100" value="2000">
+              </div>
+            </div>
+            <div class="info-card" id="d-c2-info"></div>
+          </div>
+          <div class="mission" id="m4-3"><span class="m-tag">미션</span>오른쪽 환산 그래프에서 PS시에 맞는 거리를 읽어 반지름을 하나씩 맞추세요. (±150 km 안이면 맞습니다)<ul><li id="m4-3a">㉮ 관측소</li><li id="m4-3b">㉯ 관측소</li><li id="m4-3c">㉰ 관측소</li></ul></div>
+        </section>
+
+        <section class="scene" data-title="지구 속으로 쏘아 보다 — 그림자대">
+          <div class="story"><div class="who">👩‍💻</div><div class="say"><span class="name">은서</span>“이제 진짜입니다. 큰 지진이 나면 지진파는 지구 <b>속을 뚫고</b> 반대편까지 갑니다. 그런데 1910년대에 이상한 일이 발견됐어요. 어떤 각거리의 관측소에서는 <b>파가 도착하지 않는다</b>는 겁니다. 진원에서 본 각거리를 0°부터 180°까지 훑어 보세요.”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="d-c3" width="900" height="460"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group" style="flex:1 1 100%">
+                <div class="ctrl-label">진원에서 본 관측소의 각거리 (°)<span class="val" id="d-ang-val">0°</span></div>
+                <input type="range" id="d-ang" min="0" max="180" step="1" value="0">
+              </div>
+            </div>
+            <div class="info-card" id="d-c3-info"></div>
+          </div>
+          <div class="mission" id="m4-4"><span class="m-tag">미션</span>세 종류의 관측소를 모두 찾아내세요.<ul><li id="m4-4a">✅ P파와 S파가 <b>모두</b> 도달하는 곳</li><li id="m4-4b">🚫 P파도 S파도 <b>모두 도달하지 못하는</b> 곳</li><li id="m4-4c">⚠️ P파는 도달하지만 <b>S파만 도달하지 못하는</b> 곳</li></ul></div>
+        </section>
+
+        <section class="scene" data-title="레만이 찾아낸 마지막 경계">
+          <div class="story"><div class="who">👩‍💻</div><div class="say"><span class="name">은서</span>“1936년, 덴마크의 지진학자 <b>잉에 레만</b>은 P파 그림자대 안쪽에서도 <b>약한 P파</b>가 기록된다는 것을 알아챘습니다. 핵 속에 또 하나의 경계가 있어 거기서 되꺾인 파가 들어온 것이죠. 지구 속 깊이별 지진파 속도를 따라가며, 속도가 <b>갑자기 달라지는 깊이</b>를 모두 찾아내세요. 그 깊이가 곧 층의 경계입니다.”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="d-c4" width="900" height="440"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group" style="flex:1 1 100%">
+                <div class="ctrl-label">깊이 (km)<span class="val" id="d-depth-val">0 km</span></div>
+                <input type="range" id="d-depth" min="0" max="6370" step="10" value="0">
+              </div>
+            </div>
+            <div class="info-card" id="d-c4-info"></div>
+          </div>
+          <div class="mission" id="m4-5"><span class="m-tag">미션</span>속도가 갑자기 변하는 경계 세 곳을 찾으세요. (경계에서 ±50 km 안에 들어가면 찾은 것으로 봅니다)<ul><li id="m4-5a">🪨 P파·S파 속도가 갑자기 빨라지는 얕은 경계 — <b>모호면</b></li><li id="m4-5b">🌊 P파가 느려지고 S파가 아예 사라지는 경계 — <b>구텐베르크면</b></li><li id="m4-5c">💎 P파가 다시 빨라지고 S파가 되살아나는 경계 — <b>레만면</b></li></ul></div>
+          <div id="d-end-wrap" hidden>
+            <div class="ending" style="margin-top:16px">
+              <h4>🔎 가 보지 않고 그린 지도</h4>
+              <p>P파는 고체·액체를 모두 지나지만 S파는 <b>고체만</b> 지납니다. 103°보다 먼 곳에 S파가 전혀 도달하지 않는다는 사실은, 그 경로에 <b>액체인 외핵</b>이 있다는 뜻입니다. 또 P파는 핵에 들어가며 속도가 크게 느려져 <b>안쪽으로 굴절</b>하기 때문에 103°~142° 사이에는 도달하지 못합니다. 여기에 레만이 찾아낸 <b>내핵</b>을 더해 오늘의 그림이 완성되었습니다.</p>
+              <p>지구 내부는 <b>지각 — 맨틀 — 외핵 — 내핵</b>의 네 층입니다. 경계는 각각 <b>모호면(약 35 km, 대륙 기준)</b>, <b>구텐베르크면(약 2,900 km)</b>, <b>레만면(약 5,100 km)</b>입니다. 맨틀은 고체, 외핵은 액체, 내핵은 어마어마한 압력 때문에 다시 고체입니다. 액체 외핵의 대류가 지구 자기장을 만들고, 그 자기장이 첫 번째 이야기에서 대륙을 추적한 복각의 정체였습니다.</p>
+              <div class="vs" id="d-vs"></div>
+              <span class="stamp">사건 파일 ④ 해결</span>
+            </div>
+            <div class="info-card" style="margin:0 0 14px">📎 과학자의 눈: 이 화면의 속도 곡선은 표준 지구 모형(PREM)의 값을 층마다 직선으로 이은 <b>단순화한 모형</b>입니다. 실제 속도는 층 안에서도 매끄럽게 변하지 않고, 맨틀 안에도 속도가 느려지는 저속도층(약 100~250 km)과 상부·하부 맨틀 경계(약 410 km, 660 km) 같은 작은 경계가 더 있습니다. 그림자대의 각도도 지진의 깊이에 따라 조금씩 달라집니다.</div>
+            <div class="stage-card" style="padding:6px 0 4px"><div id="wk4"></div></div>
+          </div>
+        </section>
       </div>
-      <div class="stage-card">
-        <div class="info-card" id="c3m-data" style="margin:18px 20px 0;"></div>
-        <div class="seg" id="c3m-choices" style="margin:14px 20px 0;"></div>
-        <div class="toggle-row" style="margin:14px 20px 0;">
-          <button class="chip" id="c3m-check">정답 확인</button>
-          <button class="chip" id="c3m-new">새 관측 자료</button>
-        </div>
-        <div class="info-card" id="c3m-info">보기 중 하나를 선택한 뒤 [정답 확인]을 눌러 보세요.</div>
-      </div>
+      <p class="teacher-note">교사용: 주소 끝에 <a href="?open=1">?open=1</a> 을 붙이면 모든 장면이 열립니다.</p>
     </section>
 
-    <!-- TAB4: 지진파로 밝혀낸 지구 내부 구조 (기존 + 그림자대 보강) -->
+    <!-- ===================================================================== 05 정리하기 -->
     <section class="tab-panel" data-panel="4" hidden>
       <div class="stage-head">
-        <div class="eyebrow">05 · 지진파로 밝혀낸 지구 속</div>
-        <h2 class="display">지구 내부 구조와 지진파 그림자대</h2>
-        <p>깊이 슬라이더로 지구 내부 층상 구조를, 진앙 거리 슬라이더로 P파·S파가 도달하지 못하는 그림자대를 확인해 보세요.</p>
-      </div>
-      <div class="stage-card">
-        <div class="canvas-wrap"><canvas id="c4" width="900" height="460"></canvas></div>
-        <div class="controls">
-          <div class="ctrl-group">
-            <div class="ctrl-label">깊이(km)<span class="val" id="c4-d-val">0</span></div>
-            <input type="range" id="c4-d" min="0" max="6371" step="10" value="0">
-          </div>
-          <div class="ctrl-group">
-            <div class="ctrl-label">지진으로부터의 각거리(°)<span class="val" id="c4-a-val">60°</span></div>
-            <input type="range" id="c4-a" min="0" max="180" step="1" value="60">
-          </div>
-        </div>
-        <div class="info-card" id="c4-info"></div>
-      </div>
-      <p class="foot-note">S파 그림자대: 103°~180° (외핵이 액체라 통과 못함). P파 그림자대: 103°~142° (핵-맨틀 경계에서 굴절).</p>
-
-      <div class="stage-head" style="margin-top:30px;">
-        <div class="eyebrow">🔎 미션 · 그림자대 자료로 핵 추론하기</div>
-        <h2 class="display" style="font-size:20px;">어느 관측소가 P파 그림자대에 들어갈까요?</h2>
-        <p>지진으로부터의 각거리가 서로 다른 관측소 6곳이 있습니다. P파 그림자대(103°~142°)에 해당하는 관측소를 모두 클릭해 선택한 뒤 채점해 보세요.</p>
-      </div>
-      <div class="stage-card">
-        <div class="station-row" id="c4m-stations"></div>
-        <div class="toggle-row" style="margin:14px 20px 0;">
-          <button class="chip" id="c4m-check">채점하기</button>
-          <button class="chip" id="c4m-new">관측소 새로 배치</button>
-        </div>
-        <div class="info-card" id="c4m-info">그림자대에 해당한다고 생각하는 관측소를 클릭해 선택하세요.</div>
-      </div>
-    </section>
-
-    <section class="tab-panel" data-panel="5" hidden>
-      <div class="stage-head">
-        <div class="eyebrow">06 · 오늘 알아낸 것을 문장으로</div>
+        <div class="eyebrow">05 · 네 사건을 하나로</div>
         <h2 class="display">정리하기</h2>
-        <p>조작한 것을 말이나 글로 옮기지 않으면 남지 않습니다. 아래를 채우고 <b>답안 복사</b>를 눌러 제출하세요. 쓰는 동안 자동으로 저장됩니다.</p>
+        <p>네 이야기의 결과가 아래에 모입니다. 네 사건을 꿰는 한 문장을 쓰고 <b>답안 복사</b>를 눌러 제출하세요. 쓰는 동안 자동으로 저장됩니다.</p>
       </div>
       <div class="stage-card" style="padding:6px 0 4px"><div id="wk"></div></div>
+    </section>
+
+    <!-- ===================================================================== 06 우리 반 -->
+    <section class="tab-panel" data-panel="5" hidden>
+      <div class="stage-head">
+        <div class="eyebrow">06 · 같은 반 친구들과 나누기</div>
+        <h2 class="display">우리 반</h2>
+        <p>내가 해결한 사건과 찾아낸 값을 우리 반에 올리고, 친구들은 어떤 값을 찾았는지 살펴보세요. <b>올리기 버튼을 눌렀을 때만</b> 공유됩니다. 실명 대신 별명을 쓰세요.</p>
+      </div>
+      <div class="stage-card"><div id="share"></div></div>
     </section>
   </main>
 </div>
 
 <button class="theme-toggle" id="themeToggle">라이트 모드</button>
 <script src="../assets/theme.js"></script>
-<script>
-(function () {
-"use strict";
-/* TAB0: 판구조론 정립의 증거 */
-(function () {
-  var canvas = document.getElementById("c0");
-  var ctx = setupCanvas(canvas);
-  var W = canvas._w, H = canvas._h;
-  var ev = "continents";
-  var info = document.getElementById("c0-info");
-  var texts = {
-    continents: "<b>대륙 이동의 증거</b> — 베게너는 남아메리카와 아프리카 대륙의 해안선이 퍼즐처럼 들어맞고, 두 대륙에서 같은 종류의 화석(메소사우루스 등)과 지층이 발견된다는 점을 근거로 <b>대륙 이동설</b>을 제안했습니다. 하지만 대륙을 움직이는 힘을 설명하지 못해 당시에는 널리 받아들여지지 않았습니다.",
-    convection: "<b>맨틀 대류설</b> — 홈스는 맨틀 내부의 온도 차이로 발생하는 <b>열대류</b>가 대륙을 움직이는 원동력이라고 제안했습니다. 뜨거운 맨틀 물질이 상승하는 곳에서는 대륙이 갈라지고, 하강하는 곳에서는 대륙이 모인다고 설명해, 대륙 이동설의 약점(원동력 부재)을 보완했습니다.",
-    magnetic: "<b>고지자기 줄무늬</b> — 해령을 중심으로 양쪽에 지구 자기장의 방향(정자극기·역자극기)이 대칭인 줄무늬 형태로 기록되어 있습니다. 이는 새로운 해양 지각이 해령에서 만들어져 양쪽으로 계속 갈라져 나가고 있다는 <b>해양저 확장설</b>의 결정적 증거가 되었습니다.",
-    age: "<b>해양 지각의 나이</b> — 해령에 가까울수록 지각의 나이가 어리고(붉은색), 해령에서 멀어질수록 나이가 많습니다(파란색). 나이 분포가 해령을 축으로 대칭인 것도 해양저 확장설을 강력하게 뒷받침합니다."
-  };
-  document.querySelectorAll("#c0-ev button").forEach(function (b) {
-    b.addEventListener("click", function () {
-      ev = b.getAttribute("data-e");
-      document.querySelectorAll("#c0-ev button").forEach(function (x) { x.classList.toggle("on", x === b); });
-      render();
-    });
-  });
-
-  function render() {
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
-    info.innerHTML = texts[ev];
-
-    if (ev === "continents") {
-      // South America (left) and Africa (right) as simplified matching blobs
-      function blob(cx, cy, pts, color) {
-        ctx.save(); ctx.fillStyle = color; ctx.beginPath();
-        pts.forEach(function (p, i) { var x = cx + p[0], y = cy + p[1]; if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); });
-        ctx.closePath(); ctx.fill(); ctx.restore();
-      }
-      var sa = [[0,-120],[40,-100],[55,-30],[40,60],[10,130],[-20,100],[-35,20],[-30,-60]];
-      var af = [[0,-130],[50,-100],[65,-20],[45,80],[15,140],[-15,90],[-40,10],[-30,-70]];
-      blob(300, 220, sa, cssVar("--teal"));
-      blob(560, 210, af, cssVar("--coral"));
-      ctx.font = "700 12px Segoe UI"; ctx.fillStyle = cssVar("--foam"); ctx.textAlign = "center";
-      ctx.fillText("남아메리카", 300, 360); ctx.fillText("아프리카", 560, 360);
-      // matching fossil markers
-      var pairs = [[300+20,150,560-45,140],[300+10,220,560-55,210],[300-5,280,560-40,270]];
-      var labels = ["메소사우루스 화석", "글로소프테리스 화석", "지층 연속성"];
-      pairs.forEach(function (p, i) {
-        ctx.fillStyle = cssVar("--violet");
-        ctx.beginPath(); ctx.arc(p[0], p[1], 6, 0, 7); ctx.fill();
-        ctx.beginPath(); ctx.arc(p[2], p[3], 6, 0, 7); ctx.fill();
-        ctx.save(); ctx.strokeStyle = cssVar("--violet"); ctx.globalAlpha = .5; ctx.setLineDash([3,3]);
-        ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(p[2], p[3]); ctx.stroke(); ctx.restore();
-        ctx.font = "10px Segoe UI"; ctx.fillStyle = cssVar("--mist"); ctx.textAlign = "left";
-        ctx.fillText(labels[i], (p[0]+p[2])/2 - 40, (p[1]+p[3])/2 - 8 - i*2);
-      });
-      ctx.font = "11px Segoe UI"; ctx.fillStyle = cssVar("--mist"); ctx.textAlign = "center";
-      ctx.fillText("점선으로 연결된 화석·지층이 두 대륙에서 같은 종류로 발견됨 → 원래 붙어 있었다는 증거", W/2, 60);
-    } else if (ev === "convection") {
-      var cx = W/2, cy = H/2 + 20;
-      ctx.save(); ctx.fillStyle = cssVar("--coral"); ctx.fillRect(cx-260, cy-160, 520, 26);
-      ctx.font = "11px Segoe UI"; ctx.fillStyle = cssVar("--abyss"); ctx.textAlign = "center";
-      ctx.fillText("대륙", cx-200, cy-142); ctx.fillText("대륙", cx+200, cy-142);
-      ctx.restore();
-      // mantle box with convection loops
-      ctx.save(); ctx.fillStyle = cssVar("--panel-2"); ctx.fillRect(cx-260, cy-130, 520, 220);
-      ctx.restore();
-      [-150, 150].forEach(function (ox, i) {
-        ctx.save(); ctx.strokeStyle = cssVar("--line"); ctx.setLineDash([4,4]);
-        ctx.beginPath(); ctx.ellipse(cx+ox, cy - 20, 110, 90, 0, 0, 7); ctx.stroke(); ctx.setLineDash([]); ctx.restore();
-        ctx.save(); ctx.strokeStyle = cssVar("--teal"); ctx.fillStyle = cssVar("--teal"); ctx.lineWidth = 3;
-        drawArrow(ctx, cx+ox, cy+60, cx+ox, cy-100, 9);
-        ctx.restore();
-      });
-      ctx.save(); ctx.strokeStyle = cssVar("--coral"); ctx.fillStyle = cssVar("--coral"); ctx.lineWidth = 4;
-      drawArrow(ctx, cx-60, cy-150, cx+60, cy-150, 10);
-      ctx.restore();
-      ctx.font = "11px Segoe UI"; ctx.fillStyle = cssVar("--mist"); ctx.textAlign = "center";
-      ctx.fillText("맨틀 대류가 상승하는 곳: 대륙이 갈라짐", cx, cy+130);
-      ctx.fillText("맨틀 대류", cx, cy+20);
-    } else if (ev === "magnetic") {
-      var ridgeX = W/2, top = 60, bot = H-60;
-      var n = 16;
-      for (var i = 0; i < n; i++) {
-        var w = 22 + Math.abs(i - n/2) * 1.5;
-        var xL = ridgeX - (i+1)*26, xR = ridgeX + i*26;
-        ctx.fillStyle = i % 2 === 0 ? "#1a1a1a" : "#e8e8e8";
-        ctx.fillRect(xL, top, 26, bot-top);
-        ctx.fillStyle = i % 2 === 0 ? "#e8e8e8" : "#1a1a1a";
-        ctx.fillRect(xR, top, 26, bot-top);
-      }
-      ctx.save(); ctx.fillStyle = cssVar("--coral"); ctx.fillRect(ridgeX-6, top, 12, bot-top); ctx.restore();
-      ctx.font = "700 12px Segoe UI"; ctx.fillStyle = cssVar("--foam"); ctx.textAlign = "center";
-      ctx.fillText("해령", ridgeX, top - 14);
-      ctx.font = "11px Segoe UI"; ctx.fillStyle = cssVar("--mist");
-      ctx.fillText("검은색 = 정자극기, 흰색 = 역자극기 — 해령을 축으로 좌우 대칭", W/2, bot + 26);
-    } else {
-      var ridgeX2 = W/2, top2 = 60, bot2 = H-60;
-      var colors = ["#e5484d","#f2965c","#f2d060","#6fcf97","#3fc9b0","#6fa8e0","#4a6fd6"];
-      for (var j = 0; j < colors.length; j++) {
-        ctx.fillStyle = colors[j];
-        ctx.fillRect(ridgeX2 - (j+1)*32, top2, 32, bot2-top2);
-        ctx.fillRect(ridgeX2 + j*32, top2, 32, bot2-top2);
-      }
-      ctx.font = "700 12px Segoe UI"; ctx.fillStyle = cssVar("--foam"); ctx.textAlign = "center";
-      ctx.fillText("해령(나이 0)", ridgeX2, top2 - 14);
-      ctx.font = "11px Segoe UI"; ctx.fillStyle = cssVar("--mist");
-      ctx.fillText("빨강(어림) → 파랑(오래됨), 해령에서 멀수록 지각 나이가 많음", W/2, bot2 + 26);
-    }
-  }
-  render();
-})();
-
-/* TAB0 미션 — 관측 방법 매칭 */
-(function () {
-  var cardsEl = document.getElementById("c0m-cards");
-  var slotsEl = document.getElementById("c0m-slots");
-  var checkBtn = document.getElementById("c0m-check");
-  var newBtn = document.getElementById("c0m-new");
-  if (!cardsEl) return;
-
-  var slotNames = { continents: "대륙 이동의 증거", convection: "맨틀 대류설", magnetic: "고지자기 줄무늬", age: "해양 지각의 나이" };
-  var slotOrder = ["continents", "convection", "magnetic", "age"];
-  var clues = {
-    continents: "여러 대륙의 해안선 모양과 지층·화석 분포를 지도 위에 겹쳐 비교했습니다. 지도 제작과 현장 지질 조사가 핵심 도구였습니다.",
-    convection: "지구 내부의 온도 차이로 맨틀 물질이 서서히 순환한다는 이론으로, 지진파 관측 자료를 바탕으로 내부 온도·물성 차이를 추정해 뒷받침되었습니다.",
-    magnetic: "해저를 오가며 자력계로 암석에 남은 고지자기의 방향과 세기를 측정했더니, 해령을 중심으로 대칭인 줄무늬 패턴이 나타났습니다.",
-    age: "해저를 시추해 얻은 퇴적물·암석 시료를 방사성 동위원소로 연대 측정한 결과, 해령에서 멀어질수록 해양 지각의 나이가 많아짐을 확인했습니다."
-  };
-
-  var pool = [];
-  var slots = {};
-  var selected = null;
-
-  function shuffle(arr) {
-    var a = arr.slice();
-    for (var i = a.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
-    }
-    return a;
-  }
-
-  function reset() {
-    pool = shuffle(slotOrder.slice());
-    slots = { continents: null, convection: null, magnetic: null, age: null };
-    selected = null;
-    var info = document.getElementById("c0m-info");
-    info.style.color = "";
-    info.textContent = "단서를 클릭해 선택한 뒤, 놓을 칸을 클릭하세요.";
-    render();
-  }
-
-  function render() {
-    cardsEl.innerHTML = "";
-    pool.forEach(function (key) {
-      var card = document.createElement("div");
-      card.className = "mission-card" + (selected === key ? " selected" : "");
-      card.textContent = clues[key];
-      card.addEventListener("click", function () {
-        selected = (selected === key) ? null : key;
-        render();
-      });
-      cardsEl.appendChild(card);
-    });
-
-    slotsEl.innerHTML = "";
-    slotOrder.forEach(function (targetKey) {
-      var slot = document.createElement("div");
-      var filledKey = slots[targetKey];
-      slot.className = "mission-slot" + (filledKey ? " filled" : "");
-      var title = document.createElement("div");
-      title.className = "slot-title";
-      title.textContent = slotNames[targetKey];
-      slot.appendChild(title);
-      var body = document.createElement("div");
-      body.className = "slot-body";
-      body.textContent = filledKey ? clues[filledKey] : "여기를 클릭해 선택한 카드를 놓으세요.";
-      slot.appendChild(body);
-      slot.addEventListener("click", function () {
-        if (filledKey) {
-          pool.push(filledKey);
-          slots[targetKey] = null;
-          render();
-        } else if (selected) {
-          slots[targetKey] = selected;
-          pool = pool.filter(function (k) { return k !== selected; });
-          selected = null;
-          render();
-        }
-      });
-      slotsEl.appendChild(slot);
-    });
-  }
-
-  checkBtn.addEventListener("click", function () {
-    var info = document.getElementById("c0m-info");
-    if (pool.length > 0) {
-      info.style.color = "";
-      info.textContent = "아직 배치하지 않은 카드가 있습니다. 4장을 모두 알맞은 칸에 놓아 주세요.";
-      return;
-    }
-    var correctCount = 0;
-    slotsEl.querySelectorAll(".mission-slot").forEach(function (slotEl, i) {
-      var targetKey = slotOrder[i];
-      var ok = slots[targetKey] === targetKey;
-      slotEl.classList.remove("correct", "wrong");
-      slotEl.classList.add(ok ? "correct" : "wrong");
-      if (ok) correctCount++;
-    });
-    if (correctCount === 4) {
-      info.style.color = "var(--teal)";
-      info.innerHTML = "<b>4장 모두 정답입니다!</b> 판구조론은 지도 제작부터 지진파·고지자기·방사성 연대 측정까지 여러 관측 기술이 쌓이며 통합 이론으로 정립되었습니다.";
-    } else {
-      info.style.color = "var(--coral)";
-      info.innerHTML = correctCount + " / 4 칸이 맞았습니다. 빨간 테두리 칸을 다시 살펴보고 카드를 옮겨 보세요.";
-    }
-  });
-
-  newBtn.addEventListener("click", reset);
-  reset();
-})();
-
-/* TAB1: 판의 경계와 이동의 원동력 */
-(function () {
-  var canvas = document.getElementById("c1");
-  var ctx = setupCanvas(canvas);
-  var W = canvas._w, H = canvas._h;
-  var view = "boundary";
-  var info = document.getElementById("c1-info");
-  document.querySelectorAll("#c1-view button").forEach(function (b) {
-    b.addEventListener("click", function () {
-      view = b.getAttribute("data-v");
-      document.querySelectorAll("#c1-view button").forEach(function (x) { x.classList.toggle("on", x === b); });
-      info.innerHTML = view === "boundary" ? "지도 위의 판 경계선을 클릭해 보세요." : "";
-      render();
-    });
-  });
-
-  var boundaries = [
-    { type:"divergent", name:"발산형 경계(예: 대서양 중앙 해령)", desc:"두 판이 서로 멀어지며 그 틈으로 마그마가 상승해 새로운 해양 지각이 만들어집니다.", pts:[[300,90],[300,330]], color:"--coral" },
-    { type:"convergent", name:"수렴형 경계(예: 일본 해구)", desc:"두 판이 충돌하며 밀도가 큰 판이 다른 판 아래로 섭입합니다. 화산·지진 활동이 매우 활발합니다.", pts:[[600,90],[640,330]], color:"--cold" },
-    { type:"transform", name:"보존형 경계(예: 산안드레아스 단층)", desc:"두 판이 서로 반대 방향으로 어긋나며 미끄러집니다. 지각이 새로 생기거나 소멸하지 않습니다.", pts:[[450,150],[420,270]], color:"--violet" }
-  ];
-  canvas.addEventListener("click", function (e) {
-    if (view !== "boundary") return;
-    var rect = canvas.getBoundingClientRect();
-    var scaleX = canvas._w / rect.width, scaleY = canvas._h / rect.height;
-    var mx = (e.clientX - rect.left) * scaleX, my = (e.clientY - rect.top) * scaleY;
-    boundaries.forEach(function (b) {
-      var d = pointToSeg(mx, my, b.pts[0], b.pts[1]);
-      if (d < 24) info.innerHTML = "<b>" + b.name + "</b> — " + b.desc;
-    });
-  });
-  function pointToSeg(px, py, a, b) {
-    var dx = b[0]-a[0], dy = b[1]-a[1];
-    var t = ((px-a[0])*dx + (py-a[1])*dy) / (dx*dx+dy*dy);
-    t = Math.max(0, Math.min(1, t));
-    var x = a[0]+t*dx, y = a[1]+t*dy;
-    return Math.hypot(px-x, py-y);
-  }
-
-  function render() {
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
-
-    if (view === "boundary") {
-      ctx.fillStyle = cssVar("--panel-2"); ctx.fillRect(40, 60, W-80, H-120);
-      boundaries.forEach(function (b) {
-        ctx.save(); ctx.strokeStyle = cssVar(b.color); ctx.lineWidth = 6; ctx.lineCap = "round";
-        ctx.beginPath(); ctx.moveTo(b.pts[0][0], b.pts[0][1]); ctx.lineTo(b.pts[1][0], b.pts[1][1]); ctx.stroke();
-        ctx.restore();
-      });
-      ctx.font = "11px Segoe UI"; ctx.fillStyle = cssVar("--mist"); ctx.textAlign = "center";
-      ctx.fillText("빨강=발산형  파랑=수렴형  보라=보존형 (선을 클릭해 보세요)", W/2, H-40);
-    } else if (view === "force") {
-      var cx = W/2, cy = H/2+30, R = 170;
-      var grad = ctx.createRadialGradient(cx, cy, 20, cx, cy, R);
-      grad.addColorStop(0, "#7a1a1a"); grad.addColorStop(1, "#c0392b");
-      ctx.fillStyle = grad; ctx.beginPath(); ctx.arc(cx, cy, R, 0, 7); ctx.fill();
-      ctx.font = "11px Segoe UI"; ctx.fillStyle = "#fff"; ctx.textAlign = "center";
-      ctx.fillText("맨틀", cx, cy);
-      [[-1,0],[1,0]].forEach(function (dir) {
-        ctx.save(); ctx.strokeStyle = cssVar("--coral"); ctx.fillStyle = cssVar("--coral"); ctx.lineWidth = 3;
-        var x0 = cx + dir[0]*40, y0 = cy + 60;
-        drawArrow(ctx, x0, y0, x0, y0-90, 8);
-        ctx.restore();
-      });
-      // ocean layer top
-      ctx.save(); ctx.fillStyle = cssVar("--cold"); ctx.globalAlpha = .5;
-      ctx.fillRect(cx-R-40, cy-R-30, 2*(R+40), 34);
-      ctx.restore();
-      ctx.save(); ctx.strokeStyle = cssVar("--coral"); ctx.fillStyle = cssVar("--coral"); ctx.lineWidth = 4;
-      drawArrow(ctx, cx-10, cy-R-14, cx-140, cy-R-14, 9);
-      drawArrow(ctx, cx+10, cy-R-14, cx+140, cy-R-14, 9);
-      ctx.restore();
-      ctx.font = "700 11px Segoe UI"; ctx.fillStyle = cssVar("--foam"); ctx.textAlign = "center";
-      ctx.fillText("해령이 판을 밀어내는 힘", cx, cy-R-40);
-      ctx.save(); ctx.strokeStyle = cssVar("--violet"); ctx.fillStyle = cssVar("--violet"); ctx.lineWidth = 4;
-      drawArrow(ctx, cx+R+30, cy-R+10, cx+R-10, cy+40, 9);
-      ctx.restore();
-      ctx.font = "700 11px Segoe UI"; ctx.fillStyle = cssVar("--violet"); ctx.textAlign = "left";
-      ctx.fillText("섭입하는 판이", cx+R+20, cy-R-10);
-      ctx.fillText("잡아당기는 힘", cx+R+20, cy-R+6);
-      info.innerHTML = "해령에서는 상승하는 맨틀 물질이 판을 양쪽으로 <b>밀어내는 힘</b>이, 해구에서는 차갑고 밀도가 큰 섭입하는 판 자체가 <b>잡아당기는 힘</b>이 작용합니다. 두 힘 모두 맨틀 대류와 함께 판을 움직이는 원동력입니다.";
-    } else {
-      var cx2 = W/2, cy2 = H/2 + 20;
-      ctx.strokeStyle = cssVar("--line"); ctx.lineWidth = 2;
-      [160, 100].forEach(function (r) { ctx.beginPath(); ctx.arc(cx2, cy2, r, 0, 7); ctx.stroke(); });
-      ctx.font = "10px Segoe UI"; ctx.fillStyle = cssVar("--mist"); ctx.textAlign = "center";
-      ctx.fillText("맨틀", cx2, cy2-130); ctx.fillText("핵", cx2, cy2-10);
-      ctx.save(); ctx.strokeStyle = cssVar("--coral"); ctx.fillStyle = cssVar("--coral"); ctx.lineWidth = 4;
-      drawArrow(ctx, cx2-60, cy2+90, cx2-60, cy2-170, 10); ctx.restore();
-      ctx.font = "11px Segoe UI"; ctx.fillStyle = cssVar("--coral"); ctx.textAlign = "center";
-      ctx.fillText("핫 플룸(상승)", cx2-60, cy2-180);
-      ctx.save(); ctx.strokeStyle = cssVar("--cold"); ctx.fillStyle = cssVar("--cold"); ctx.lineWidth = 4;
-      drawArrow(ctx, cx2+90, cy2-170, cx2+90, cy2+90, 10); ctx.restore();
-      ctx.font = "11px Segoe UI"; ctx.fillStyle = cssVar("--cold");
-      ctx.fillText("콜드 플룸(하강)", cx2+90, cy2+110);
-      info.innerHTML = "<b>플룸 구조론</b>은 판 경계와 무관하게 나타나는 화산 활동(예: 하와이)을 설명하기 위해 등장했습니다. 맨틀과 핵의 경계 부근에서 뜨거운 물질이 기둥 모양(플룸)으로 상승하거나(핫 플룸), 차가운 판이 가라앉는(콜드 플룸) 맨틀 전체 규모의 흐름입니다.";
-    }
-  }
-  render();
-})();
-
-/* TAB2: 화산과 암석순환 (기존 유지) */
-(function () {
-  var canvas = document.getElementById("c2");
-  var ctx = setupCanvas(canvas);
-  var W = canvas._w, H = canvas._h;
-  var info = document.getElementById("c2-info");
-  var spots = [
-    { name: "발산형 경계(해령)", x: 200, y: 200, desc: "맨틀 물질이 상승하며 압력이 낮아져 부분 용융이 일어나 현무암질 마그마가 생성됩니다. 대표적으로 대서양 중앙 해령이 있습니다." },
-    { name: "수렴형 경계(섭입대)", x: 500, y: 200, desc: "섭입하는 판에서 빠져나온 물이 맨틀의 용융점을 낮춰 부분 용융이 일어나 주로 안산암질 마그마가 생성됩니다. 예) 일본 열도의 화산." },
-    { name: "열점(하와이 등)", x: 750, y: 200, desc: "판의 경계와 무관하게, 맨틀 플룸이 상승하는 곳에서 지속적으로 화산 활동이 일어납니다. 판이 이동하면서 화산섬이 열을 지어 만들어집니다." }
-  ];
-  canvas.addEventListener("click", function (e) {
-    var rect = canvas.getBoundingClientRect();
-    var scaleX = canvas._w / rect.width, scaleY = canvas._h / rect.height;
-    var mx = (e.clientX - rect.left) * scaleX, my = (e.clientY - rect.top) * scaleY;
-    spots.forEach(function (s) { if (Math.hypot(mx - s.x, my - s.y) < 60) info.innerHTML = "<b>" + s.name + "</b> — " + s.desc; });
-  });
-  function render() {
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
-    spots.forEach(function (s) {
-      ctx.save(); ctx.fillStyle = cssVar("--coral"); ctx.globalAlpha = .85;
-      ctx.beginPath();
-      ctx.moveTo(s.x, s.y - 50); ctx.lineTo(s.x - 45, s.y + 40); ctx.lineTo(s.x + 45, s.y + 40); ctx.closePath(); ctx.fill();
-      ctx.restore();
-      ctx.font = "700 12px Segoe UI"; ctx.fillStyle = cssVar("--foam"); ctx.textAlign = "center";
-      wrapText(ctx, s.name, s.x, s.y + 70, 150, 15);
-    });
-    function wrapText(ctx, text, x, y, maxW, lh) {
-      var line = "", lines = [];
-      for (var i = 0; i < text.length; i++) {
-        var test = line + text[i];
-        if (ctx.measureText(test).width > maxW && line.length > 0) { lines.push(line); line = text[i]; } else line = test;
-      }
-      lines.push(line);
-      lines.forEach(function (l, i) { ctx.fillText(l, x, y + i * lh); });
-    }
-  }
-  render();
-})();
-
-/* TAB2b: 마그마 점성과 분출 양식 */
-(function () {
-  var canvas = document.getElementById("c2b");
-  var ctx = setupCanvas(canvas);
-  var W = canvas._w, H = canvas._h;
-  var sio2 = 50;
-  var info = document.getElementById("c2b-info");
-  document.getElementById("c2b-sio2").addEventListener("input", function (e) {
-    sio2 = +e.target.value;
-    document.getElementById("c2b-sio2-val").textContent = sio2;
-    render();
-  });
-
-  // SiO2 함량이 높을수록 점성이 크게(로그 스케일로) 증가한다는 실제 경향을 단순화한 모형
-  function viscosity(s) { return Math.pow(10, (s - 45) / 10); }
-  function classify(s) {
-    if (s < 52) return { magma: "현무암질 마그마", shape: "shield", volcano: "순상 화산", style: "용암류 위주의 조용한 분출(효과적 분출)", rock: "현무암" };
-    if (s < 63) return { magma: "안산암질 마그마", shape: "composite", volcano: "성층 화산", style: "용암류와 화산 쇄설물이 번갈아 쌓이는 분출", rock: "안산암" };
-    return { magma: "유문암질 마그마", shape: "dome", volcano: "종상 화산", style: "가스가 잘 빠져나가지 못해 격렬하게 터지는 폭발적 분출", rock: "유문암" };
-  }
-
-  function render() {
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
-
-    var visc = viscosity(sio2);
-    var info2 = classify(sio2);
-    var baseY = H - 90, cx = W / 2 - 160;
-
-    // 점성 게이지
-    var gx = 60, gy = 60, gw = W - 120, gh = 20;
-    var grad = ctx.createLinearGradient(gx, 0, gx + gw, 0);
-    grad.addColorStop(0, cssVar("--teal")); grad.addColorStop(1, cssVar("--coral"));
-    ctx.fillStyle = grad; ctx.fillRect(gx, gy, gw, gh);
-    var markX = gx + (sio2 - 45) / (70 - 45) * gw;
-    ctx.save(); ctx.strokeStyle = cssVar("--foam"); ctx.lineWidth = 3;
-    ctx.beginPath(); ctx.moveTo(markX, gy - 6); ctx.lineTo(markX, gy + gh + 6); ctx.stroke(); ctx.restore();
-    ctx.font = "11px Segoe UI"; ctx.fillStyle = cssVar("--mist"); ctx.textAlign = "left";
-    ctx.fillText("45% · 낮은 점성(현무암질)", gx, gy + gh + 22);
-    ctx.textAlign = "right"; ctx.fillText("70% · 높은 점성(유문암질)", gx + gw, gy + gh + 22);
-    ctx.textAlign = "center"; ctx.font = "700 12px Segoe UI"; ctx.fillStyle = cssVar("--foam");
-    ctx.fillText("상대 점성 지수 ≈ " + visc.toFixed(1), (gx + markX) / 2 + gw / 4, gy - 12);
-
-    // 화산 단면(형태가 점성에 따라 변함)
-    var shapeParam = (sio2 - 45) / (70 - 45); // 0(순상, 완만) ~ 1(종상, 급경사)
-    var halfBase = 220 - shapeParam * 130;
-    var height = 60 + shapeParam * 170;
-    ctx.beginPath();
-    ctx.moveTo(cx - halfBase, baseY);
-    ctx.lineTo(cx, baseY - height);
-    ctx.lineTo(cx + halfBase, baseY);
-    ctx.closePath();
-    ctx.fillStyle = cssVar("--panel-2"); ctx.fill();
-    ctx.strokeStyle = cssVar("--line"); ctx.lineWidth = 2; ctx.stroke();
-
-    if (shapeParam < 0.4) {
-      // 순상화산: 용암류가 넓게 퍼짐
-      ctx.save(); ctx.strokeStyle = cssVar("--coral"); ctx.lineWidth = 6; ctx.globalAlpha = .8;
-      ctx.beginPath(); ctx.moveTo(cx, baseY - height); ctx.lineTo(cx - halfBase * 0.9, baseY - 4); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(cx, baseY - height); ctx.lineTo(cx + halfBase * 0.9, baseY - 4); ctx.stroke();
-      ctx.restore();
-    } else if (shapeParam < 0.75) {
-      // 성층화산: 용암류 + 약한 분연
-      ctx.save(); ctx.strokeStyle = cssVar("--coral"); ctx.lineWidth = 4; ctx.globalAlpha = .7;
-      ctx.beginPath(); ctx.moveTo(cx, baseY - height); ctx.lineTo(cx - halfBase * 0.5, baseY - 6); ctx.stroke();
-      ctx.restore();
-      ctx.save(); ctx.fillStyle = cssVar("--mist"); ctx.globalAlpha = .55;
-      for (var i = 0; i < 5; i++) { ctx.beginPath(); ctx.arc(cx + i * 6 - 12, baseY - height - 20 - i * 16, 16 + i * 3, 0, 7); ctx.fill(); }
-      ctx.restore();
-    } else {
-      // 종상/칼데라: 강한 폭발성 분연주
-      ctx.save(); ctx.fillStyle = cssVar("--mist"); ctx.globalAlpha = .75;
-      for (var j = 0; j < 8; j++) { ctx.beginPath(); ctx.arc(cx + (j % 3 - 1) * 14, baseY - height - 30 - j * 22, 20 + j * 4, 0, 7); ctx.fill(); }
-      ctx.restore();
-      ctx.save(); ctx.fillStyle = cssVar("--coral"); ctx.globalAlpha = .85;
-      ctx.beginPath(); ctx.arc(cx, baseY - height, 10, 0, 7); ctx.fill(); ctx.restore();
-    }
-    ctx.font = "700 14px Segoe UI"; ctx.fillStyle = cssVar("--foam"); ctx.textAlign = "center";
-    ctx.fillText(info2.volcano, cx, baseY + 30);
-
-    info.innerHTML = "SiO₂ 함량 " + sio2 + "%는 <b>" + info2.magma + "</b>에 해당하며, 상대 점성 지수는 약 <b>" + visc.toFixed(1) + "</b>입니다. 점성이 " + (shapeParam < 0.4 ? "낮아" : shapeParam < 0.75 ? "중간 정도라" : "높아") + " " + info2.style + "이 나타나고, 굳으면 <b>" + info2.rock + "</b>이 됩니다.";
-  }
-  render();
-})();
-
-/* TAB3: 지진파의 종류와 관측 (신규, 주시곡선) */
-(function () {
-  var canvas = document.getElementById("c3");
-  var ctx = setupCanvas(canvas);
-  var W = canvas._w, H = canvas._h;
-  var dist = 1500;
-  var info = document.getElementById("c3-info");
-  document.getElementById("c3-d").addEventListener("input", function (e) {
-    dist = +e.target.value;
-    document.getElementById("c3-d-val").textContent = dist.toLocaleString() + " km";
-    render();
-  });
-
-  var anchors = [0, 1000, 2000, 4000, 6000, 8000, 10000];
-  var pMin = [0, 2.0, 3.5, 6.3, 9.0, 10.2, 11.5];
-  var sMin = [0, 3.5, 6.2, 11.5, 16.5, 19.0, 22.0];
-  function interp(arr, d) {
-    for (var i = 0; i < anchors.length - 1; i++) {
-      if (d >= anchors[i] && d <= anchors[i+1]) {
-        var t = (d - anchors[i]) / (anchors[i+1] - anchors[i]);
-        return arr[i] + t * (arr[i+1] - arr[i]);
-      }
-    }
-    return arr[arr.length-1];
-  }
-
-  function render() {
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
-    var x0 = 70, x1 = W-40, y0 = 40, y1 = H-140;
-    ctx.strokeStyle = cssVar("--line"); ctx.beginPath(); ctx.moveTo(x0,y0); ctx.lineTo(x0,y1); ctx.lineTo(x1,y1); ctx.stroke();
-    ctx.font = "11px Segoe UI"; ctx.fillStyle = cssVar("--mist"); ctx.textAlign = "center";
-    ctx.fillText("진앙 거리(km) →", (x0+x1)/2, y1+24);
-    ctx.save(); ctx.translate(20,(y0+y1)/2); ctx.rotate(-Math.PI/2); ctx.fillText("도달 시각(분)", 0,0); ctx.restore();
-
-    function drawCurve(arr, color) {
-      ctx.beginPath();
-      for (var px = 0; px <= 200; px++) {
-        var d = px/200*10000;
-        var t = interp(arr, d);
-        var xx = x0 + px/200*(x1-x0), yy = y1 - t/22*(y1-y0);
-        if (px===0) ctx.moveTo(xx,yy); else ctx.lineTo(xx,yy);
-      }
-      ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.stroke();
-    }
-    drawCurve(sMin, cssVar("--cold"));
-    drawCurve(pMin, cssVar("--coral"));
-    ctx.font = "700 12px Segoe UI"; ctx.textAlign = "left";
-    ctx.fillStyle = cssVar("--coral"); ctx.fillText("P파", x1-60, y0+40);
-    ctx.fillStyle = cssVar("--cold"); ctx.fillText("S파", x1-60, y0+20);
-
-    var tP = interp(pMin, dist), tS = interp(sMin, dist);
-    var px2 = x0 + dist/10000*(x1-x0);
-    var pyP = y1 - tP/22*(y1-y0), pyS = y1 - tS/22*(y1-y0);
-    ctx.save(); ctx.strokeStyle = cssVar("--mist"); ctx.setLineDash([3,3]);
-    ctx.beginPath(); ctx.moveTo(px2,y1); ctx.lineTo(px2,pyS); ctx.stroke(); ctx.setLineDash([]); ctx.restore();
-    ctx.fillStyle = cssVar("--coral"); ctx.beginPath(); ctx.arc(px2,pyP,6,0,7); ctx.fill();
-    ctx.fillStyle = cssVar("--cold"); ctx.beginPath(); ctx.arc(px2,pyS,6,0,7); ctx.fill();
-    ctx.save(); ctx.strokeStyle = cssVar("--teal"); ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.moveTo(px2+14,pyP); ctx.lineTo(px2+14,pyS); ctx.stroke(); ctx.restore();
-    ctx.font = "700 11px Segoe UI"; ctx.fillStyle = cssVar("--teal"); ctx.textAlign = "left";
-    ctx.fillText("PS시", px2+20, (pyP+pyS)/2+4);
-
-    // seismogram-like readout below
-    var ps = tS - tP;
-    ctx.font = "700 13px Segoe UI"; ctx.fillStyle = cssVar("--foam"); ctx.textAlign = "left";
-    ctx.fillText("P파 도달: " + tP.toFixed(1) + "분", x0, H-100);
-    ctx.fillText("S파 도달: " + tS.toFixed(1) + "분", x0, H-78);
-    ctx.fillText("PS시(초기 미동 계속 시간): " + ps.toFixed(1) + "분", x0, H-56);
-
-    info.innerHTML = "진앙 거리 " + dist.toLocaleString() + " km 지점에서는 P파가 <b>" + tP.toFixed(1) + "분</b>, S파가 <b>" + tS.toFixed(1) + "분</b> 후 도달합니다. 두 파의 도착 시간 차이인 <b>PS시(" + ps.toFixed(1) + "분)</b>가 길수록 진앙에서 먼 곳입니다. 실제로는 이 PS시를 이용해 관측소별 진앙 거리를 구하고, 세 곳 이상의 자료를 모으면 진앙의 위치를 정확히 찾을 수 있습니다(삼점 측량법).";
-  }
-  render();
-})();
-
-/* TAB3 미션 — PS시로 진앙 거리 구하기 */
-(function () {
-  var dataEl = document.getElementById("c3m-data");
-  var choicesEl = document.getElementById("c3m-choices");
-  var checkBtn = document.getElementById("c3m-check");
-  var newBtn = document.getElementById("c3m-new");
-  if (!dataEl) return;
-
-  var anchors = [0, 1000, 2000, 4000, 6000, 8000, 10000];
-  var pMin = [0, 2.0, 3.5, 6.3, 9.0, 10.2, 11.5];
-  var sMin = [0, 3.5, 6.2, 11.5, 16.5, 19.0, 22.0];
-  function interp(arr, d) {
-    for (var i = 0; i < anchors.length - 1; i++) {
-      if (d >= anchors[i] && d <= anchors[i+1]) {
-        var t = (d - anchors[i]) / (anchors[i+1] - anchors[i]);
-        return arr[i] + t * (arr[i+1] - arr[i]);
-      }
-    }
-    return arr[arr.length-1];
-  }
-
-  var trueDist = 1500;
-  var choices = [];
-  var picked = null;
-
-  function shuffle(arr) {
-    var a = arr.slice();
-    for (var i = a.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
-    }
-    return a;
-  }
-
-  function newQuestion() {
-    trueDist = 500 + Math.round(Math.random() * 90) * 100;
-    var ps = interp(sMin, trueDist) - interp(pMin, trueDist);
-    dataEl.innerHTML = "어느 관측소에서 측정한 PS시(초기 미동 계속 시간)는 <b>" + ps.toFixed(1) + "분</b>이었습니다.";
-    var decoys = [];
-    while (decoys.length < 3) {
-      var d = 500 + Math.round(Math.random() * 90) * 100;
-      if (Math.abs(d - trueDist) > 800 && decoys.indexOf(d) === -1 && d !== trueDist) decoys.push(d);
-    }
-    choices = shuffle([trueDist].concat(decoys));
-    picked = null;
-    renderChoices();
-    var info = document.getElementById("c3m-info");
-    info.style.color = "";
-    info.textContent = "보기 중 하나를 선택한 뒤 [정답 확인]을 눌러 보세요.";
-  }
-
-  function renderChoices() {
-    choicesEl.innerHTML = "";
-    choices.forEach(function (d) {
-      var btn = document.createElement("button");
-      btn.className = picked === d ? "on" : "";
-      btn.textContent = d.toLocaleString() + " km";
-      btn.addEventListener("click", function () {
-        picked = d;
-        renderChoices();
-      });
-      choicesEl.appendChild(btn);
-    });
-  }
-
-  checkBtn.addEventListener("click", function () {
-    var info = document.getElementById("c3m-info");
-    if (picked === null) {
-      info.style.color = "";
-      info.textContent = "먼저 보기 중 하나를 선택하세요.";
-      return;
-    }
-    if (picked === trueDist) {
-      info.style.color = "var(--teal)";
-      info.innerHTML = "<b>정답입니다!</b> 진앙 거리 " + trueDist.toLocaleString() + " km에서는 PS시가 " + (interp(sMin, trueDist) - interp(pMin, trueDist)).toFixed(1) + "분이 됩니다. PS시가 길수록 진앙에서 먼 곳입니다.";
-    } else {
-      info.style.color = "var(--coral)";
-      info.innerHTML = "다시 생각해 보세요. 정답은 <b>" + trueDist.toLocaleString() + " km</b>입니다. 위 주시 곡선에서 PS시 값을 찾아 그에 해당하는 거리를 읽어보세요.";
-    }
-  });
-
-  newBtn.addEventListener("click", newQuestion);
-  newQuestion();
-})();
-
-/* TAB4: 지구내부구조 + 그림자대 */
-(function () {
-  var canvas = document.getElementById("c4");
-  var ctx = setupCanvas(canvas);
-  var W = canvas._w, H = canvas._h;
-  var depth = 0, ang = 60;
-  var info = document.getElementById("c4-info");
-  document.getElementById("c4-d").addEventListener("input", function (e) { depth = +e.target.value; document.getElementById("c4-d-val").textContent = depth; render(); });
-  document.getElementById("c4-a").addEventListener("input", function (e) { ang = +e.target.value; document.getElementById("c4-a-val").textContent = ang + "°"; render(); });
-
-  var layers = [
-    { name: "지각", from: 0, to: 35, color: "--coral", desc: "P파 속도 약 6~7km/s. 대륙 지각은 두껍고(약 35km), 해양 지각은 얇습니다(약 5~10km)." },
-    { name: "맨틀", from: 35, to: 2890, color: "--teal", desc: "P파와 S파가 모두 통과하는 고체 상태입니다. 지구 부피의 약 82%를 차지합니다." },
-    { name: "외핵", from: 2890, to: 5150, color: "--violet", desc: "액체 상태로, S파는 통과하지 못합니다(S파 그림자대의 원인). 이 액체 철의 대류가 지구 자기장을 만듭니다." },
-    { name: "내핵", from: 5150, to: 6371, color: "--cold", desc: "엄청난 압력으로 다시 고체 상태가 됩니다. P파 속도가 다시 빨라집니다." }
-  ];
-  function currentLayer() {
-    for (var i = 0; i < layers.length; i++) if (depth >= layers[i].from && depth <= layers[i].to) return layers[i];
-    return layers[layers.length - 1];
-  }
-  function waveStatus(a) {
-    var sBlocked = a >= 103 && a <= 180;
-    var pBlocked = a >= 103 && a <= 142;
-    return { p: !pBlocked, s: !sBlocked };
-  }
-
-  function render() {
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
-
-    var cx = 190, cy = 190, R = 150;
-    layers.slice().reverse().forEach(function (l) {
-      var r = R * (l.to / 6371);
-      ctx.fillStyle = cssVar(l.color); ctx.globalAlpha = .8;
-      ctx.beginPath(); ctx.arc(cx, cy, r, 0, 7); ctx.fill();
-    });
-    ctx.globalAlpha = 1;
-    var markR = R * (depth / 6371);
-    ctx.save(); ctx.strokeStyle = cssVar("--foam"); ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.arc(cx, cy, markR, 0, 7); ctx.stroke(); ctx.restore();
-
-    var cl = currentLayer();
-    ctx.font = "700 13px Segoe UI"; ctx.fillStyle = cssVar("--foam"); ctx.textAlign = "left";
-    ctx.fillText("깊이 " + depth + "km → " + cl.name, 20, 360);
-    ctx.font = "11px Segoe UI"; ctx.fillStyle = cssVar("--mist");
-    wrapTextL(ctx, cl.desc, 20, 380, 340, 16);
-
-    // shadow zone diagram (right side)
-    var cx2 = 620, cy2 = 190, R2 = 150;
-    ctx.strokeStyle = cssVar("--line"); ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.arc(cx2, cy2, R2, 0, 7); ctx.stroke();
-    ctx.fillStyle = cssVar("--coral"); ctx.beginPath(); ctx.arc(cx2, cy2-R2, 6, 0, 7); ctx.fill();
-    ctx.font = "10px Segoe UI"; ctx.fillStyle = cssVar("--mist"); ctx.textAlign = "center";
-    ctx.fillText("진원(0°)", cx2, cy2-R2-12);
-
-    // shadow zone shading: 103-180 deg from top, both directions (symmetric)
-    function shadeArc(a0, a1, color) {
-      ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 10; ctx.globalAlpha = .35;
-      ctx.beginPath(); ctx.arc(cx2, cy2, R2, -Math.PI/2 + a0*Math.PI/180, -Math.PI/2 + a1*Math.PI/180); ctx.stroke();
-      ctx.beginPath(); ctx.arc(cx2, cy2, R2, -Math.PI/2 - a1*Math.PI/180, -Math.PI/2 - a0*Math.PI/180); ctx.stroke();
-      ctx.restore();
-    }
-    shadeArc(103, 180, cssVar("--cold"));
-    shadeArc(103, 142, cssVar("--coral"));
-
-    var markAng = -Math.PI/2 + ang*Math.PI/180;
-    var mx = cx2 + R2*Math.cos(markAng), my = cy2 + R2*Math.sin(markAng);
-    ctx.fillStyle = cssVar("--foam"); ctx.beginPath(); ctx.arc(mx,my,7,0,7); ctx.fill();
-    ctx.save(); ctx.strokeStyle = cssVar("--foam"); ctx.globalAlpha=.5; ctx.setLineDash([3,3]);
-    ctx.beginPath(); ctx.moveTo(cx2,cy2); ctx.lineTo(mx,my); ctx.stroke(); ctx.restore();
-
-    var st = waveStatus(ang);
-    ctx.font = "700 12px Segoe UI"; ctx.textAlign = "left";
-    ctx.fillStyle = st.p ? cssVar("--teal") : cssVar("--coral");
-    ctx.fillText("P파: " + (st.p ? "도달함" : "그림자대(약해지거나 굴절)"), 470, 360);
-    ctx.fillStyle = st.s ? cssVar("--teal") : cssVar("--cold");
-    ctx.fillText("S파: " + (st.s ? "도달함" : "그림자대(도달 못 함)"), 470, 382);
-
-    function wrapTextL(ctx, text, x, y, maxW, lh) {
-      var line = "", lines = [];
-      for (var i = 0; i < text.length; i++) {
-        var test = line + text[i];
-        if (ctx.measureText(test).width > maxW && line.length > 0) { lines.push(line); line = text[i]; } else line = test;
-      }
-      lines.push(line);
-      lines.forEach(function (l, i) { ctx.fillText(l, x, y + i * lh); });
-    }
-    info.innerHTML = "깊이 " + depth + "km(" + cl.name + ")과 각거리 " + ang + "°에서의 상태를 함께 보여줍니다. 진앙으로부터 <b>103°~142°</b>는 P파가 핵-맨틀 경계에서 굴절해 도달하지 못하는 <b>P파 그림자대</b>이고, <b>103°~180°</b>는 S파가 액체인 외핵을 통과하지 못해 전혀 도달하지 못하는 <b>S파 그림자대</b>입니다. 이 두 그림자대의 범위를 분석해 외핵이 액체라는 사실을 알아냈습니다.";
-  }
-  render();
-})();
-
-/* TAB4 미션 — 그림자대 관측소 판별 */
-(function () {
-  var stationsEl = document.getElementById("c4m-stations");
-  var checkBtn = document.getElementById("c4m-check");
-  var newBtn = document.getElementById("c4m-new");
-  if (!stationsEl) return;
-
-  var PSHADOW = [103, 142];
-  var stations = [];
-  var picked = {};
-
-  function isShadow(ang) { return ang >= PSHADOW[0] && ang <= PSHADOW[1]; }
-
-  function newRound() {
-    stations = [];
-    picked = {};
-    var used = [];
-    while (stations.length < 6) {
-      var ang = Math.round(Math.random() * 170) + 5;
-      var tooClose = used.some(function (u) { return Math.abs(u - ang) < 12; });
-      if (tooClose) continue;
-      used.push(ang);
-      stations.push(ang);
-    }
-    render();
-    var info = document.getElementById("c4m-info");
-    info.style.color = "";
-    info.textContent = "그림자대에 해당한다고 생각하는 관측소를 클릭해 선택하세요.";
-  }
-
-  function render() {
-    stationsEl.innerHTML = "";
-    stations.forEach(function (ang, i) {
-      var chip = document.createElement("div");
-      chip.className = "station-chip" + (picked[i] ? " on" : "");
-      chip.textContent = "관측소 " + (i + 1) + " (" + ang + "°)";
-      chip.addEventListener("click", function () {
-        picked[i] = !picked[i];
-        render();
-      });
-      stationsEl.appendChild(chip);
-    });
-  }
-
-  checkBtn.addEventListener("click", function () {
-    var info = document.getElementById("c4m-info");
-    var correct = 0;
-    var chips = stationsEl.querySelectorAll(".station-chip");
-    stations.forEach(function (ang, i) {
-      var shouldPick = isShadow(ang);
-      var didPick = !!picked[i];
-      chips[i].classList.remove("correct", "wrong");
-      if (shouldPick === didPick) { chips[i].classList.add("correct"); correct++; }
-      else { chips[i].classList.add("wrong"); }
-    });
-    if (correct === stations.length) {
-      info.style.color = "var(--teal)";
-      info.innerHTML = "<b>모두 정답입니다!</b> 103°~142° 범위의 관측소들은 P파가 핵-맨틀 경계에서 굴절해 도달하지 못하는 그림자대에 속합니다. 이 범위를 분석해 지구에 액체 외핵이 있음을 알아냈습니다.";
-    } else {
-      info.style.color = "var(--coral)";
-      info.innerHTML = correct + " / " + stations.length + " 곳을 맞혔습니다. 빨간 테두리 관측소의 각거리를 다시 확인해 보세요. (P파 그림자대: 103°~142°)";
-    }
-  });
-
-  newBtn.addEventListener("click", newRound);
-  newRound();
-})();
-
-/* TAB0 심화 — 고지자기: 복각 탐구판 + 겉보기 극이동 곡선 만들기 */
-(function () {
-  var hostSvg = document.getElementById("c0x-inclSvg");
-  if (!hostSvg) return; // 이 탭이 없는 페이지에서는 건너뜀
-
-  var NS = "http://www.w3.org/2000/svg";
-  function el(tag, attrs) {
-    var e = document.createElementNS(NS, tag);
-    for (var k in attrs) e.setAttribute(k, attrs[k]);
-    return e;
-  }
-  function svgPoint(svg, evt) {
-    var pt = svg.createSVGPoint();
-    pt.x = evt.clientX; pt.y = evt.clientY;
-    return pt.matrixTransform(svg.getScreenCTM().inverse());
-  }
-  var D2R = Math.PI / 180, R2D = 180 / Math.PI;
-  function rot(thetaDeg, v) {
-    var th = thetaDeg * D2R, c = Math.cos(th), s = Math.sin(th);
-    return [v[0] * c - v[1] * s, v[0] * s + v[1] * c];
-  }
-  function add2(a, b) { return [a[0] + b[0], a[1] + b[1]]; }
-  function sub2(a, b) { return [a[0] - b[0], a[1] - b[1]]; }
-  function lerp(a, b, t) { return a + (b - a) * t; }
-
-  /* ---------- 01. 복각 탐구판 ---------- */
-  (function () {
-    var svg = hostSvg;
-    var cx = 150, cy = 150, R = 110;
-    var latitude = 35;
-
-    function draw() {
-      svg.innerHTML = "";
-      svg.appendChild(el('circle', { cx: cx, cy: cy, r: R, style: 'fill:var(--panel);stroke:var(--line);stroke-width:2' }));
-
-      svg.appendChild(el('line', { x1: cx, y1: cy - R - 14, x2: cx, y2: cy + R + 14, style: 'stroke:var(--line);stroke-width:1.5;stroke-dasharray:3 4' }));
-      var nLbl = el('text', { x: cx, y: cy - R - 20, 'text-anchor': 'middle', 'font-size': 11, style: 'fill:var(--mist)' }); nLbl.textContent = 'N'; svg.appendChild(nLbl);
-      var sLbl = el('text', { x: cx, y: cy + R + 30, 'text-anchor': 'middle', 'font-size': 11, style: 'fill:var(--mist)' }); sLbl.textContent = 'S'; svg.appendChild(sLbl);
-
-      [55, 80, 105].forEach(function (bulge) {
-        svg.appendChild(el('path', { d: 'M ' + cx + ' ' + (cy - R) + ' C ' + (cx + bulge) + ' ' + (cy - R * 0.55) + ', ' + (cx + bulge) + ' ' + (cy + R * 0.55) + ', ' + cx + ' ' + (cy + R), style: 'fill:none;stroke:var(--cold);stroke-width:1.2;opacity:.55' }));
-        svg.appendChild(el('path', { d: 'M ' + cx + ' ' + (cy - R) + ' C ' + (cx - bulge) + ' ' + (cy - R * 0.55) + ', ' + (cx - bulge) + ' ' + (cy + R * 0.55) + ', ' + cx + ' ' + (cy + R), style: 'fill:none;stroke:var(--cold);stroke-width:1.2;opacity:.55' }));
-      });
-
-      svg.appendChild(el('line', { x1: cx - R, y1: cy, x2: cx + R, y2: cy, style: 'stroke:var(--line);stroke-width:1.3;stroke-dasharray:4 4' }));
-      var eqLbl = el('text', { x: cx + R + 8, y: cy + 4, 'font-size': 11, style: 'fill:var(--mist)' }); eqLbl.textContent = '적도'; svg.appendChild(eqLbl);
-
-      var th = latitude * D2R;
-      var sx = cx + R * Math.cos(th), sy = cy - R * Math.sin(th);
-      var tangent = [-Math.sin(th), -Math.cos(th)];
-      var inward = [-Math.cos(th), Math.sin(th)];
-      var incl = R2D * Math.atan(2 * Math.tan(th));
-      var inclRad = incl * D2R;
-
-      var hLen = 42;
-      svg.appendChild(el('line', {
-        x1: sx - tangent[0] * hLen, y1: sy - tangent[1] * hLen,
-        x2: sx + tangent[0] * hLen, y2: sy + tangent[1] * hLen,
-        style: 'stroke:var(--mist);stroke-width:1.3;stroke-dasharray:3 3'
-      }));
-
-      var nLen = 46;
-      var dirx = Math.cos(inclRad) * tangent[0] + Math.sin(inclRad) * inward[0];
-      var diry = Math.cos(inclRad) * tangent[1] + Math.sin(inclRad) * inward[1];
-      var ex = sx + dirx * nLen, ey = sy + diry * nLen;
-      svg.appendChild(el('line', { x1: sx, y1: sy, x2: ex, y2: ey, style: 'stroke:var(--teal);stroke-width:3' }));
-      svg.appendChild(el('circle', { cx: ex, cy: ey, r: 4, style: 'fill:var(--teal)' }));
-
-      var dot = el('circle', { cx: sx, cy: sy, r: 9, style: 'fill:var(--panel);stroke:var(--teal);stroke-width:3;cursor:grab' });
-      dot.addEventListener('pointerdown', function (e) { dragging = true; svg.setPointerCapture(e.pointerId); });
-      svg.appendChild(dot);
-
-      var readout = document.getElementById('c0x-inclReadout');
-      readout.innerHTML = '위도 <b>' + latitude.toFixed(0) + '°</b> &nbsp;→&nbsp; 복각 <b>' + incl.toFixed(1) + '°</b><br>' +
-        (latitude >= 0 ? '북반구: 자침 N극이 아래로 기웁니다.' : '남반구: 자침 N극이 위로 들립니다.');
-    }
-
-    var dragging = false;
-    svg.addEventListener('pointermove', function (e) {
-      if (!dragging) return;
-      var p = svgPoint(svg, e);
-      var theta = Math.atan2(-(p.y - cy), p.x - cx) * R2D;
-      theta = Math.max(-90, Math.min(90, theta));
-      latitude = theta;
-      draw();
-    });
-    ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (evt) {
-      svg.addEventListener(evt, function () { dragging = false; });
-    });
-
-    draw();
-  })();
-
-  /* ---------- 02. 겉보기 극이동 곡선 만들기 (북아메리카 · 유럽) ---------- */
-  (function () {
-    var worldSvg = document.getElementById('c0x-worldSvg');
-    var frameSvg = document.getElementById('c0x-frameSvg');
-    if (!worldSvg || !frameSvg) return;
-
-    var P = [180, 50];
-    var BASE = [[-40, -25], [-10, -38], [28, -30], [46, -5], [40, 26], [6, 42], [-32, 36], [-50, 6]];
-    var HANDLE_LOCAL = [0, -66];
-
-    var continents = {
-      NA: {
-        label: '북아메리카', colorVar: 'var(--coral)',
-        state: { cx: 90, cy: 255, theta: -20 },
-        siteB: [110, 220], siteBRecon: [175, 205], deltaTheta: -28,
-        records: {}
-      },
-      EU: {
-        label: '유럽', colorVar: 'var(--cold)',
-        state: { cx: 255, cy: 235, theta: 15 },
-        siteB: [250, 190], siteBRecon: null, deltaTheta: 0,
-        records: {}
-      }
-    };
-
-    var AGES = [500, 400, 300, 200, 100, 0];
-    var PRESETS = {
-      NA: { 500: [253.0, 230.0, -30], 400: [188.7, 233.6, -19], 300: [127.1, 221.1, -9], 200: [76.9, 190.8, 1], 100: [43.4, 148.6, 11], 0: [24.7, 103.6, 20] },
-      EU: { 500: [270, 250, 16], 400: [262, 232, 10], 300: [252, 218, 3], 200: [244, 204, -4], 100: [236, 190, -10], 0: [228, 178, -16] }
-    };
-
-    var selectedAge = 300;
-    var dragTarget = null;
-    var demoRunning = false;
-    var reconT = 0;
-    var reconAnimating = false;
-
-    function worldPoly(cx, cy, thetaDeg) {
-      return BASE.map(function (p) { return add2([cx, cy], rot(thetaDeg, p)); });
-    }
-    function ptsStr(pts) { return pts.map(function (p) { return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' '); }
-
-    function computeFramePoint(c) {
-      var cx = c.state.cx, cy = c.state.cy, theta = c.state.theta;
-      var v = sub2(P, [cx, cy]);
-      var local = rot(-theta, v);
-      return add2(c.siteB, local);
-    }
-    function reconstruct(c, pt, t) {
-      if (c.siteBRecon == null || t <= 0) return pt;
-      var local = sub2(pt, c.siteB);
-      var rotated = rot(c.deltaTheta * t, local);
-      var site = [lerp(c.siteB[0], c.siteBRecon[0], t), lerp(c.siteB[1], c.siteBRecon[1], t)];
-      return add2(site, rotated);
-    }
-
-    function drawWorld() {
-      worldSvg.innerHTML = '';
-      var starT = el('text', { x: P[0], y: P[1] - 10, 'text-anchor': 'middle', 'font-size': 20, style: 'fill:var(--violet)' }); starT.textContent = '★'; worldSvg.appendChild(starT);
-      var starL = el('text', { x: P[0], y: P[1] - 24, 'text-anchor': 'middle', 'font-size': 10.5, style: 'fill:var(--mist)' }); starL.textContent = '실제 북극'; worldSvg.appendChild(starL);
-
-      var readoutHtml = '';
-      Object.keys(continents).forEach(function (key) {
-        var c = continents[key];
-        var poly = worldPoly(c.state.cx, c.state.cy, c.state.theta);
-        var polygon = el('polygon', { points: ptsStr(poly), style: 'fill:' + c.colorVar + ';opacity:.32;stroke:' + c.colorVar + ';stroke-width:1.8;cursor:grab' });
-        polygon.addEventListener('pointerdown', function (e) { dragTarget = { key: key, mode: 'move' }; worldSvg.setPointerCapture(e.pointerId); });
-        worldSvg.appendChild(polygon);
-        worldSvg.appendChild(el('circle', { cx: c.state.cx, cy: c.state.cy, r: 4, style: 'fill:' + c.colorVar }));
-        var lbl = el('text', { x: c.state.cx, y: c.state.cy + 50, 'text-anchor': 'middle', 'font-size': 11, style: 'fill:' + c.colorVar + ';font-weight:bold' }); lbl.textContent = c.label; worldSvg.appendChild(lbl);
-
-        var h = add2([c.state.cx, c.state.cy], rot(c.state.theta, HANDLE_LOCAL));
-        worldSvg.appendChild(el('line', { x1: c.state.cx, y1: c.state.cy, x2: h[0], y2: h[1], style: 'stroke:' + c.colorVar + ';stroke-width:1.5' }));
-        var handle = el('circle', { cx: h[0], cy: h[1], r: 8, style: 'fill:var(--panel);stroke:' + c.colorVar + ';stroke-width:2.5;cursor:grab' });
-        handle.addEventListener('pointerdown', function (e) { dragTarget = { key: key, mode: 'rotate' }; worldSvg.setPointerCapture(e.pointerId); e.stopPropagation(); });
-        worldSvg.appendChild(handle);
-
-        var v = sub2(P, [c.state.cx, c.state.cy]);
-        var dist = Math.hypot(v[0], v[1]);
-        var colat = Math.min(dist / 280 * 90, 90);
-        var lat = 90 - colat;
-        var incl = R2D * Math.atan(2 * Math.tan(lat * D2R));
-        readoutHtml += '<b style="color:' + c.colorVar + '">' + c.label + '</b> 위도 ' + lat.toFixed(0) + '° 복각 ' + incl.toFixed(1) + '° &nbsp;&nbsp;';
-      });
-      document.getElementById('c0x-frameReadout').innerHTML = readoutHtml + (selectedAge != null ? '| 선택한 나이: <b>' + selectedAge + ' Ma</b>' : '');
-    }
-
-    function drawFrame() {
-      frameSvg.innerHTML = '';
-      Object.keys(continents).forEach(function (key) {
-        var c = continents[key];
-        var polyBase = worldPoly(c.siteB[0], c.siteB[1], 0);
-        var poly = polyBase.map(function (p) { return reconstruct(c, p, reconT); });
-        frameSvg.appendChild(el('polygon', { points: ptsStr(poly), style: 'fill:' + c.colorVar + ';opacity:.24;stroke:' + c.colorVar + ';stroke-width:1.6' }));
-        var sitePt = reconstruct(c, c.siteB, reconT);
-        frameSvg.appendChild(el('circle', { cx: sitePt[0], cy: sitePt[1], r: 4, style: 'fill:' + c.colorVar }));
-
-        var entries = AGES.filter(function (a) { return c.records[a]; }).map(function (a) { return { age: a, pt: reconstruct(c, c.records[a], reconT) }; });
-        for (var i = 0; i < entries.length - 1; i++) {
-          frameSvg.appendChild(el('line', { x1: entries[i].pt[0], y1: entries[i].pt[1], x2: entries[i + 1].pt[0], y2: entries[i + 1].pt[1], style: 'stroke:' + c.colorVar + ';stroke-width:2.2;stroke-dasharray:5 4' }));
-        }
-        entries.forEach(function (en) {
-          frameSvg.appendChild(el('circle', { cx: en.pt[0], cy: en.pt[1], r: 6.5, style: 'fill:var(--panel);stroke:' + c.colorVar + ';stroke-width:2.5' }));
-          var t = el('text', { x: en.pt[0] + 8, y: en.pt[1] - 8, 'font-size': 10, style: 'fill:' + c.colorVar + ';font-weight:bold' }); t.textContent = en.age + 'Ma'; frameSvg.appendChild(t);
-        });
-      });
-    }
-
-    function renderLists() {
-      ['NA', 'EU'].forEach(function (key) {
-        var list = document.getElementById('c0x-recList' + key);
-        list.innerHTML = '';
-        var c = continents[key];
-        AGES.filter(function (a) { return c.records[a]; }).sort(function (a, b) { return b - a; }).forEach(function (age) {
-          var chip = document.createElement('span');
-          chip.setAttribute('style', 'display:inline-flex;align-items:center;gap:6px;background:var(--panel-2);border:1px solid var(--line);border-radius:20px;padding:4px 6px 4px 12px;font-size:12px;color:var(--mist);');
-          chip.innerHTML = age + ' Ma';
-          var del = document.createElement('button');
-          del.setAttribute('style', 'border:none;background:transparent;color:var(--coral);cursor:pointer;font-size:13px;padding:0 4px;');
-          del.textContent = '×';
-          del.addEventListener('click', function () { delete c.records[age]; renderLists(); drawFrame(); });
-          chip.appendChild(del);
-          list.appendChild(chip);
-        });
-      });
-    }
-
-    function render() { drawWorld(); drawFrame(); }
-
-    worldSvg.addEventListener('pointermove', function (e) {
-      if (!dragTarget || demoRunning) return;
-      var c = continents[dragTarget.key];
-      var p = svgPoint(worldSvg, e);
-      if (dragTarget.mode === 'move') {
-        c.state.cx = Math.max(20, Math.min(300, p.x));
-        c.state.cy = Math.max(20, Math.min(300, p.y));
-      } else {
-        var ang = Math.atan2(p.y - c.state.cy, p.x - c.state.cx) * R2D;
-        c.state.theta = ang + 90;
-      }
-      drawWorld();
-    });
-    ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (evt) {
-      worldSvg.addEventListener(evt, function () { dragTarget = null; });
-    });
-
-    var ageGroup = document.getElementById('c0x-ageGroup');
-    AGES.forEach(function (age) {
-      var b = document.createElement('button');
-      b.className = age === selectedAge ? 'on' : '';
-      b.textContent = age + ' Ma';
-      b.addEventListener('click', function () {
-        selectedAge = age;
-        ageGroup.querySelectorAll('button').forEach(function (x) { x.classList.remove('on'); });
-        b.classList.add('on');
-        drawWorld();
-      });
-      ageGroup.appendChild(b);
-    });
-
-    document.getElementById('c0x-recordBtn').addEventListener('click', function () {
-      if (selectedAge == null) return;
-      Object.keys(continents).forEach(function (key) { continents[key].records[selectedAge] = computeFramePoint(continents[key]); });
-      renderLists();
-      drawFrame();
-    });
-
-    document.getElementById('c0x-resetBtn').addEventListener('click', function () {
-      continents.NA.state = { cx: 90, cy: 255, theta: -20 };
-      continents.EU.state = { cx: 255, cy: 235, theta: 15 };
-      continents.NA.records = {};
-      continents.EU.records = {};
-      reconT = 0;
-      updateReconBtn();
-      renderLists();
-      render();
-    });
-
-    function updateReconBtn() {
-      var btn = document.getElementById('c0x-reconBtn');
-      btn.textContent = reconT < 0.5 ? '🌍 판게아로 복원해서 겹쳐보기' : '🌏 원래(분리된) 위치로 보기';
-    }
-
-    function animateRecon(target) {
-      if (reconAnimating) return;
-      reconAnimating = true;
-      var start = reconT;
-      var t0 = performance.now(), dur = 800;
-      function step(now) {
-        var p = Math.min(1, (now - t0) / dur);
-        var eased = p < 0.5 ? 2 * p * p : -1 + (4 - 2 * p) * p;
-        reconT = start + (target - start) * eased;
-        drawFrame();
-        if (p < 1) requestAnimationFrame(step);
-        else { reconT = target; reconAnimating = false; updateReconBtn(); drawFrame(); }
-      }
-      requestAnimationFrame(step);
-    }
-    document.getElementById('c0x-reconBtn').addEventListener('click', function () {
-      animateRecon(reconT < 0.5 ? 1 : 0);
-    });
-
-    function tweenState(from, to, dur, onUpdate, onDone) {
-      var t0 = performance.now();
-      function step(now) {
-        var p = Math.min(1, (now - t0) / dur);
-        var eased = p < 0.5 ? 2 * p * p : -1 + (4 - 2 * p) * p;
-        onUpdate({
-          cx: from.cx + (to.cx - from.cx) * eased,
-          cy: from.cy + (to.cy - from.cy) * eased,
-          theta: from.theta + (to.theta - from.theta) * eased
-        });
-        if (p < 1) requestAnimationFrame(step); else onDone && onDone();
-      }
-      requestAnimationFrame(step);
-    }
-
-    document.getElementById('c0x-demoBtn').addEventListener('click', function () {
-      if (demoRunning) return;
-      demoRunning = true;
-      document.getElementById('c0x-demoBtn').disabled = true;
-      continents.NA.records = {}; continents.EU.records = {};
-      reconT = 0; updateReconBtn();
-      renderLists();
-      var order = [500, 400, 300, 200, 100, 0];
-      var i = 0;
-      function nextStep() {
-        if (i >= order.length) {
-          setTimeout(function () {
-            animateRecon(1);
-            setTimeout(function () {
-              demoRunning = false;
-              document.getElementById('c0x-demoBtn').disabled = false;
-            }, 900);
-          }, 400);
-          return;
-        }
-        var age = order[i];
-        selectedAge = age;
-        ageGroup.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', parseInt(x.textContent) === age); });
-        var doneCount = 0;
-        ['NA', 'EU'].forEach(function (key) {
-          var c = continents[key];
-          var from = { cx: c.state.cx, cy: c.state.cy, theta: c.state.theta };
-          var to = { cx: PRESETS[key][age][0], cy: PRESETS[key][age][1], theta: PRESETS[key][age][2] };
-          tweenState(from, to, 800, function (s) { c.state = s; drawWorld(); }, function () {
-            c.records[age] = computeFramePoint(c);
-            doneCount++;
-            if (doneCount === 2) {
-              renderLists(); drawFrame();
-              i++;
-              setTimeout(nextStep, 350);
-            }
-          });
-        });
-      }
-      nextStep();
-    });
-
-    render();
-    renderLists();
-    updateReconBtn();
-  })();
-})();
-
-})();
-</script>
-
-<script>
-(function () {
-  window.sthUnit("esys-1-2");
-  window.sthWork({
-    mount: "wk",
-    unitLabel: "[지구시스템과학] 판 구조 운동과 지구 내부 구조",
-    items: [
-      {
-            "id": "w1",
-            "label": "판을 움직이는 힘",
-            "hint": "맨틀 대류만으로 설명되지 않는 부분이 무엇인지, 해령 밀기·판 끌기와 연결해 쓰세요.",
-            "ph": ""
-      },
-      {
-            "id": "w2",
-            "label": "지진파가 알려 준 것",
-            "hint": "P파와 S파가 각각 어디까지 전달되는지로부터 무엇을 알 수 있는지 쓰세요.",
-            "ph": ""
-      },
-      {
-            "id": "w3",
-            "label": "아직 헷갈리는 것",
-            "hint": "다음 시간에 여기서부터 시작합니다.",
-            "ph": ""
-      }
-]
-  });
-})();
-</script>
+<script src="../assets/story.js"></script>
+<script src="../assets/share-config.js"></script>
+<script src="../assets/share.js"></script>
+<script src="episodes.js"></script>
 </body>
 </html>
