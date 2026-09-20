@@ -5,19 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>지구의 탄생과 진화 — 관측 스테이션</title>
 <link rel="stylesheet" href="../assets/theme.css">
-<style>
-  .mission-cards { display: flex; gap: 10px; flex-wrap: wrap; padding: 18px 20px 0; }
-  .mission-card { flex: 1 1 160px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 12px; line-height: 1.55; color: var(--mist); cursor: pointer; transition: all .15s; }
-  .mission-card:hover { border-color: var(--teal-dim); }
-  .mission-card.selected { border-color: var(--teal); box-shadow: 0 0 0 2px var(--teal) inset; }
-  .mission-slots { display: flex; gap: 10px; flex-wrap: wrap; padding: 16px 20px 0; }
-  .mission-slot { flex: 1 1 160px; min-height: 90px; border: 1.5px dashed var(--line); border-radius: 10px; padding: 10px 12px; cursor: pointer; transition: all .15s; }
-  .mission-slot .slot-title { font-size: 12.5px; font-weight: 700; color: var(--foam); margin-bottom: 6px; }
-  .mission-slot .slot-body { font-size: 11.5px; line-height: 1.5; color: var(--mist); }
-  .mission-slot.filled { border-style: solid; background: var(--panel-2); }
-  .mission-slot.correct { border-color: var(--teal); }
-  .mission-slot.wrong { border-color: var(--coral); }
-</style>
+<link rel="stylesheet" href="../assets/story.css">
 </head>
 <body>
 
@@ -28,640 +16,312 @@
       <div class="eyebrow" style="margin-top:8px">Ⅰ-1 · 지구 탄생과 생동하는 지구</div>
       <h1 class="display">지구의 탄생과<br>물질의 순환</h1>
     </div>
-    <button class="tab-btn active" data-tab="0"><span class="num">01</span> 지구의 탄생</button>
-    <button class="tab-btn" data-tab="1"><span class="num">02</span> 산소 농도의 진화</button>
-    <button class="tab-btn" data-tab="2"><span class="num">03</span> 탄소와 물의 순환</button>
-    <button class="tab-btn" data-tab="3"><span class="num">04</span> 산소의 순환과 대산소화 사건</button>
-    <button class="tab-btn" data-tab="4"><span class="num">05</span> 정리하기</button>
+    <button class="tab-btn active" data-tab="0"><span class="num">01</span> 세 행성의 갈림길</button>
+    <button class="tab-btn" data-tab="1"><span class="num">02</span> 25억 년 된 줄무늬</button>
+    <button class="tab-btn" data-tab="2"><span class="num">03</span> 눈덩이 지구를 녹인 것</button>
+    <button class="tab-btn" data-tab="3"><span class="num">04</span> 정리하기</button>
+    <button class="tab-btn" data-tab="4"><span class="num">05</span> 우리 반</button>
   </nav>
 
   <main>
+    <!-- =====================================================================
+         01 지구의 탄생 — 이야기 「세 행성의 갈림길」
+         ===================================================================== -->
     <section class="tab-panel" data-panel="0">
       <div class="stage-head">
-        <div class="eyebrow">01 · 46억 년 전, 먼지에서 행성으로</div>
-        <h2 class="display">지구의 탄생과 진화</h2>
-        <p>타임라인의 각 단계를 클릭해 지구가 어떻게 미행성의 집적에서부터 오늘날의 모습으로 진화했는지 확인해 보세요.</p>
-      
-        <span class="std-chip">12지시01-01</span><span class="std-chip">12지시01-02</span><div class="std-note"><b>[12지시01-01]</b> 지구의 탄생 이후 지구 대기, 원시 바다, 생명체 탄생 등의 과정을 통한 지구시스템 각 권역의 형성 과정을 추론할 수 있다.<br><b>[12지시01-02]</b> 지구시스템이 진화해온 역사에서 물, 탄소, 산소의 순환 과정을 통해 지권, 수권, 기권이 변화해 왔음을 추적할 수 있다.</div><div class="terms"><b>미행성 충돌</b><b>원시 바다</b><b>산소 농도</b><b>탄소 순환</b></div>
-      </div>
-      <div class="stage-card">
-        <div class="canvas-wrap"><canvas id="c0" width="900" height="380"></canvas></div>
-        <div class="info-card" id="c0-info">단계를 클릭해 보세요.</div>
-      </div>
-      <div class="stage-card">
-        <div class="canvas-wrap"><canvas id="c0b" width="900" height="380"></canvas></div>
-        <div class="controls">
-          <div class="ctrl-group">
-            <div class="ctrl-label">지구 형성 후 경과 시간(백만 년)<span class="val" id="c0b-t-val">50</span></div>
-            <input type="range" id="c0b-t" min="0" max="1000" step="5" value="50">
-          </div>
-        </div>
-        <div class="info-card" id="c0b-info"></div>
+        <div class="eyebrow">01 · 지구의 탄생 · 이야기 한 편</div>
+        <h2 class="display">세 행성의 갈림길</h2>
+        <p>금성·지구·화성은 같은 성운에서, 거의 같은 시각에, 거의 같은 재료로 태어났습니다. 그런데 오늘 세 행성의 모습은 완전히 다릅니다. 다섯 장면에 걸쳐 원시 지구를 처음부터 다시 만들어 보며 갈림길이 어디였는지 찾아냅니다.</p>
+        <span class="std-chip">12지시01-01</span><div class="std-note"><b>[12지시01-01]</b> 지구의 탄생 이후 지구 대기, 원시 바다, 생명체 탄생 등의 과정을 통한 지구시스템 각 권역의 형성 과정을 추론할 수 있다.</div><p class="std-note" style="margin-top:6px">※ 성취기준은 2022 개정 과학과 교육과정 원문입니다. 이 과목은 학생용 교과서만 있어 오개념 지도 상자는 싣지 못했습니다.</p><div class="terms"><b>미행성 충돌</b><b>마그마 바다</b><b>층상 분화</b><b>원시 대기와 원시 바다</b></div>
       </div>
 
-      <div class="stage-head" style="margin-top:30px;">
-        <div class="eyebrow">🔎 미션 · 다른 고체 행성과 비교하기</div>
-        <h2 class="display" style="font-size:20px;">이 단서는 어떤 행성의 것일까요?</h2>
-        <p>수성·금성·화성·지구는 형성 초기 조건은 비슷했지만, 크기와 위치에 따라 서로 다른 진화의 길을 걸었습니다. 단서 카드를 클릭해 선택한 뒤, 알맞은 행성 칸을 클릭해 짝지어 보세요.</p>
+      <div class="episode" id="ep1">
+        <section class="scene" data-title="쌍둥이였는데 남남이 되었다">
+          <div class="story narr"><div class="who">🪐</div><div class="say"><span class="name">이야기</span>46억 년 전, 태양계 성운의 같은 먼지 구름에서 세 행성이 거의 동시에 태어났습니다. 재료도 비슷했고, 태어난 방식도 같았습니다. 그런데 오늘 세 행성을 나란히 놓고 보면 도저히 형제로 보이지 않습니다.</div></div>
+          <div class="case-file"><b class="k">금성</b> 표면 온도 약 <b>462 ℃</b>, 대기압 약 92기압, 대기의 96%가 이산화 탄소, 물은 거의 없음<br><b class="k">지구</b> 평균 기온 약 <b>15 ℃</b>, 대기압 1기압, 표면의 71%가 액체 상태의 바다<br><b class="k">화성</b> 평균 기온 약 <b>−63 ℃</b>, 대기압 약 0.006기압, 물이 흐른 지형은 남았지만 지금은 얼음뿐</div>
+          <div class="story"><div class="who">👩‍🚀</div><div class="say"><span class="name">행성 비교 연구원 서진</span>“신입 연구원이군요. 우리 연구실의 일은 <b>원시 지구를 처음부터 다시 만들어 보는 것</b>입니다. 조건을 하나씩 바꿔 가며 돌려 보면, 세 행성이 갈라진 지점이 어디였는지 알 수 있거든요. 시작하기 전에 먼저 예상부터 적어 두죠.”</div></div>
+          <div class="gate loose" id="g1"></div>
+        </section>
+
+        <section class="scene" data-title="1단계 — 미행성이 쏟아지던 시절">
+          <div class="story"><div class="who">👩‍🚀</div><div class="say"><span class="name">서진</span>“첫 화면은 갓 태어난 원시 지구입니다. 미행성이 쉴 새 없이 떨어지면 그 <b>충돌 에너지</b>가 열로 바뀌어 지표를 달굽니다. 여기에 지구 속 방사성 원소가 붕괴하며 내는 열이 더해지죠. 충돌 빈도를 바꿔 가며 지표가 어떻게 되는지 보세요.”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="a-c1" width="900" height="380"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group">
+                <div class="ctrl-label">미행성 충돌 빈도 (오늘날 운석 낙하의 몇 배)<span class="val" id="a-imp-val">20배</span></div>
+                <input type="range" id="a-imp" min="0" max="100" step="1" value="20">
+              </div>
+            </div>
+            <div class="info-card" id="a-c1-info"></div>
+          </div>
+          <div class="mission" id="m1-2"><span class="m-tag">미션</span>충돌 빈도를 바꿔 두 가지 상태를 모두 만들어 보세요.<ul><li id="m1-2a">지표 전체가 녹아 흐르는 <b>마그마 바다</b> (1200 ℃ 이상)</li><li id="m1-2b">충돌이 잦아들어 <b>지각이 굳기 시작하는</b> 상태 (700 ℃ 이하)</li></ul></div>
+        </section>
+
+        <section class="scene" data-title="2단계 — 무거운 것은 가라앉는다">
+          <div class="story"><div class="who">👩‍🚀</div><div class="say"><span class="name">서진</span>“지구 전체가 녹아 있는 동안, 아주 중요한 일이 한 번에 일어납니다. 밀도가 큰 <b>철과 니켈</b>은 가라앉고, 밀도가 작은 <b>규산염</b>은 떠오르죠. 이 한 번의 사건으로 핵·맨틀·지각이라는 층이 생깁니다. 시간을 흘려 보며 확인하세요.”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="a-c2" width="900" height="360"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group">
+                <div class="ctrl-label">지구가 만들어진 뒤 흐른 시간 (백만 년)<span class="val" id="a-t-val">0</span></div>
+                <input type="range" id="a-t" min="0" max="200" step="1" value="0">
+              </div>
+            </div>
+            <div class="info-card" id="a-c2-info"></div>
+          </div>
+          <div class="mission" id="m1-3"><span class="m-tag">미션</span>층상 분화가 진행되는 모습을 확인하세요.<ul><li id="m1-3a">분화가 <b>절반쯤(48~52%)</b> 진행된 때를 찾으세요.</li><li id="m1-3b">분화가 <b>95% 이상</b> 끝난 때를 찾으세요.</li><li id="m1-3c">아래 물음에 답하세요.</li></ul></div>
+          <div class="stage-card" style="margin-top:14px"><div id="a-q1"></div></div>
+        </section>
+
+        <section class="scene" data-title="3단계 — 기체가 빠져나오고, 바다가 생긴다">
+          <div class="story"><div class="who">👩‍🚀</div><div class="say"><span class="name">서진</span>“이제 갈림길입니다. 녹아 있던 지구에서 화산 활동으로 <b>수증기와 이산화 탄소</b>가 빠져나와 원시 대기를 만듭니다. 그다음이 중요해요. 이 수증기가 <b>응결해 비가 되면 원시 바다</b>가 되지만, 너무 뜨거우면 영영 응결하지 못합니다. 태양으로부터의 거리와 행성의 질량을 바꿔 가며 어떤 행성이 되는지 확인하세요.”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="a-c3" width="900" height="400"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group">
+                <div class="ctrl-label">태양으로부터의 거리 (AU · 지구 = 1)<span class="val" id="a-d-val">1.00</span></div>
+                <input type="range" id="a-d" min="0.30" max="2.00" step="0.01" value="1.00">
+              </div>
+              <div class="ctrl-group">
+                <div class="ctrl-label">행성의 질량 (지구 = 1)<span class="val" id="a-m-val">1.00</span></div>
+                <input type="range" id="a-m" min="0.02" max="2.00" step="0.02" value="1.00">
+              </div>
+            </div>
+            <div class="toggle-row" style="margin:0 20px 14px;">
+              <button class="chip" id="a-set-me" type="button">수성 자리로</button>
+              <button class="chip" id="a-set-ve" type="button">금성 자리로</button>
+              <button class="chip" id="a-set-ea" type="button">지구 자리로</button>
+              <button class="chip" id="a-set-ma" type="button">화성 자리로</button>
+            </div>
+            <div class="info-card" id="a-c3-info"></div>
+          </div>
+          <div class="mission" id="m1-4"><span class="m-tag">미션</span>네 갈래의 길을 모두 한 번씩 만들어 보세요. 슬라이더는 하나씩 움직여도 됩니다.<ul><li id="m1-4a">🌊 <b>바다 행성</b> — 수증기가 응결해 원시 바다가 남는다</li><li id="m1-4b">🔥 <b>폭주 온실 행성</b> — 너무 뜨거워 물이 끝내 응결하지 못한다</li><li id="m1-4c">🧊 <b>얼어붙은 행성</b> — 물이 있어도 모두 얼음이 된다</li><li id="m1-4d">🪨 <b>대기를 잃은 행성</b> — 중력이 약해 기체를 붙잡지 못한다</li></ul></div>
+        </section>
+
+        <section class="scene" data-title="결말 — 네 행성의 신원 확인">
+          <div class="story"><div class="who">👩‍🚀</div><div class="say"><span class="name">서진</span>“마지막으로 실제 탐사선이 보내온 단서를 정리합시다. 우리가 만든 모형이 맞다면, 이 단서들이 어느 행성의 것인지 가려낼 수 있어야 해요.”</div></div>
+          <div class="stage-card"><div id="a-sort"></div></div>
+          <div id="e1-wrap" hidden>
+            <div class="ending" style="margin-top:16px">
+              <h4>🌏 갈림길은 ‘거리’와 ‘크기’였다</h4>
+              <p>네 행성 모두 미행성의 집적 → 마그마 바다 → 층상 분화 → 탈가스로 생긴 원시 대기까지는 같은 길을 걸었습니다. 갈라진 곳은 그다음입니다. <b>태양에 너무 가까우면</b> 수증기가 끝내 응결하지 못한 채 강한 온실 효과를 일으켜 금성처럼 뜨거워지고, <b>행성이 너무 작으면</b> 중력이 약해 기체를 붙잡지 못하고 내부도 빨리 식어 화성·수성처럼 됩니다.</p>
+              <p>지구는 물이 <b>액체</b>로 있을 수 있는 자리에, 대기를 붙잡을 만큼 큰 몸집으로 놓였습니다. 그 결과 지권(핵·맨틀·지각) 위에 기권(원시 대기)과 수권(원시 바다)이 차례로 얹혔고, 그 바닷속에서 최초의 생명체가 나타나 생물권이 더해졌습니다. 지구시스템의 네 권역은 이렇게 갖추어졌습니다.</p>
+              <div class="vs" id="e1-vs"></div>
+              <span class="stamp">사건 파일 ① 해결</span>
+            </div>
+            <div class="info-card" style="margin:0 0 14px">📎 과학자의 눈: 이 화면의 행성 모형은 햇빛·온실 효과·중력만 넣은 <b>단순화한 모형</b>입니다. 실제 행성의 운명에는 자기장, 판 구조 운동, 구름, 위성의 유무, 큰 충돌 사건 같은 요인이 함께 작용합니다. 금성이 처음부터 뜨거웠는지, 한때 바다가 있었는지도 아직 연구 중입니다.</div>
+            <div class="stage-card" style="padding:6px 0 4px"><div id="wk1"></div></div>
+          </div>
+        </section>
       </div>
-      <div class="stage-card">
-        <div class="mission-cards" id="c0m-cards"></div>
-        <div class="mission-slots" id="c0m-slots"></div>
-        <div class="toggle-row" style="margin:14px 20px 0;">
-          <button class="chip" id="c0m-check">채점하기</button>
-          <button class="chip" id="c0m-new">카드 새로 섞기</button>
-        </div>
-        <div class="info-card" id="c0m-info">단서를 클릭해 선택한 뒤, 놓을 칸을 클릭하세요.</div>
-      </div>
+      <p class="teacher-note">교사용: 주소 끝에 <a href="?open=1">?open=1</a> 을 붙이면 모든 장면이 열립니다.</p>
     </section>
 
+    <!-- =====================================================================
+         02 산소 — 이야기 「25억 년 된 줄무늬」
+         ===================================================================== -->
     <section class="tab-panel" data-panel="1" hidden>
       <div class="stage-head">
-        <div class="eyebrow">02 · 대산소화 사건</div>
-        <h2 class="display">대기 중 산소 농도는 어떻게 늘어났을까?</h2>
-        <p>시간 슬라이더를 움직여 지구 대기의 산소 농도가 지질 시대에 걸쳐 어떻게 변해 왔는지 확인해 보세요.</p>
+        <div class="eyebrow">02 · 산소의 순환과 대산소화 사건 · 이야기 한 편</div>
+        <h2 class="display">25억 년 된 줄무늬</h2>
+        <p>세계의 철광석은 왜 하필 약 25억 년 전 지층에 몰려 있을까요? 붉은 줄무늬 바위 한 덩이에서 출발해, 남세균의 광합성이 바다와 하늘과 땅을 차례로 바꾼 20억 년을 추적합니다.</p>
+        <span class="std-chip">12지시01-01</span><span class="std-chip">12지시01-02</span><div class="std-note"><b>[12지시01-01]</b> 지구의 탄생 이후 지구 대기, 원시 바다, 생명체 탄생 등의 과정을 통한 지구시스템 각 권역의 형성 과정을 추론할 수 있다.<br><b>[12지시01-02]</b> 지구시스템이 진화해온 역사에서 물, 탄소, 산소의 순환 과정을 통해 지권, 수권, 기권이 변화해 왔음을 추적할 수 있다.</div><div class="terms"><b>남세균</b><b>호상철광층</b><b>대산소화 사건</b><b>오존층과 육상 진출</b></div>
       </div>
-      <div class="stage-card">
-        <div class="canvas-wrap"><canvas id="c1" width="900" height="380"></canvas></div>
-        <div class="controls">
-          <div class="ctrl-group">
-            <div class="ctrl-label">시간(억 년 전)<span class="val" id="c1-t-val">46</span></div>
-            <input type="range" id="c1-t" min="0" max="46" step="1" value="46">
+
+      <div class="episode" id="ep2">
+        <section class="scene" data-title="세계의 철은 모두 같은 나이다">
+          <div class="story narr"><div class="who">🪨</div><div class="say"><span class="name">이야기</span>오스트레일리아 서부 하머슬리, 남아프리카 트란스발, 브라질 카라자스. 지구 반대편에 있는 이 철광산들의 바위는 모두 붉은 산화철 층과 규질 층이 밀리미터에서 센티미터 두께로 번갈아 쌓인 <b>줄무늬 바위</b>입니다. 이것을 호상철광층(BIF)이라고 부릅니다.</div></div>
+          <div class="case-file"><b class="k">단서 ①</b> 오늘날 인류가 쓰는 철광석의 대부분이 이 호상철광층에서 나온다.<br><b class="k">단서 ②</b> 그런데 이 지층들은 대부분 <b>약 25억 년 전 전후</b>에 몰려 있고, 그 뒤로는 거의 만들어지지 않았다.<br><b class="k">단서 ③</b> 철이 붉은 산화철로 침전하려면 <b>산소</b>가 있어야 한다. 그 전 바다에는 철 이온(Fe²⁺)이 잔뜩 녹아 있었다.</div>
+          <div class="story"><div class="who">🧑‍🔬</div><div class="say"><span class="name">지질학자 한별</span>“이상하지 않아요? 철은 46억 년 내내 있었는데, 왜 하필 <b>그때</b> 한꺼번에 가라앉았을까요? 이건 철 이야기가 아니라 <b>산소 이야기</b>입니다.”</div></div>
+          <div class="gate loose" id="g2"></div>
+        </section>
+
+        <section class="scene" data-title="산소는 어디로 먼저 갔나">
+          <div class="story"><div class="who">🧑‍🔬</div><div class="say"><span class="name">한별</span>“약 27억 년 전, 바다에서 <b>남세균</b>이 광합성으로 산소를 뿜기 시작합니다. 그런데 산소는 만들어지자마자 대기로 가지 않아요. 먼저 <b>바닷속 철 이온</b>과 <b>화산이 내뿜는 기체</b>가 산소를 먹어 치웁니다. 이 둘을 조절해 보세요.”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="b-c1" width="900" height="420"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group">
+                <div class="ctrl-label">남세균의 산소 생산 속도<span class="val" id="b-p-val">0</span></div>
+                <input type="range" id="b-p" min="0" max="20" step="1" value="0">
+              </div>
+              <div class="ctrl-group">
+                <div class="ctrl-label">화산 기체(H₂·H₂S)가 산소를 먹는 속도<span class="val" id="b-v-val">6</span></div>
+                <input type="range" id="b-v" min="0" max="12" step="1" value="6">
+              </div>
+            </div>
+            <div class="info-card" id="b-c1-info"></div>
           </div>
-        </div>
-        <div class="info-card" id="c1-info"></div>
+          <div class="mission" id="m2-2"><span class="m-tag">미션</span>세 가지 상황을 모두 만들어 보세요. (가로축은 남세균이 나타난 뒤 흐른 시간, 눈금 1칸 = 1천만 년)<ul><li id="m2-2a">산소를 만드는데도 <b>대기에는 끝내 쌓이지 않는</b> 상태</li><li id="m2-2b">바닷속 철이 다 소모되어 <b>대기에 산소가 쌓이기 시작</b>하는 상태</li><li id="m2-2c">철이 다 소모되는 데 걸리는 시간이 <b>50칸 이하</b>가 되는 상태</li></ul></div>
+        </section>
+
+        <section class="scene" data-title="46억 년치 산소 기록 읽기">
+          <div class="story"><div class="who">🧑‍🔬</div><div class="say"><span class="name">한별</span>“이제 실제 지질 기록으로 복원한 대기 산소 농도 곡선을 봅시다. 슬라이더로 시간을 거슬러 올라가며 값을 읽어 보세요. 곡선이 <b>두 번 크게 꺾이는 것</b>이 보일 겁니다.”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="b-c2" width="900" height="380"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group">
+                <div class="ctrl-label">시간 (억 년 전)<span class="val" id="b-age-val">46.0</span></div>
+                <input type="range" id="b-age" min="0" max="46" step="0.1" value="46">
+              </div>
+            </div>
+            <div class="info-card" id="b-c2-info"></div>
+          </div>
+          <div class="mission" id="m2-3"><span class="m-tag">미션</span>곡선에서 두 순간을 찾아내세요.<ul><li id="m2-3a">대기 산소 농도가 <b>처음으로 1%를 넘는</b> 때 (대산소화 사건 한가운데)</li><li id="m2-3b">대기 산소 농도가 <b>가장 높았던</b> 때</li><li id="m2-3c">아래 물음에 답하세요.</li></ul></div>
+          <div class="stage-card" style="margin-top:14px"><div id="b-q1"></div></div>
+        </section>
+
+        <section class="scene" data-title="하늘에 생긴 방패">
+          <div class="story"><div class="who">🧑‍🔬</div><div class="say"><span class="name">한별</span>“산소가 대기에 쌓이자 뜻밖의 일이 일어납니다. 산소 분자(O₂)가 자외선을 받아 쪼개졌다 다시 붙으면서 <b>오존(O₃)</b>이 만들어지고, 성층권에 오존층이 생긴 겁니다. 산소 농도를 바꿔 가며 지표에 닿는 자외선이 어떻게 달라지는지 보세요.”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="b-c3" width="900" height="400"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group">
+                <div class="ctrl-label">대기 중 산소 농도 (%)<span class="val" id="b-o2-val">2.0</span></div>
+                <input type="range" id="b-o2" min="0" max="35" step="0.5" value="2">
+              </div>
+            </div>
+            <div class="info-card" id="b-c3-info"></div>
+          </div>
+          <div class="mission" id="m2-4"><span class="m-tag">미션</span>두 상태를 모두 만들어 보세요.<ul><li id="m2-4a">오존층이 거의 없어 <b>자외선이 절반 이상</b> 지표까지 쏟아지는 상태</li><li id="m2-4b">자외선 투과율이 <b>1% 아래</b>로 떨어져 육상 생물이 살 수 있는 상태</li></ul></div>
+        </section>
+
+        <section class="scene" data-title="결말 — 줄무늬가 남긴 20억 년">
+          <div class="story"><div class="who">🧑‍🔬</div><div class="say"><span class="name">한별</span>“이제 사건의 순서를 맞춰 봅시다. 산소 한 종류가 수권·지권·기권을 차례로 바꾼 과정입니다.”</div></div>
+          <div class="stage-card"><div id="b-order"></div></div>
+          <div id="e2-wrap" hidden>
+            <div class="ending" style="margin-top:16px">
+              <h4>🟠 줄무늬는 ‘산소가 바다를 먼저 채운 기록’이었다</h4>
+              <p>남세균이 만든 산소는 곧바로 하늘로 가지 못했습니다. 바닷속에 녹아 있던 철 이온과 화산 기체가 <b>먼저</b> 산소를 소모했기 때문입니다. 이때 침전한 산화철이 해저에 켜켜이 쌓인 것이 호상철광층이고, 바닷속 철이 거의 바닥난 약 24억 년 전부터 산소가 대기에 본격적으로 쌓이기 시작했습니다. 이것이 <b>대산소화 사건</b>입니다.</p>
+              <p>산소는 여기서 멈추지 않았습니다. 대기의 산소는 오존층을 만들어 자외선을 막았고, 그 방패 아래에서 생물이 <b>육상으로 진출</b>했습니다. 생물권에서 시작한 변화가 수권 → 지권 → 기권을 차례로 바꾼 것입니다.</p>
+              <div class="vs" id="e2-vs"></div>
+              <span class="stamp">사건 파일 ② 해결</span>
+            </div>
+            <div class="info-card" style="margin:0 0 14px">📎 과학자의 눈: 산소 수지 화면은 생산과 소모만 넣은 <b>단순화한 모형</b>이고, 시간 눈금도 임의 단위입니다. 줄무늬(호상)가 왜 층층이 반복되는지는 아직 정설이 없어 남세균의 계절적 번성, 열수 활동의 주기 등 여러 가설이 겨루고 있습니다. 산소 농도 곡선의 값도 지질 증거로 복원한 추정값이어서 연구자마다 차이가 있습니다.</div>
+            <div class="stage-card" style="padding:6px 0 4px"><div id="wk2"></div></div>
+          </div>
+        </section>
       </div>
+      <p class="teacher-note">교사용: 주소 끝에 <a href="?open=1">?open=1</a> 을 붙이면 모든 장면이 열립니다.</p>
     </section>
 
+    <!-- =====================================================================
+         03 순환 — 이야기 「눈덩이 지구를 녹인 것」
+         ===================================================================== -->
     <section class="tab-panel" data-panel="2" hidden>
       <div class="stage-head">
-        <div class="eyebrow">03 · 지구시스템 속 물질의 순환</div>
-        <h2 class="display">탄소와 물은 어디를 순환할까?</h2>
-        <p>기권·수권·지권·생물권 사이를 오가는 탄소와 물의 순환 경로를 클릭해 확인해 보세요.</p>
+        <div class="eyebrow">03 · 물과 탄소의 순환 · 이야기 한 편</div>
+        <h2 class="display">눈덩이 지구를 녹인 것</h2>
+        <p>약 7억 년 전, 적도 부근까지 얼음에 덮인 흔적이 남아 있습니다. 햇빛을 거의 다 되쏘아 버리는 새하얀 행성은 어떻게 다시 녹았을까요? 물과 탄소의 순환을 직접 돌려 범인을 찾습니다.</p>
+        <span class="std-chip">12지시01-02</span><div class="std-note"><b>[12지시01-02]</b> 지구시스템이 진화해온 역사에서 물, 탄소, 산소의 순환 과정을 통해 지권, 수권, 기권이 변화해 왔음을 추적할 수 있다.</div><div class="terms"><b>물의 순환</b><b>탄소 순환</b><b>규산염 풍화</b><b>음의 되먹임</b></div>
       </div>
-      <div class="stage-card">
-        <div class="canvas-wrap"><canvas id="c2" width="900" height="420"></canvas></div>
-        <div class="controls">
-          <div class="ctrl-group">
-            <div class="ctrl-label">순환 물질</div>
-            <div class="seg" id="c2-mat">
-              <button class="on" data-m="carbon">탄소 순환</button>
-              <button data-m="water">물의 순환</button>
+
+      <div class="episode" id="ep3">
+        <section class="scene" data-title="적도에서 나온 빙하 퇴적층">
+          <div class="story narr"><div class="who">🧊</div><div class="say"><span class="name">이야기</span>나미비아와 오스트레일리아의 약 7억~6억 년 전 지층에서는, 빙하가 긁어 나른 자갈 퇴적층이 나옵니다. 그런데 잔류 자기를 재어 보니 이 지층들은 당시 <b>적도 가까이</b>에 있었습니다. 적도에 빙하가 있었다는 뜻입니다.</div></div>
+          <div class="case-file"><b class="k">단서 ①</b> 적도 부근 지층에서 빙하 퇴적층이 나온다 — 지구 전체가 얼었을 가능성.<br><b class="k">단서 ②</b> 얼음은 햇빛을 잘 되쏜다. 한번 하얘지면 더 추워지고, 더 추워지면 더 하얘진다.<br><b class="k">단서 ③</b> 그런데 그 빙하 퇴적층 <b>바로 위</b>에는 따뜻한 바다에서 만들어지는 두꺼운 탄산염 암석층(덮개 탄산암)이 덮여 있다.</div>
+          <div class="story"><div class="who">👨‍🏫</div><div class="say"><span class="name">고기후 연구원 도윤</span>“단서 ②가 맞다면 한번 언 지구는 영원히 얼어 있어야 합니다. 그런데 단서 ③은 그 직후에 <b>아주 더웠다</b>고 말하고 있어요. 무엇이 지구를 녹였을까요?”</div></div>
+          <div class="gate loose" id="g3"></div>
+        </section>
+
+        <section class="scene" data-title="물의 순환 — 얼면 무엇이 멎는가">
+          <div class="story"><div class="who">👨‍🏫</div><div class="say"><span class="name">도윤</span>“먼저 물부터 봅시다. 물은 바다에서 증발해 대기로, 비와 눈이 되어 육지로, 하천과 지하수로 다시 바다로 돌아갑니다. 지구 평균 기온을 바꿔 가며 저장고와 순환량이 어떻게 달라지는지 보세요.”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="c-c1" width="900" height="420"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group">
+                <div class="ctrl-label">지구 평균 기온 (℃)<span class="val" id="c-temp-val">0</span></div>
+                <input type="range" id="c-temp" min="-55" max="40" step="1" value="0">
+              </div>
             </div>
+            <div class="info-card" id="c-c1-info"></div>
           </div>
-        </div>
-        <div class="info-card" id="c2-info">저장고나 화살표를 클릭해 보세요.</div>
+          <div class="mission" id="m3-2"><span class="m-tag">미션</span>세 가지 지구를 모두 만들어 보세요.<ul><li id="m3-2a">🌏 <b>지금의 지구</b> — 평균 기온 15 ℃ 부근</li><li id="m3-2b">🧊 <b>눈덩이 지구</b> — 얼음이 지표를 100% 덮고, 해마다 증발하는 물이 지금의 20% 아래</li><li id="m3-2c">🔥 <b>온실 지구</b> — 얼음이 완전히 사라지고, 증발량이 지금의 1.5배 이상</li></ul></div>
+        </section>
+
+        <section class="scene" data-title="탄소 순환 — 지구의 온도 조절기">
+          <div class="story"><div class="who">👨‍🏫</div><div class="say"><span class="name">도윤</span>“이번엔 탄소입니다. 화산은 지구 속 탄소를 이산화 탄소로 <b>내보내고</b>, 빗물에 녹은 이산화 탄소는 규산염 암석을 녹여(규산염 풍화) 탄산 이온을 바다로 실어 나릅니다. 바다에서는 석회암이 되어 묻히죠. 이 두 가지가 균형을 이루는 지점에서 대기 이산화 탄소 농도가 정해집니다.”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="c-c2" width="900" height="420"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group">
+                <div class="ctrl-label">화산 활동의 세기 (지금 = 1)<span class="val" id="c-volc-val">1.00</span></div>
+                <input type="range" id="c-volc" min="0.05" max="10" step="0.05" value="1">
+              </div>
+              <div class="ctrl-group">
+                <div class="ctrl-label">풍화가 일어나기 쉬운 정도 (대륙의 넓이·위치·기복 · 지금 = 1)<span class="val" id="c-land-val">1.0</span></div>
+                <input type="range" id="c-land" min="0.1" max="7" step="0.1" value="1">
+              </div>
+            </div>
+            <div class="info-card" id="c-c2-info"></div>
+          </div>
+          <div class="mission" id="m3-3"><span class="m-tag">미션</span>탄소 순환이 정해 주는 기온을 확인하세요. 슬라이더는 하나씩 움직여도 됩니다.<ul><li id="m3-3a">🔥 평균 기온이 <b>28 ℃ 이상</b>인 온실 상태 만들기</li><li id="m3-3b">🧊 평균 기온이 <b>0 ℃ 이하</b>로 떨어져 눈덩이 문턱에 닿는 상태 만들기</li><li id="m3-3c">아래 물음에 답하세요.</li></ul></div>
+          <div class="stage-card" style="margin-top:14px"><div id="c-q1"></div></div>
+        </section>
+
+        <section class="scene" data-title="탈출 — 얼음 아래에서 벌어진 일">
+          <div class="story"><div class="who">👨‍🏫</div><div class="say"><span class="name">도윤</span>“이제 결정적인 장면입니다. 지구가 얼면 비가 거의 내리지 않으니 <b>규산염 풍화가 멎습니다</b>. 그런데 화산은 얼음을 뚫고 계속 이산화 탄소를 내보내죠. 치우는 사람이 없는데 쌓기만 하면 어떻게 될까요? 화산 활동의 세기를 정하고 시간을 흘려보내세요.”</div></div>
+          <div class="stage-card">
+            <div class="canvas-wrap"><canvas id="c-c3" width="900" height="400"></canvas></div>
+            <div class="controls">
+              <div class="ctrl-group">
+                <div class="ctrl-label">눈덩이 시기 화산 활동의 세기 (지금 = 1)<span class="val" id="c-esc-val">1.0</span></div>
+                <input type="range" id="c-esc" min="0.2" max="3" step="0.1" value="1">
+              </div>
+            </div>
+            <div class="toggle-row" style="margin:0 20px 14px;"><button class="btn primary" id="c-run" type="button">▶ 6천만 년 흘려보내기</button></div>
+            <div class="info-card" id="c-c3-info">화산 활동의 세기를 정하고 실행하세요. 여러 번 시도할 수 있습니다.</div>
+          </div>
+          <div class="mission" id="m3-4"><span class="m-tag">미션</span>두 결과를 모두 확인하세요.<ul><li id="m3-4a">⏳ <b>5천만 년이 지나도</b> 얼음에서 빠져나오지 못하는 경우</li><li id="m3-4b">🔓 <b>3천만 년 안에</b> 얼음에서 빠져나오는 경우</li></ul></div>
+        </section>
+
+        <section class="scene" data-title="결말 — 빠른 순환과 느린 순환">
+          <div class="story"><div class="who">👨‍🏫</div><div class="say"><span class="name">도윤</span>“마지막입니다. 탄소는 며칠 만에 오가기도 하고, 수억 년을 한자리에 머물기도 합니다. 아래 과정들을 <b>빠른 순환</b>과 <b>느린 순환</b>으로 나눠 보세요.”</div></div>
+          <div class="stage-card"><div id="c-sort"></div></div>
+          <div id="e3-wrap" hidden>
+            <div class="ending" style="margin-top:16px">
+              <h4>🌋 눈덩이 지구를 녹인 것은 화산과 ‘멎어 버린 풍화’였다</h4>
+              <p>지구를 얼린 것도, 녹인 것도 <b>규산염 풍화라는 하나의 되먹임</b>이었습니다. 더워지면 비가 많아지고 풍화가 빨라져 대기 이산화 탄소를 더 빨리 치워 냅니다. 그러면 다시 식습니다. 반대로 추워지면 풍화가 느려져 화산이 내보낸 이산화 탄소가 쌓이고, 다시 더워집니다. 이 <b>음의 되먹임</b>이 수억 년 동안 지구의 기온을 물이 액체로 있을 수 있는 범위에 묶어 두었습니다.</p>
+              <p>눈덩이 지구에서는 이 조절기가 한쪽으로 극단까지 밀렸습니다. 얼음이 풍화를 완전히 멈추자 화산의 이산화 탄소가 수천만 년 동안 쌓여 0.1기압에 이르렀고, 마침내 얼음이 녹자 남아 있던 엄청난 이산화 탄소가 <b>초온실</b>을 만들었습니다. 빙하 퇴적층 바로 위를 덮은 두꺼운 탄산염 암석은, 그 뒤 폭주한 풍화가 대기의 탄소를 바다로 쓸어 담아 석회암으로 묻은 흔적입니다.</p>
+              <div class="vs" id="e3-vs"></div>
+              <span class="stamp">사건 파일 ③ 해결</span>
+            </div>
+            <div class="info-card" style="margin:0 0 14px">📎 과학자의 눈: 이 화면의 탄소·물 순환은 저장고 몇 개와 온도 되먹임만 넣은 <b>단순화한 상자 모형</b>입니다. 기온을 정하는 데에는 구름, 해류, 대륙의 배치, 태양 광도의 변화(7억 년 전 태양은 지금보다 약 6% 어두웠습니다)가 함께 작용합니다. 또 지구 전체가 완전히 얼었는지(눈덩이 지구), 적도 바다는 얇게 열려 있었는지(진창 지구)는 아직 논쟁 중입니다.</div>
+            <div class="stage-card" style="padding:6px 0 4px"><div id="wk3"></div></div>
+          </div>
+        </section>
       </div>
+      <p class="teacher-note">교사용: 주소 끝에 <a href="?open=1">?open=1</a> 을 붙이면 모든 장면이 열립니다.</p>
     </section>
 
+    <!-- ===================================================================== 04 정리하기 -->
     <section class="tab-panel" data-panel="3" hidden>
       <div class="stage-head">
-        <div class="eyebrow">04 · 지구를 바꾼 기체, 산소</div>
-        <h2 class="display">산소의 순환과 호상철광층</h2>
-        <p>광합성으로 만들어진 산소가 어디로 이동해 어떤 흔적을 남겼는지, 단계를 클릭해 확인해 보세요.</p>
-      </div>
-      <div class="stage-card">
-        <div class="canvas-wrap"><canvas id="c3" width="900" height="420"></canvas></div>
-        <div class="info-card" id="c3-info">저장고나 화살표를 클릭해 보세요.</div>
-      </div>
-      <div class="stage-card">
-        <div class="canvas-wrap"><canvas id="c3b" width="900" height="380"></canvas></div>
-        <div class="controls">
-          <div class="ctrl-group">
-            <div class="ctrl-label">광합성에 의한 산소 생산 속도<span class="val" id="c3b-src-val">4</span></div>
-            <input type="range" id="c3b-src" min="1" max="10" step="1" value="4">
-          </div>
-          <div class="ctrl-group">
-            <div class="ctrl-label">경과 시간(임의 단위)<span class="val" id="c3b-t-val">10</span></div>
-            <input type="range" id="c3b-t" min="0" max="200" step="2" value="10">
-          </div>
-        </div>
-        <div class="info-card" id="c3b-info"></div>
-      </div>
-      <p class="foot-note">핵심 용어: 남세균 · 호상철광층 · 대산소화 사건 · 얼음덩어리 지구(눈덩이 지구)</p>
-    </section>
-
-    <section class="tab-panel" data-panel="4" hidden>
-      <div class="stage-head">
-        <div class="eyebrow">05 · 오늘 알아낸 것을 문장으로</div>
+        <div class="eyebrow">04 · 세 사건을 하나로</div>
         <h2 class="display">정리하기</h2>
-        <p>조작한 것을 말이나 글로 옮기지 않으면 남지 않습니다. 아래를 채우고 <b>답안 복사</b>를 눌러 제출하세요. 쓰는 동안 자동으로 저장됩니다.</p>
+        <p>세 이야기의 결과가 아래에 모입니다. 세 사건을 꿰는 한 문장을 쓰고 <b>답안 복사</b>를 눌러 제출하세요. 쓰는 동안 자동으로 저장됩니다.</p>
       </div>
       <div class="stage-card" style="padding:6px 0 4px"><div id="wk"></div></div>
+    </section>
+
+    <!-- ===================================================================== 05 우리 반 -->
+    <section class="tab-panel" data-panel="4" hidden>
+      <div class="stage-head">
+        <div class="eyebrow">05 · 같은 반 친구들과 나누기</div>
+        <h2 class="display">우리 반</h2>
+        <p>내가 해결한 사건과 찾아낸 답을 우리 반에 올리고, 친구들은 어떤 조건을 찾았는지 살펴보세요. <b>올리기 버튼을 눌렀을 때만</b> 공유됩니다. 실명 대신 별명을 쓰세요.</p>
+      </div>
+      <div class="stage-card"><div id="share"></div></div>
     </section>
   </main>
 </div>
 
 <button class="theme-toggle" id="themeToggle">라이트 모드</button>
 <script src="../assets/theme.js"></script>
-<script>
-(function () {
-"use strict";
-
-/* TAB0 지구의 탄생 */
-(function () {
-  var canvas = document.getElementById("c0");
-  var ctx = setupCanvas(canvas);
-  var W = canvas._w, H = canvas._h;
-  var info = document.getElementById("c0-info");
-  var stages = [
-    { name: "미행성의 집적", desc: "태양계 성운 속 먼지와 가스가 뭉쳐 미행성체가 만들어지고, 이들이 충돌·합체하며 원시 지구가 성장했습니다." },
-    { name: "마그마 바다", desc: "미행성체의 충돌 에너지와 방사성 원소의 붕괴열로 원시 지구 전체가 녹아 마그마 바다 상태가 되었습니다." },
-    { name: "핵과 맨틀의 분리", desc: "밀도가 큰 철·니켈 성분은 중심으로 가라앉아 핵을, 밀도가 작은 규산염 성분은 위로 떠올라 맨틀을 이루었습니다(밀도에 따른 층상 분리)." },
-    { name: "원시 대기와 바다의 형성", desc: "화산 활동으로 수증기·이산화 탄소 등이 방출되어 원시 대기를 이루었고, 지구가 식으면서 수증기가 응결해 원시 바다가 형성되었습니다." },
-    { name: "생명체의 출현", desc: "원시 바다에서 최초의 생명체가 출현했고, 이후 광합성 생물의 등장으로 대기 조성이 크게 달라지기 시작했습니다." }
-  ];
-  canvas.addEventListener("click", function (e) {
-    var rect = canvas.getBoundingClientRect();
-    var scaleX = canvas._w / rect.width;
-    var mx = (e.clientX - rect.left) * scaleX;
-    var x0 = 60, x1 = W - 60;
-    stages.forEach(function (s, i) {
-      var x = x0 + (i / (stages.length - 1)) * (x1 - x0);
-      if (Math.abs(x - mx) < 40) info.innerHTML = "<b>" + s.name + "</b> — " + s.desc;
-    });
-  });
-  function render() {
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
-    var x0 = 60, x1 = W - 60, y = H / 2;
-    ctx.strokeStyle = cssVar("--line"); ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke();
-    stages.forEach(function (s, i) {
-      var x = x0 + (i / (stages.length - 1)) * (x1 - x0);
-      var up = i % 2 === 0;
-      ctx.save(); ctx.fillStyle = cssVar("--teal"); ctx.beginPath(); ctx.arc(x, y, 10, 0, 7); ctx.fill(); ctx.restore();
-      ctx.font = "700 11px Segoe UI"; ctx.fillStyle = cssVar("--foam"); ctx.textAlign = "center";
-      wrapText(ctx, s.name, x, up ? y - 30 : y + 40, 140, 14);
-    });
-    function wrapText(ctx, text, x, y, maxW, lh) {
-      var line = "", lines = [];
-      for (var i = 0; i < text.length; i++) {
-        var test = line + text[i];
-        if (ctx.measureText(test).width > maxW && line.length > 0) { lines.push(line); line = text[i]; } else line = test;
-      }
-      lines.push(line);
-      lines.forEach(function (l, i) { ctx.fillText(l, x, y + i * lh); });
-    }
-  }
-  render();
-})();
-
-/* TAB0b 지구 분화 타임라인 */
-(function () {
-  var canvas = document.getElementById("c0b");
-  var ctx = setupCanvas(canvas);
-  var W = canvas._w, H = canvas._h;
-  var t = 50;
-  var info = document.getElementById("c0b-info");
-  document.getElementById("c0b-t").addEventListener("input", function (e) { t = +e.target.value; document.getElementById("c0b-t-val").textContent = t; render(); });
-
-  var stagesByTime = [
-    { max: 10, name: "미행성의 집적", desc: "먼지와 가스가 뭉쳐 미행성체가 만들어지고, 충돌·합체하며 원시 지구가 성장하는 시기입니다." },
-    { max: 30, name: "마그마 바다", desc: "충돌 에너지와 방사성 붕괴열로 지구 전체가 녹아 마그마 바다 상태가 된 시기입니다." },
-    { max: 100, name: "핵과 맨틀의 분리", desc: "밀도가 큰 철·니켈은 가라앉아 핵을, 밀도가 작은 규산염은 떠올라 맨틀을 이루는 시기입니다." },
-    { max: 500, name: "원시 대기와 바다의 형성", desc: "화산 활동으로 방출된 수증기·이산화 탄소가 원시 대기를 이루고, 식으면서 원시 바다가 형성됩니다." },
-    { max: Infinity, name: "생명체의 출현", desc: "원시 바다에서 최초의 생명체가 출현하는 시기입니다(약 35억~38억 년 전 무렵으로 추정)." }
-  ];
-  function stageOf(myr) { for (var i = 0; i < stagesByTime.length; i++) if (myr <= stagesByTime[i].max) return stagesByTime[i]; return stagesByTime[stagesByTime.length - 1]; }
-  // 분화 진행도: 30~100백만년 사이에 핵-맨틀 분리가 진행된다고 가정한 단순 모델
-  function diffProgress(myr) {
-    if (myr <= 10) return 0;
-    if (myr >= 100) return 1;
-    return (myr - 10) / (100 - 10);
-  }
-
-  function render() {
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
-
-    var prog = diffProgress(t);
-    var cx = W / 2 - 140, cy = H / 2, R = 130;
-
-    if (prog <= 0) {
-      // 아직 분화 전: 균질하게 섞인 마그마 바다(암석질+금속질이 뒤섞인 모습)
-      ctx.save();
-      ctx.beginPath(); ctx.arc(cx, cy, R, 0, 7); ctx.clip();
-      ctx.fillStyle = cssVar("--panel-2"); ctx.fillRect(cx - R, cy - R, R * 2, R * 2);
-      var rand = mulberry32(7);
-      for (var i = 0; i < 260; i++) {
-        var ang = rand() * Math.PI * 2, rad = Math.sqrt(rand()) * R;
-        ctx.fillStyle = i % 2 === 0 ? cssVar("--coral") : cssVar("--mist");
-        ctx.globalAlpha = 0.7;
-        ctx.beginPath(); ctx.arc(cx + Math.cos(ang) * rad, cy + Math.sin(ang) * rad, 2.2, 0, 7); ctx.fill();
-      }
-      ctx.globalAlpha = 1;
-      ctx.restore();
-    } else {
-      // 분화가 진행됨: 핵(중심)과 맨틀(바깥쪽)이 반지름 비율에 따라 뚜렷해짐
-      var coreR = 0.15 * R + prog * 0.35 * R;
-      ctx.beginPath(); ctx.arc(cx, cy, R, 0, 7);
-      ctx.fillStyle = cssVar("--teal"); ctx.fill();
-      ctx.beginPath(); ctx.arc(cx, cy, coreR, 0, 7);
-      ctx.fillStyle = cssVar("--coral"); ctx.fill();
-      if (prog > 0.85) {
-        ctx.lineWidth = 5; ctx.strokeStyle = cssVar("--violet");
-        ctx.beginPath(); ctx.arc(cx, cy, R - 3, 0, 7); ctx.stroke();
-      }
-    }
-    ctx.strokeStyle = cssVar("--line"); ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.arc(cx, cy, R, 0, 7); ctx.stroke();
-    ctx.font = "700 12px Segoe UI"; ctx.fillStyle = cssVar("--foam"); ctx.textAlign = "center";
-    ctx.fillText(prog <= 0 ? "균질한 마그마 바다" : (prog < 1 ? "핵·맨틀 분리 진행 중 (" + Math.round(prog * 100) + "%)" : "핵·맨틀·지각 분리 완료"), cx, cy + R + 30);
-
-    // 타임라인
-    var x0 = W - 480, x1 = W - 60, y = H - 70;
-    ctx.strokeStyle = cssVar("--line"); ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke();
-    var bounds = [10, 30, 100, 500];
-    function xOf(myr) { return x0 + Math.min(myr, 1000) / 1000 * (x1 - x0); }
-    bounds.forEach(function (b) {
-      var bx = xOf(b);
-      ctx.save(); ctx.strokeStyle = cssVar("--violet"); ctx.setLineDash([3, 3]);
-      ctx.beginPath(); ctx.moveTo(bx, y - 60); ctx.lineTo(bx, y + 6); ctx.stroke();
-      ctx.restore();
-    });
-    var curX = xOf(t);
-    ctx.fillStyle = cssVar("--coral"); ctx.beginPath(); ctx.arc(curX, y, 7, 0, 7); ctx.fill();
-    ctx.font = "10.5px Segoe UI"; ctx.fillStyle = cssVar("--mist"); ctx.textAlign = "left";
-    ctx.fillText("형성 시점(0)", x0, y + 22);
-    ctx.textAlign = "right"; ctx.fillText("10억 년 후", x1, y + 22);
-
-    var st = stageOf(t);
-    ctx.font = "700 13px Segoe UI"; ctx.fillStyle = cssVar("--foam"); ctx.textAlign = "center";
-    ctx.fillText(st.name, (x0 + x1) / 2, y - 76);
-
-    info.innerHTML = "지구 형성 후 약 <b>" + t + "백만 년</b>이 지난 시점, <b>" + st.name + "</b> 단계입니다. " + st.desc + (t > 10 && t < 100 ? " 이 시기 핵·맨틀 분리 진행도는 약 <b>" + Math.round(prog * 100) + "%</b>입니다." : "");
-  }
-  function mulberry32(a) {
-    return function () {
-      a |= 0; a = (a + 0x6D2B79F5) | 0;
-      var tt = Math.imul(a ^ (a >>> 15), 1 | a);
-      tt = (tt + Math.imul(tt ^ (tt >>> 7), 61 | tt)) ^ tt;
-      return ((tt ^ (tt >>> 14)) >>> 0) / 4294967296;
-    };
-  }
-  render();
-})();
-
-/* TAB0 미션 — 행성 진화 단서 매칭 */
-(function () {
-  var cardsEl = document.getElementById("c0m-cards");
-  var slotsEl = document.getElementById("c0m-slots");
-  var checkBtn = document.getElementById("c0m-check");
-  var newBtn = document.getElementById("c0m-new");
-  if (!cardsEl) return;
-
-  var slotNames = { mercury: "수성", venus: "금성", mars: "화성", earth: "지구" };
-  var slotOrder = ["mercury", "venus", "mars", "earth"];
-  var clues = {
-    mercury: "크기가 작아 내부 열이 일찍 식었습니다. 판 구조 운동이 없고 자기장이 매우 약하며, 형성 초기의 충돌 크레이터가 거의 그대로 보존되어 있습니다.",
-    venus: "두꺼운 온실 대기로 표면 온도가 매우 높습니다. 화산 활동의 흔적은 많지만 판 구조 운동은 없고, 표면 연대가 비교적 균일해 전 지구적 재표면화 이후 정체된 것으로 추정됩니다.",
-    mars: "지구보다 작아 냉각이 빨랐습니다. 과거 물이 흘렀던 지형이 남아 있지만, 현재는 화산·지진 활동이 거의 없고 자기장도 사라졌습니다.",
-    earth: "판 구조 운동이 지금도 활발하고 자기장이 강합니다. 화산과 지진이 꾸준히 일어나며, 맨틀 대류를 통해 열을 계속 방출하는 열역학적으로 가장 활발한 상태입니다."
-  };
-
-  var pool = [];
-  var slots = {};
-  var selected = null;
-
-  function shuffle(arr) {
-    var a = arr.slice();
-    for (var i = a.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
-    }
-    return a;
-  }
-
-  function reset() {
-    pool = shuffle(slotOrder.slice());
-    slots = { mercury: null, venus: null, mars: null, earth: null };
-    selected = null;
-    var info = document.getElementById("c0m-info");
-    info.style.color = "";
-    info.textContent = "단서를 클릭해 선택한 뒤, 놓을 칸을 클릭하세요.";
-    render();
-  }
-
-  function render() {
-    cardsEl.innerHTML = "";
-    pool.forEach(function (key) {
-      var card = document.createElement("div");
-      card.className = "mission-card" + (selected === key ? " selected" : "");
-      card.textContent = clues[key];
-      card.addEventListener("click", function () {
-        selected = (selected === key) ? null : key;
-        render();
-      });
-      cardsEl.appendChild(card);
-    });
-
-    slotsEl.innerHTML = "";
-    slotOrder.forEach(function (targetKey) {
-      var slot = document.createElement("div");
-      var filledKey = slots[targetKey];
-      slot.className = "mission-slot" + (filledKey ? " filled" : "");
-      var title = document.createElement("div");
-      title.className = "slot-title";
-      title.textContent = slotNames[targetKey];
-      slot.appendChild(title);
-      var body = document.createElement("div");
-      body.className = "slot-body";
-      body.textContent = filledKey ? clues[filledKey] : "여기를 클릭해 선택한 카드를 놓으세요.";
-      slot.appendChild(body);
-      slot.addEventListener("click", function () {
-        if (filledKey) {
-          pool.push(filledKey);
-          slots[targetKey] = null;
-          render();
-        } else if (selected) {
-          slots[targetKey] = selected;
-          pool = pool.filter(function (k) { return k !== selected; });
-          selected = null;
-          render();
-        }
-      });
-      slotsEl.appendChild(slot);
-    });
-  }
-
-  checkBtn.addEventListener("click", function () {
-    var info = document.getElementById("c0m-info");
-    if (pool.length > 0) {
-      info.style.color = "";
-      info.textContent = "아직 배치하지 않은 카드가 있습니다. 4장을 모두 알맞은 칸에 놓아 주세요.";
-      return;
-    }
-    var correctCount = 0;
-    slotsEl.querySelectorAll(".mission-slot").forEach(function (slotEl, i) {
-      var targetKey = slotOrder[i];
-      var ok = slots[targetKey] === targetKey;
-      slotEl.classList.remove("correct", "wrong");
-      slotEl.classList.add(ok ? "correct" : "wrong");
-      if (ok) correctCount++;
-    });
-    if (correctCount === 4) {
-      info.style.color = "var(--teal)";
-      info.innerHTML = "<b>4장 모두 정답입니다!</b> 행성의 크기와 위치가 판 구조 운동의 지속 여부, 곧 행성의 지질학적 활동성을 가릅니다.";
-    } else {
-      info.style.color = "var(--coral)";
-      info.innerHTML = correctCount + " / 4 칸이 맞았습니다. 빨간 테두리 칸을 다시 살펴보고 카드를 옮겨 보세요.";
-    }
-  });
-
-  newBtn.addEventListener("click", reset);
-  reset();
-})();
-
-/* TAB1 산소농도 진화 */
-(function () {
-  var canvas = document.getElementById("c1");
-  var ctx = setupCanvas(canvas);
-  var W = canvas._w, H = canvas._h;
-  var t = 46;
-  var info = document.getElementById("c1-info");
-  document.getElementById("c1-t").addEventListener("input", function (e) { t = +e.target.value; document.getElementById("c1-t-val").textContent = t; render(); });
-
-  function o2Level(agoBillion) {
-    var x = 46 - agoBillion;
-    if (x < 20) return 0.5;
-    if (x < 24) return 0.5 + (x - 20) / 4 * 3;
-    if (x < 41) return 3.5;
-    return 3.5 + (x - 41) / 5 * 17.5;
-  }
-  function render() {
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
-    var x0 = 60, x1 = W - 60, y0 = 40, y1 = H - 60;
-    ctx.strokeStyle = cssVar("--line"); ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x0, y1); ctx.lineTo(x1, y1); ctx.stroke();
-    ctx.font = "11px Segoe UI"; ctx.fillStyle = cssVar("--mist"); ctx.textAlign = "left"; ctx.fillText("46억 년 전", x0, y1 + 26);
-    ctx.textAlign = "right"; ctx.fillText("현재", x1, y1 + 26);
-    ctx.save(); ctx.translate(24, (y0 + y1) / 2); ctx.rotate(-Math.PI / 2); ctx.textAlign = "center"; ctx.fillText("대기 중 산소 농도(%)", 0, 0); ctx.restore();
-
-    ctx.beginPath();
-    for (var px = 0; px <= 200; px++) {
-      var ago = 46 - px / 200 * 46;
-      var o2 = o2Level(ago);
-      var xx = x0 + px / 200 * (x1 - x0), yy = y1 - o2 / 21 * (y1 - y0);
-      if (px === 0) ctx.moveTo(xx, yy); else ctx.lineTo(xx, yy);
-    }
-    ctx.strokeStyle = cssVar("--teal"); ctx.lineWidth = 2.5; ctx.stroke();
-
-    var curX = x0 + (46 - t) / 46 * (x1 - x0), curY = y1 - o2Level(t) / 21 * (y1 - y0);
-    ctx.fillStyle = cssVar("--coral"); ctx.beginPath(); ctx.arc(curX, curY, 7, 0, 7); ctx.fill();
-
-    var mark1 = x0 + (46 - 24) / 46 * (x1 - x0);
-    var mark2 = x0 + (46 - 41) / 46 * (x1 - x0);
-    ctx.save(); ctx.strokeStyle = cssVar("--violet"); ctx.setLineDash([4, 4]);
-    ctx.beginPath(); ctx.moveTo(mark1, y0); ctx.lineTo(mark1, y1); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(mark2, y0); ctx.lineTo(mark2, y1); ctx.stroke();
-    ctx.setLineDash([]); ctx.restore();
-    ctx.font = "10px Segoe UI"; ctx.fillStyle = cssVar("--violet"); ctx.textAlign = "center";
-    ctx.fillText("대산소화 사건(약 24억 년 전)", mark1, y0 - 10);
-    ctx.fillText("신생대 산소 급증(약 5억 년 전)", mark2, y0 - 24);
-
-    info.innerHTML = "약 " + t + "억 년 전, 대기 중 산소 농도는 약 <b>" + o2Level(t).toFixed(1) + "%</b>였습니다. 광합성을 하는 남세균(시아노박테리아)이 만든 산소가 바다와 대기에 쌓이며 약 24억 년 전 <b>대산소화 사건</b>이 일어났고, 이후 오존층이 형성되어 생물이 육상으로 진출할 수 있는 환경이 마련되었습니다.";
-  }
-  render();
-})();
-
-/* TAB2 탄소/물 순환 */
-(function () {
-  var canvas = document.getElementById("c2");
-  var ctx = setupCanvas(canvas);
-  var W = canvas._w, H = canvas._h;
-  var mat = "carbon";
-  var info = document.getElementById("c2-info");
-  document.querySelectorAll("#c2-mat button").forEach(function (b) {
-    b.addEventListener("click", function () { mat = b.getAttribute("data-m"); document.querySelectorAll("#c2-mat button").forEach(function (x) { x.classList.toggle("on", x === b); }); render(); });
-  });
-
-  var reservoirsCarbon = [
-    { name: "대기(CO₂)", x: W / 2, y: 90, desc: "대기 중 이산화 탄소는 광합성으로 흡수되고, 호흡·연소로 다시 방출됩니다." },
-    { name: "생물권", x: 180, y: 250, desc: "식물과 동물의 몸을 구성하며, 사체가 분해되거나 화석 연료로 저장됩니다." },
-    { name: "해양", x: W - 180, y: 250, desc: "대기와 이산화 탄소를 교환하며, 일부는 석회질 생물의 껍데기로 침전됩니다." },
-    { name: "암석권(석회암 등)", x: W / 2, y: 380, desc: "탄산염 광물(석회암)이나 화석 연료의 형태로 오랜 시간 저장됩니다." }
-  ];
-  var reservoirsWater = [
-    { name: "대기(수증기)", x: W / 2, y: 90, desc: "증발한 물이 수증기로 존재하다가 응결하여 구름과 강수를 만듭니다." },
-    { name: "육지(하천·지하수·빙하)", x: 180, y: 250, desc: "강수의 일부가 하천이나 지하수로 흐르거나 빙하로 저장됩니다." },
-    { name: "해양", x: W - 180, y: 250, desc: "지구 물의 대부분을 차지하며, 증발을 통해 대기로 물을 공급합니다." },
-    { name: "생물권", x: W / 2, y: 380, desc: "생물의 몸속 수분과 증산 작용으로 물의 순환에 관여합니다." }
-  ];
-  function reservoirs() { return mat === "carbon" ? reservoirsCarbon : reservoirsWater; }
-  canvas.addEventListener("click", function (e) {
-    var rect = canvas.getBoundingClientRect();
-    var scaleX = canvas._w / rect.width, scaleY = canvas._h / rect.height;
-    var mx = (e.clientX - rect.left) * scaleX, my = (e.clientY - rect.top) * scaleY;
-    reservoirs().forEach(function (r) { if (Math.hypot(mx - r.x, my - r.y) < 55) info.innerHTML = "<b>" + r.name + "</b> — " + r.desc; });
-  });
-  function render() {
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
-    var rs = reservoirs();
-    var edges = [[0, 1], [0, 2], [1, 2], [1, 3], [2, 3], [0, 3]];
-    edges.forEach(function (e) {
-      var A = rs[e[0]], B = rs[e[1]];
-      ctx.strokeStyle = cssVar("--line"); ctx.lineWidth = 1.5;
-      ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.stroke();
-    });
-    rs.forEach(function (r) {
-      ctx.save();
-      ctx.fillStyle = cssVar(mat === "carbon" ? "--teal" : "--cold"); ctx.globalAlpha = .85;
-      ctx.beginPath(); ctx.arc(r.x, r.y, 52, 0, 7); ctx.fill();
-      ctx.restore();
-      ctx.font = "700 12px Segoe UI"; ctx.fillStyle = cssVar("--abyss"); ctx.textAlign = "center";
-      wrapText(ctx, r.name, r.x, r.y + 4, 90, 14);
-    });
-    function wrapText(ctx, text, x, y, maxW, lh) {
-      var line = "", lines = [];
-      for (var i = 0; i < text.length; i++) {
-        var test = line + text[i];
-        if (ctx.measureText(test).width > maxW && line.length > 0) { lines.push(line); line = text[i]; } else line = test;
-      }
-      lines.push(line);
-      var totalH = lines.length * lh;
-      lines.forEach(function (l, i) { ctx.fillText(l, x, y - totalH / 2 + i * lh + lh); });
-    }
-  }
-  render();
-})();
-
-
-/* TAB3 산소의 순환과 호상철광층 */
-(function () {
-  var canvas = document.getElementById("c3");
-  var ctx = setupCanvas(canvas);
-  var W = canvas._w, H = canvas._h;
-  var info = document.getElementById("c3-info");
-  var nodes = [
-    { name: "생물권(남세균의 광합성)", x: 180, y: 110, desc: "약 27억 년 전 광합성을 하는 남세균(시아노박테리아)이 번성하며 바다에 산소를 방출하기 시작했습니다." },
-    { name: "해양(용존 철 산화)", x: 180, y: 320, desc: "당시 바다에는 철 이온(Fe²⁺)이 많이 녹아 있었는데, 산소와 만나 산화철(Fe³⁺)로 침전되었습니다. 이 과정에서 바다의 산소가 소모되어 대기 중 산소 농도는 한동안 크게 늘지 않았습니다." },
-    { name: "지권(호상철광층 퇴적)", x: 720, y: 320, desc: "침전된 산화철이 해저에 줄무늬 모양으로 쌓여 만들어진 것이 호상철광층(BIF)입니다. 오늘날 철광석의 주요 원료로, 대산소화 사건의 결정적 증거입니다." },
-    { name: "대기(산소 축적·오존층)", x: 720, y: 110, desc: "바닷속 철 이온이 모두 산화되어 소모된 뒤부터는 산소가 본격적으로 대기에 쌓이기 시작했습니다(대산소화 사건, 약 24억 년 전). 이후 오존층이 형성되어 자외선을 막아 생물이 육상으로 진출할 수 있었습니다." }
-  ];
-  var edges = [[0,1],[1,2],[2,3],[3,0]];
-  canvas.addEventListener("click", function (e) {
-    var rect = canvas.getBoundingClientRect();
-    var scaleX = canvas._w / rect.width, scaleY = canvas._h / rect.height;
-    var mx = (e.clientX - rect.left) * scaleX, my = (e.clientY - rect.top) * scaleY;
-    nodes.forEach(function (n) { if (Math.hypot(mx - n.x, my - n.y) < 60) info.innerHTML = "<b>" + n.name + "</b> — " + n.desc; });
-  });
-  function render() {
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
-    edges.forEach(function (e) {
-      var A = nodes[e[0]], B = nodes[e[1]];
-      ctx.save(); ctx.strokeStyle = cssVar("--teal"); ctx.fillStyle = cssVar("--teal"); ctx.lineWidth = 3;
-      drawArrow(ctx, A.x, A.y, B.x, B.y, 9);
-      ctx.restore();
-    });
-    nodes.forEach(function (n) {
-      ctx.save(); ctx.fillStyle = cssVar("--cold"); ctx.globalAlpha = .85;
-      ctx.beginPath(); ctx.arc(n.x, n.y, 58, 0, 7); ctx.fill();
-      ctx.restore();
-      ctx.font = "700 12px Segoe UI"; ctx.fillStyle = cssVar("--abyss"); ctx.textAlign = "center";
-      wrapText(ctx, n.name, n.x, n.y + 4, 100, 14);
-    });
-    function wrapText(ctx, text, x, y, maxW, lh) {
-      var line = "", lines = [];
-      for (var i = 0; i < text.length; i++) {
-        var test = line + text[i];
-        if (ctx.measureText(test).width > maxW && line.length > 0) { lines.push(line); line = text[i]; } else line = test;
-      }
-      lines.push(line);
-      var totalH = lines.length * lh;
-      lines.forEach(function (l, i) { ctx.fillText(l, x, y - totalH / 2 + i * lh + lh); });
-    }
-  }
-  render();
-})();
-
-/* TAB3b 대기-해양 산소 수지 모형 */
-(function () {
-  var canvas = document.getElementById("c3b");
-  var ctx = setupCanvas(canvas);
-  var W = canvas._w, H = canvas._h;
-  var src = 4, t = 10;
-  var info = document.getElementById("c3b-info");
-  document.getElementById("c3b-src").addEventListener("input", function (e) { src = +e.target.value; document.getElementById("c3b-src-val").textContent = src; render(); });
-  document.getElementById("c3b-t").addEventListener("input", function (e) { t = +e.target.value; document.getElementById("c3b-t-val").textContent = t; render(); });
-
-  var FE_TOTAL = 100; // 바닷속에 녹아있던 철 이온의 총량(임의 단위)
-  function ironRemaining(s, tt) { return Math.max(0, FE_TOTAL - s * tt); }
-  function atmO2(s, tt) { return Math.max(0, s * tt - FE_TOTAL) * 0.4; }
-
-  function render() {
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = cssVar("--panel"); ctx.fillRect(0, 0, W, H);
-
-    var fe = ironRemaining(src, t), o2 = atmO2(src, t);
-    var barX1 = 160, barX2 = W - 260, barY = 60, barW = 140, barH = 260;
-
-    // 철 이온 잔량 바
-    ctx.strokeStyle = cssVar("--line"); ctx.lineWidth = 2; ctx.strokeRect(barX1, barY, barW, barH);
-    var feH = fe / FE_TOTAL * barH;
-    ctx.fillStyle = cssVar("--coral"); ctx.fillRect(barX1, barY + barH - feH, barW, feH);
-    ctx.font = "700 12px Segoe UI"; ctx.fillStyle = cssVar("--foam"); ctx.textAlign = "center";
-    ctx.fillText("바닷속 잔여 철 이온(Fe²⁺)", barX1 + barW / 2, barY - 16);
-    ctx.fillText(fe.toFixed(0) + " / " + FE_TOTAL, barX1 + barW / 2, barY + barH + 26);
-
-    // 대기 산소 축적 바
-    var o2Max = 60;
-    ctx.strokeStyle = cssVar("--line"); ctx.lineWidth = 2; ctx.strokeRect(barX2, barY, barW, barH);
-    var o2H = Math.min(o2, o2Max) / o2Max * barH;
-    ctx.fillStyle = cssVar("--teal"); ctx.fillRect(barX2, barY + barH - o2H, barW, o2H);
-    ctx.font = "700 12px Segoe UI"; ctx.fillStyle = cssVar("--foam"); ctx.textAlign = "center";
-    ctx.fillText("대기 중 산소 축적량", barX2 + barW / 2, barY - 16);
-    ctx.fillText(o2.toFixed(1) + " (임의 단위)", barX2 + barW / 2, barY + barH + 26);
-
-    // 중간 화살표: 광합성 생산 -> 철 산화 소모 -> (철 고갈 후) 대기 축적
-    ctx.save(); ctx.strokeStyle = cssVar("--violet"); ctx.fillStyle = cssVar("--violet"); ctx.lineWidth = 3;
-    drawArrow(ctx, barX1 + barW + 20, barY + barH / 2, barX2 - 20, barY + barH / 2, 9);
-    ctx.restore();
-    ctx.font = "11px Segoe UI"; ctx.fillStyle = cssVar("--mist"); ctx.textAlign = "center";
-    ctx.fillText("광합성 산소가 철 이온 산화에 먼저 소모됨", (barX1 + barW + barX2) / 2, barY + barH / 2 - 14);
-
-    var depleted = fe <= 0;
-    info.innerHTML = depleted
-      ? "바닷속 철 이온이 모두 산화되어 소모되었습니다(잔량 0). 이제부터 광합성으로 만들어지는 산소는 <b>대기 중에 그대로 쌓이기 시작</b>합니다 — 이것이 <b>대산소화 사건</b>입니다. 현재 대기 산소 축적량은 " + o2.toFixed(1) + "입니다."
-      : "바닷속에 아직 철 이온이 " + fe.toFixed(0) + "만큼 남아 있어, 광합성으로 만들어진 산소는 대기에 쌓이지 못하고 <b>철 이온을 산화시키는 데 먼저 소모</b>됩니다(호상철광층 형성). 산소 생산 속도를 높이거나 시간을 더 늘리면 철이 먼저 고갈됩니다.";
-  }
-  render();
-})();
-
-})();
-</script>
-
-<script>
-(function () {
-  window.sthUnit("esys-1-1");
-  window.sthWork({
-    mount: "wk",
-    unitLabel: "[지구시스템과학] 지구의 탄생과 진화",
-    items: [
-      {
-            "id": "w1",
-            "label": "산소 농도가 늘어난 계기",
-            "hint": "대기 중 산소 농도 그래프에서 크게 꺾이는 지점을 짚고, 무엇이 그 변화를 만들었는지 쓰세요.",
-            "ph": ""
-      },
-      {
-            "id": "w2",
-            "label": "탄소가 머무는 곳",
-            "hint": "탄소가 가장 많이 저장된 곳과 가장 빠르게 움직이는 경로를 각각 쓰고 근거를 대세요.",
-            "ph": ""
-      },
-      {
-            "id": "w3",
-            "label": "아직 헷갈리는 것",
-            "hint": "다음 시간에 여기서부터 시작합니다.",
-            "ph": ""
-      }
-]
-  });
-})();
-</script>
+<script src="../assets/story.js"></script>
+<script src="../assets/share-config.js"></script>
+<script src="../assets/share.js"></script>
+<script src="episodes.js"></script>
 </body>
 </html>
