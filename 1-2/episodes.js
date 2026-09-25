@@ -1144,10 +1144,11 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
         if (i === 0) ctx.moveTo(xx, mid + amp); else ctx.lineTo(xx, mid + amp);
       }
       ctx.stroke();
-      [[pxp, "P파 도착", "--coral"], [pxs, "S파 도착", "--cold"]].forEach(function (q) {
+      /* 가까운 거리에서는 두 도착 시각이 붙으므로 이름표를 위아래로 어긋나게 둔다 */
+      [[pxp, "P파 도착", "--coral"], [pxs, "S파 도착", "--cold"]].forEach(function (q, qi) {
         ctx.strokeStyle = v(q[2]); ctx.lineWidth = 2;
         ctx.beginPath(); ctx.moveTo(q[0], 58); ctx.lineTo(q[0], 226); ctx.stroke();
-        text(ctx, q[1], clamp(q[0] + 5, 0, 800), 70, { s: 10.5, w: "800", c: v(q[2] + "-700") || v("--ink") });
+        text(ctx, q[1], clamp(q[0] + 5, 0, 800), 70 + qi * 17, { s: 10.5, w: "800", c: v(q[2] + "-700") || v("--ink") });
       });
       ctx.strokeStyle = v("--teal"); ctx.lineWidth = 3;
       ctx.beginPath(); ctx.moveTo(pxp, 244); ctx.lineTo(pxs, 244); ctx.stroke();
