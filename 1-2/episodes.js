@@ -1538,7 +1538,8 @@ window.sthWork({
     { key: "r3", label: "③ 한라산과 백두산" },
     { key: "r4", label: "④ 지구 속을 본 지진파" },
     { key: "rQuiz", label: "수준별 문제" },
-    { key: "rLab", label: "응용 실험실" }
+    { key: "rLab", label: "응용 실험실" },
+    { key: "rReal", label: "실제 자료" }
   ],
   items: [
     { id: "all", label: "네 사건을 꿰는 한 문장", hint: "대륙을 옮긴 일, 판 아래의 기둥, 마그마가 만든 암석, 지진파가 그린 지구 속. 네 이야기에 공통으로 들어 있는 생각을 ‘판의 운동’과 ‘지구 내부’라는 말을 넣어 쓰세요." },
@@ -1555,7 +1556,8 @@ window.sthShare({
     { key: "r3", label: "③ 한라산과 백두산" },
     { key: "r4", label: "④ 지구 속을 본 지진파" },
     { key: "rQuiz", label: "수준별 문제" },
-    { key: "rLab", label: "응용 실험실" }
+    { key: "rLab", label: "응용 실험실" },
+    { key: "rReal", label: "실제 자료" }
   ],
   line: { id: "all", label: "네 사건을 꿰는 한 문장" }
 });

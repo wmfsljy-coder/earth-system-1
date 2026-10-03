@@ -1193,7 +1193,8 @@ window.sthWork({
     { key: "r2", label: "② 25억 년 된 줄무늬" },
     { key: "r3", label: "③ 눈덩이 지구를 녹인 것" },
     { key: "rQuiz", label: "수준별 문제" },
-    { key: "rLab", label: "응용 실험실" }
+    { key: "rLab", label: "응용 실험실" },
+    { key: "rReal", label: "실제 자료" }
   ],
   items: [
     { id: "all", label: "세 사건을 꿰는 한 문장", hint: "권역이 만들어진 일, 산소가 권역을 바꾼 일, 탄소와 물이 권역 사이를 오가는 일. 세 이야기에 공통으로 들어 있는 생각을 ‘지구시스템’과 ‘상호 작용’이라는 말을 넣어 쓰세요." },
@@ -1209,7 +1210,8 @@ window.sthShare({
     { key: "r2", label: "② 25억 년 된 줄무늬" },
     { key: "r3", label: "③ 눈덩이 지구를 녹인 것" },
     { key: "rQuiz", label: "수준별 문제" },
-    { key: "rLab", label: "응용 실험실" }
+    { key: "rLab", label: "응용 실험실" },
+    { key: "rReal", label: "실제 자료" }
   ],
   line: { id: "all", label: "세 사건을 꿰는 한 문장" }
 });
