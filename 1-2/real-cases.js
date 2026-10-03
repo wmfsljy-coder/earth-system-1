@@ -9,14 +9,14 @@ var S = (window.REAL_QUAKES_38N || { rows: [] }).rows;     /* [경도, 깊이 km
 var TRENCH = 144.0, KMPD = 87.5;                            /* 일본 해구 축 ≈ 동경 144°, 북위 38° 에서 경도 1° ≈ 87.5 km */
 function xkm(lon) { return (TRENCH - lon) * KMPD; }         /* 해구에서 서쪽(대륙 쪽)으로 잰 거리 */
 var DEEP = S.filter(function (r) { return r[1] >= 70; });
-var DIP = (function () { var n = DEEP.length, sx = 0, sy = 0, sxx = 0, sxy = 0; DEEP.forEach(function (r) { var x = xkm(r[0]); sx += x; sy += r[1]; sxx += x * x; sxy += x * r[1]; }); var m = (n * sxy - sx * sy) / (n * sxx - sx * sx); return Math.atan(m) * 180 / Math.PI; })();
+var DIP = (function () { var sxx = 0, sxy = 0; DEEP.forEach(function (r) { var x = xkm(r[0]); sxx += x * x; sxy += x * r[1]; }); return Math.atan(sxy / sxx) * 180 / Math.PI; })();   /* 해구(원점)를 지나는 직선 */
 var KIL = [19.41, -155.28];
 var ISL = [["오아후(와이아나에)", 21.47, -158.15, 3.7], ["카우아이", 22.07, -159.50, 5.1], ["니호아", 23.06, -161.92, 7.2], ["네커", 23.58, -164.70, 10.3], ["미드웨이", 28.21, -177.37, 27.7]];
 function gc(a, b) { var R = 6371, r = Math.PI / 180, dl = (b[0] - a[0]) * r, dn = (b[1] - a[1]) * r, x = Math.pow(Math.sin(dl / 2), 2) + Math.cos(a[0] * r) * Math.cos(b[0] * r) * Math.pow(Math.sin(dn / 2), 2); return 2 * R * Math.asin(Math.sqrt(x)); }
 ISL.forEach(function (s) { s.push(gc(KIL, [s[1], s[2]])); });
 var VFIT = (function () { var sxx = 0, sxy = 0; ISL.forEach(function (s) { sxx += s[3] * s[3]; sxy += s[3] * s[4]; }); return sxy / sxx / 10; })();   /* km/백만 년 ÷ 10 = cm/년 */
 var SRC1 = "<small>출처: 미국 지질조사국(USGS) Earthquake Catalog, 2014 ~ 2023, 북위 37 ~ 39°·동경 128 ~ 146°, 규모 4.5 이상 " + S.length + "건. 사본은 data/quakes-38n.js.</small>";
-var SRC2 = "<small>출처: 섬의 나이 — Clague & Dalrymple (1987), The Hawaiian-Emperor volcanic chain, USGS Professional Paper 1350(칼륨-아르곤 연대). 거리는 각 섬의 좌표와 킬라우에아(북위 19.41°, 서경 155.28°) 사이의 대권 거리로 계산했습니다.</small>";
+var SRC2 = "<small>출처: 섬의 나이 — Clague & Dalrymple (1987), The Hawaiian-Emperor volcanic chain, USGS Professional Paper 1350(칼륨-아르곤 연대). 거리는 각 섬의 좌표와 킬라우에아(북위 19.41°, 서경 155.28°) 사이의 대권 거리(지구 표면을 따라 잰 가장 짧은 거리)로 계산했습니다.</small>";
 
 window.sthLab({
   mount: "real", key: "real", result: "rReal", label: "실제 자료",
@@ -60,10 +60,10 @@ window.sthLab({
         }
       };
     },
-    hints: ["빨간 점들이 늘어선 방향에 노란 선을 겹쳐 보세요.", "약 500 km 서쪽에서 깊이가 약 250 km 입니다. tan(각도) = 250 ÷ 500 쯤."],
-    solution: "약 <b>" + DIP.toFixed(0) + "°</b> (" + Math.round(DIP - 4) + " ~ " + Math.round(DIP + 4) + "°).",
+    hints: ["빨간 점들이 늘어선 방향에 노란 선을 겹쳐 보세요.", "빨간 점은 해구에서 약 300 km 서쪽에 깊이 약 100 km, 약 850 km 서쪽에 깊이 약 400 km 쯤 있습니다. tan(각도) = 깊이 ÷ 거리 ≈ 0.4 ~ 0.47."],
+    solution: "약 <b>" + DIP.toFixed(0) + "°</b> (" + Math.ceil(DIP - 4) + " ~ " + Math.floor(DIP + 4) + "°).",
     why: "해구에서 대륙 쪽으로 갈수록 진원이 깊어지는 것은 태평양판이 유라시아판(오호츠크판) 밑으로 비스듬히 내려가기 때문입니다. 판의 위쪽 경계를 따라 지진이 나서, 진원의 띠가 곧 가라앉는 판의 모양을 보여 줘요(와다티-베니오프대). 동해 한가운데 아래 400 km 넘는 깊이까지 이어진 지진은 판이 맨틀 깊숙이 내려갔다는 증거입니다.<br>"
-      + "그래서 우리나라 동해안 아래 아주 깊은 곳에서도 가끔 지진이 기록됩니다. 진원이 깊어 땅 위에서는 거의 느끼지 못해요."
+      + "그래서 동해 아래 아주 깊은 곳에서도 가끔 지진이 기록됩니다. 진원이 깊어 땅 위에서는 거의 느끼지 못해요."
   },
   {
     id: "r2", tag: "실제 자료 · 열점과 섬의 나이", title: "하와이 섬들이 알려 주는 판의 속력", short: "판의 속력",
@@ -88,7 +88,7 @@ window.sthLab({
         var km = v * 10;                                          /* cm/년 → km/백만 년 */
         H.line(ctx, [[X(0), Y(0)], [X(Math.min(30, 2600 / km)), Y(Math.min(2600, km * 30))]], H.v("--amber-700"), 2.5);
         var e = 0;
-        ISL.forEach(function (s) { H.dot(ctx, X(s[3]), Y(s[4]), 6, H.v("--brand")); H.text(ctx, s[0], X(s[3]) + 9, Y(s[4]) + 4, { s: 10.5, w: "700", c: H.v("--brand-700") }); e += Math.abs(s[4] - km * s[3]); });
+        ISL.forEach(function (s) { H.dot(ctx, X(s[3]), Y(s[4]), 6, H.v("--brand")); var low = s[0].charAt(0) === "오"; H.text(ctx, s[0], X(s[3]) + (low ? 0 : 9), Y(s[4]) + (low ? 20 : 4), { s: 10.5, w: "700", a: low ? "center" : "left", c: H.v("--brand-700") }); e += Math.abs(s[4] - km * s[3]); });
         H.rows(ctx, 660, 40, [["내 판의 속력", v.toFixed(1) + " cm/년", null, true], ["점과 선의 평균 어긋남", (e / ISL.length).toFixed(0) + " km"], ["= 백만 년마다", (v * 10).toFixed(0) + " km"]], 60);
       }
       cv.canvas._redraw = draw;
@@ -107,7 +107,7 @@ window.sthLab({
     hints: ["카우아이: 약 530 km, 510만 년. 530 ÷ 5.1 = ? km/백만 년", "약 100 km/백만 년 → 10 cm/년 근처. 미드웨이까지 함께 맞추면 9 cm/년쯤."],
     solution: "약 <b>" + VFIT.toFixed(1) + " cm/년</b> (± 1).",
     why: "열점은 맨틀 깊은 곳에 거의 고정되어 있고, 그 위를 태평양판이 북서쪽으로 미끄러져 갑니다. 그래서 화산섬은 열점에서 멀어질수록 늙고, 식고, 깎이고, 가라앉아 작아집니다. 섬의 나이와 거리만으로 판이 한 해에 약 9 cm, 백만 년에 약 90 km 움직였다는 것을 알 수 있어요.<br>"
-      + "점들이 직선에서 조금씩 벗어나는 것은 연대 측정의 오차와, 판의 속력이 시대마다 조금씩 달랐기 때문입니다. 미드웨이보다 더 북쪽의 엠퍼러 해산열은 방향이 꺾여 있어, 약 4,700만 년 전 판이 움직이는 방향이 바뀌었다는 것도 알려 줍니다."
+      + "점들이 직선에서 조금씩 벗어나는 것은 연대 측정의 오차와, 판의 속력이 시대마다 조금씩 달랐기 때문입니다. 미드웨이보다 더 북쪽의 엠퍼러 해산열은 방향이 꺾여 있어, 약 4,700만 년 전 판의 방향이 바뀌었거나 열점 자체도 움직였다고 여겨집니다."
   }
   ]
 });

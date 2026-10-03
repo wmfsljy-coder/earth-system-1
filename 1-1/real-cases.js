@@ -7,23 +7,19 @@
 var VT = (window.REAL_VOSTOK || { temp: [] }).temp;       /* [얼음 나이(년 전), 기온 차 °C(현재 대비)] */
 var VC = (window.REAL_VOSTOK || { co2: [] }).co2;         /* [기체 나이(년 전), ppm] */
 var MM = (window.REAL_CO2 || { monthly: [] }).monthly;    /* [연도, 월, 월평균 ppm] */
-/* 해마다 그해 평균을 빼고 달별로 평균해 '계절 모양'만 남긴다 */
-var SEA = (function () {
-  var by = {}, out = [];
-  MM.forEach(function (r) { (by[r[0]] = by[r[0]] || []).push(r); });
-  var sum = [], cnt = [];
-  for (var m = 1; m <= 12; m++) { sum[m] = 0; cnt[m] = 0; }
-  Object.keys(by).forEach(function (y) {
-    var a = by[y]; if (a.length < 12) return;
-    var mean = a.reduce(function (s, r) { return s + r[2]; }, 0) / a.length;
-    a.forEach(function (r) { sum[r[1]] += r[2] - mean; cnt[r[1]]++; });
-  });
+var SEA = (function () {                                 /* 13개월 중심 이동 평균(추세)을 빼고 달마다 평균 */
+  var v = MM.map(function (r) { return r[2]; }), sum = [], cnt = [], out = [], m;
+  for (m = 1; m <= 12; m++) { sum[m] = 0; cnt[m] = 0; }
+  for (var i = 6; i < v.length - 6; i++) {
+    var s = 0.5 * (v[i - 6] + v[i + 6]); for (var j = -5; j <= 5; j++) s += v[i + j];
+    sum[MM[i][1]] += v[i] - s / 12; cnt[MM[i][1]]++;
+  }
   for (m = 1; m <= 12; m++) out[m] = cnt[m] ? sum[m] / cnt[m] : 0;
   return out;
 })();
 var YR = MM.length ? MM[0][0] + " ~ " + MM[MM.length - 1][0] : "";
 var SRC1 = "<small>출처: NOAA 국립환경정보센터(NCEI) 고기후 자료 — 남극 보스토크 빙하 코어 기온 차(Petit 외, 1999, Nature 399)와 이산화 탄소(Barnola 외). 기온 차는 얼음 속 수소 동위 원소 비로 구한 남극 기온의 현재 대비 차이입니다. 사본은 data/vostok.js.</small>";
-var SRC2 = "<small>출처: NOAA 지구감시연구소 GML, 마우나로아 관측소 월평균 이산화 탄소(" + YR + "). 해마다 그해 평균을 뺀 뒤 달마다 평균했습니다. 사본은 data/co2-mlo.js.</small>";
+var SRC2 = "<small>출처: NOAA 지구감시연구소 GML, 마우나로아 관측소 월평균 이산화 탄소(" + YR + "). 13개월 이동 평균(추세)을 뺀 뒤 달마다 평균했습니다. 사본은 data/co2-mlo.js.</small>";
 
 window.sthLab({
   mount: "real", key: "real", result: "rReal", label: "실제 자료",
