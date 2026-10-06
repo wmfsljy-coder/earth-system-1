@@ -146,7 +146,7 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
       });
       ctx.fillStyle = v("--coral"); ctx.beginPath(); ctx.arc(gx(lat), gy(I), 6, 0, Math.PI * 2); ctx.fill();
 
-      $("a-c1-info").innerHTML = "위도 <b>" + lat + "°</b> 에서 만들어진 암석에는 복각 <b>" + I.toFixed(1) + "°</b> 가 기록됩니다. "
+      $("a-c1-info").innerHTML = "위도 <b>" + lat + "°</b>에서 만들어진 암석에는 복각 <b>" + I.toFixed(1) + "°</b>가 기록됩니다. "
         + (lat > 0 ? "북반구에서는 자침의 N극이 아래로 기웁니다(복각 +)." : (lat < 0 ? "남반구에서는 자침의 N극이 위로 들립니다(복각 −)." : "적도에서는 자침이 수평입니다(복각 0)."))
         + " 그래서 <b>암석의 복각을 재면 그 암석이 만들어진 때의 위도</b>를 알 수 있습니다.";
     }
@@ -391,7 +391,7 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
     $("a-vs").innerHTML = "<b>나의 첫 추리</b> " + (p || "기록 없음") + "<br>"
       + (p.indexOf("㉢") === 0 ? "정확히 짚었습니다. 해저가 새로 만들어지며 넓어진다는 것이 해양저 확장설입니다."
         : (p.indexOf("㉡") === 0 ? "절반은 맞았습니다. 맨틀 대류는 원동력의 하나이지만, 결정적인 증거는 ‘해저가 새로 만들어진다’는 쪽이었습니다."
-          : "베게너와 같은 그림이었지요. 대륙이 해저를 헤치고 가는 것이 아니라, 해저째 옮겨 간 것이었습니다."))
+          : "베게너와 같은 그림이었습니다. 대륙이 해저를 헤치고 가는 것이 아니라, 해저째 옮겨 간 것이었습니다."))
       + "<br><b>내가 잰 확장 속도</b> 대서양 " + (g.a ? g.a.toFixed(1) : "-") + " cm/년 · 동태평양 " + (g.p ? g.p.toFixed(1) : "-") + " cm/년";
   }
   ep.onShow(function (i) { if (i === 4) vs(); });
@@ -487,7 +487,7 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
       }
 
       var wdt = Math.abs(perp) * 100;
-      $("b-c1-info").innerHTML = "θ = " + ang + "° 이므로 경계에 <b>수직인 성분</b>은 " + perp.toFixed(2) + " cm/년, <b>나란한 성분</b>은 "
+      $("b-c1-info").innerHTML = "θ = " + ang + "°이므로 경계에 <b>수직인 성분</b>은 " + perp.toFixed(2) + " cm/년, <b>나란한 성분</b>은 "
         + para.toFixed(2) + " cm/년입니다. → <b>" + k + " 경계</b><br>"
         + (k === "보존형" ? "수직 성분이 거의 0이라 1,000만 년이 지나도 지각이 생기거나 사라지지 않습니다."
           : "이대로 1,000만 년이 흐르면 폭 <b>" + num(wdt) + " km</b>의 지각이 " + (perp > 0 ? "<b>사라집니다</b>." : "<b>새로 만들어집니다</b>."));
@@ -810,8 +810,8 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
         text(ctx, r[0], x0 + 8, y + 2, { s: 11, w: "800", c: v("--mist") });
         wrap(ctx, r[1], x0 + 108, y + 2, gw - 116, 13, { s: 11.5, w: "800" });
       });
-      var warn = (si < 55 && T < 950) ? "⚠ 현무암질 마그마는 보통 1,000~1,200 ℃ 입니다." :
-                 ((si > 66 && T > 1050) ? "⚠ 유문암질 마그마는 보통 700~900 ℃ 입니다." : "");
+      var warn = (si < 55 && T < 950) ? "⚠ 현무암질 마그마는 보통 1,000~1,200 ℃입니다." :
+                 ((si > 66 && T > 1050) ? "⚠ 유문암질 마그마는 보통 700~900 ℃입니다." : "");
       if (warn) text(ctx, warn, x0, 340, { s: 11, w: "800", c: v("--rose-700") });
 
       var lines = log.slice(-3).map(function (r) { return "SiO₂ " + r.si + "% → <b>" + r.m + " 마그마</b> · " + r.vo + " · " + r.rk; });
@@ -868,7 +868,7 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
       ctx.beginPath(); ctx.moveTo(70, y25); ctx.lineTo(860, y25); ctx.stroke(); ctx.setLineDash([]);
       text(ctx, "946년 백두산 분화 수준 (약 25 km)", 856, y25 - 8, { s: 11, w: "800", a: "right", c: v("--amber-700") });
 
-      /* 화산체 (실제 높이 약 2.7 km 를 같은 눈금으로 그렸습니다) */
+      /* 화산체 (실제 높이 약 2.7 km를 같은 눈금으로 그렸습니다) */
       var cx = 430, base = sky, sum = HY(2.7);
       ctx.beginPath(); ctx.moveTo(cx - 160, base); ctx.lineTo(cx - 30, sum); ctx.lineTo(cx + 30, sum); ctx.lineTo(cx + 160, base);
       ctx.closePath(); ctx.fillStyle = v("--card-2"); ctx.fill(); ctx.strokeStyle = v("--line"); ctx.lineWidth = 2; ctx.stroke();
@@ -1523,7 +1523,7 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
   window.sthWork({
     mount: "wk4", unitLabel: "[지구시스템과학1 Ⅰ-2] 이야기 ④ 지구 속을 본 지진파",
     items: [
-      { id: "w2", label: "지진파가 알려 준 것", hint: "P파와 S파가 각각 어디까지 전달되는지로부터 무엇을 알 수 있는지 쓰세요." },
+      { id: "w2", label: "지진파가 알려 준 것", hint: "P파와 S파가 각각 어디까지 전달되는지를 보고 무엇을 알 수 있는지 쓰세요." },
       { id: "e4b", label: "기록지 한 장에서 진앙까지", hint: "PS시 → 진앙 거리 → 세 관측소의 원 → 진앙의 순서로, 각 단계에서 무엇을 알아내는지 쓰세요." }
     ]
   });
