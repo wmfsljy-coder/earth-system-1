@@ -293,7 +293,7 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
     var canvas = $("a-c3"), ctx = window.setupCanvas(canvas), W = canvas._w, H = canvas._h;
     var ATL = [[10, 250], [20, 500], [40, 1000], [60, 1500]];
     var PAC = [[5, 300], [10, 600], [20, 1200], [30, 1800]];
-    var va = 1.0, vp = 1.0, got = window.sthState("a4") || { a: 0, p: 0 };
+    var va = 1.0, vp = 1.0, T = 0, got = window.sthState("a4") || { a: 0, p: 0 };
 
     function worst(pts, rate) {
       var m = 0;
@@ -304,17 +304,31 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
       paper(ctx, W, H);
       /* 왼쪽 : 해령의 고지자기 줄무늬 */
       text(ctx, "해령을 가로지르며 잰 고지자기 줄무늬", 40, 32, { s: 13, w: "800" });
-      var rx = 235, top = 58, bot = 268;
-      for (var i = 0; i < 8; i++) {
-        var wdt = 24;
-        ctx.fillStyle = i % 2 === 0 ? v("--ink") : v("--card");
-        ctx.fillRect(rx - (i + 1) * wdt, top, wdt, bot - top);
-        ctx.fillRect(rx + i * wdt, top, wdt, bot - top);
-        ctx.strokeStyle = v("--line"); ctx.lineWidth = 1;
-        ctx.strokeRect(rx - (i + 1) * wdt, top, wdt, bot - top);
-        ctx.strokeRect(rx + i * wdt, top, wdt, bot - top);
+      var rx = 235, top = 58, bot = 268, wdt = 12, half = 16 * wdt;
+      /* 자기장 역전은 일정한 간격으로 오지 않는다 — 줄무늬 폭이 들쭉날쭉하다 */
+      var RUNS = [3, 1, 2, 4, 1, 2, 3, 1, 1, 3, 2, 2], RS = 25;
+      function pol(n) { var m = ((n % RS) + RS) % RS, k = 0; while (m >= RUNS[k]) { m -= RUNS[k]; k++; } return k % 2; }
+      /* 해령에서 새 지각이 생겨 양쪽으로 밀려 난다. 지구 자기장이 뒤집힐 때마다 새 줄무늬의 극이 바뀐다 */
+      var pv = 4 + va * 3, run = T * pv, born = Math.floor(run / wdt), frac = run - born * wdt;
+      ctx.save(); ctx.beginPath(); ctx.rect(rx - half, top, 2 * half, bot - top); ctx.clip();
+      for (var i = 0; i <= 17; i++) {
+        var n = born - i, x = frac + i * wdt;                /* 해령에서 x 만큼 떨어진 줄무늬, n 은 그 줄무늬가 태어난 차례 */
+        ctx.fillStyle = pol(n) === 0 ? v("--ink") : v("--card");
+        ctx.fillRect(rx + x - wdt, top, wdt, bot - top); ctx.fillRect(rx - x, top, wdt, bot - top);
       }
+      ctx.restore();
       ctx.fillStyle = v("--coral"); ctx.fillRect(rx - 5, top - 10, 10, bot - top + 20);
+      for (var mq = 0; mq < 8; mq++) {
+        var pm = (T * 0.6 + mq / 8) % 1;
+        ctx.globalAlpha = 0.3 + 0.6 * (1 - pm); ctx.fillStyle = v("--amber");
+        ctx.beginPath(); ctx.arc(rx + Math.sin(mq * 2.3 + T * 3) * 3, bot + 6 - pm * (bot - top + 6), 3, 0, Math.PI * 2); ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      /* 해령 위 나침반: 지금 만들어지는 줄무늬의 극 */
+      var nowNorm = pol(born) === 0;
+      ctx.strokeStyle = v("--ink"); ctx.fillStyle = v("--ink"); ctx.lineWidth = 3;
+      window.drawArrow(ctx, rx + 46, top - 6 + (nowNorm ? 14 : -2), rx + 46, top - 6 + (nowNorm ? -2 : 14), 7);
+      text(ctx, nowNorm ? "지금 정자극기" : "지금 역자극기", rx + 56, top - 2, { s: 10.5, w: "800", c: v("--mist") });
       text(ctx, "해령", rx, top - 16, { s: 12, w: "900", a: "center", c: v("--coral-700") });
       text(ctx, "■ 정자극기   □ 역자극기 — 해령을 축으로 좌우 대칭", 40, bot + 22, { s: 11, c: v("--mist") });
       text(ctx, "나이 많음 ←", 40, bot + 42, { s: 11, c: v("--mist") });
@@ -352,6 +366,8 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
       text(ctx, "🟠 대서양 관측점", x0 + 6, y0 + 14, { s: 11, w: "800", c: v("--amber-700") });
       text(ctx, "🔵 동태평양 관측점", x0 + 6, y0 + 32, { s: 11, w: "800", c: v("--brand-700") });
 
+    }
+    function info() {
       var ea = worst(ATL, va), ep2 = worst(PAC, vp);
       $("a-c3-info").innerHTML = "🟠 대서양 " + va.toFixed(1) + " cm/년 → 관측점과의 최대 차이 <b>" + num(ea) + " km</b>"
         + (got.a ? " ✅" : "") + "<br>🔵 동태평양 " + vp.toFixed(1) + " cm/년 → 관측점과의 최대 차이 <b>" + num(ep2) + " km</b>" + (got.p ? " ✅" : "")
@@ -370,14 +386,15 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
     $("a-va").addEventListener("input", function (e) {
       va = +e.target.value; $("a-va-val").textContent = va.toFixed(1);
       if (!got.a && worst(ATL, va) <= 100) { got.a = va; window.sthState("a4", got); check(); }
-      draw();
+      draw(); info();
     });
     $("a-vp").addEventListener("input", function (e) {
       vp = +e.target.value; $("a-vp-val").textContent = vp.toFixed(1);
       if (!got.p && worst(PAC, vp) <= 100) { got.p = vp; window.sthState("a4", got); check(); }
-      draw();
+      draw(); info();
     });
-    draw(); check();
+    draw(); info(); check();
+    window.sthAnimate(canvas, function (s4) { T = s4; draw(); });
   })();
 
   /* ---- 장면 5 : 결말 ---- */
@@ -426,7 +443,7 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
   /* ---- 장면 2 : 판 경계 세 가지 ---- */
   (function () {
     var canvas = $("b-c1"), ctx = window.setupCanvas(canvas), W = canvas._w, H = canvas._h;
-    var ang = 0, spd = 5, got = window.sthState("b2") || { c: false, t: false, d: false };
+    var ang = 0, spd = 5, T = 0, got = window.sthState("b2") || { c: false, t: false, d: false };
 
     function kind(a) { return a <= 60 ? "수렴형" : (a >= 120 ? "발산형" : "보존형"); }
     function draw() {
@@ -439,6 +456,13 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
       box(ctx, 48, 48, 390, 120, v("--card-2"));
       box(ctx, 452, 48, 390, 120, v("--card-2"));
       text(ctx, "판 A (고정)", 243, 116, { s: 13, w: "900", a: "center", c: v("--mist") });
+      /* 판 B 위의 점 무늬가 상대 운동 방향으로 흘러간다 */
+      var dax = -Math.cos(ang * D2R), day = Math.sin(ang * D2R), sp2 = 4 + spd * 3, g = 30;
+      var ox = ((T * sp2 * dax) % g + g) % g, oy = ((T * sp2 * day) % g + g) % g;
+      ctx.save(); ctx.beginPath(); ctx.rect(452, 48, 390, 120); ctx.clip();
+      ctx.fillStyle = v("--mist"); ctx.globalAlpha = .45;
+      for (var gx = 452 - g; gx < 842 + g; gx += g) for (var gy = 48 - g; gy < 168 + g; gy += g) { ctx.beginPath(); ctx.arc(gx + ox, gy + oy, 2.6, 0, Math.PI * 2); ctx.fill(); }
+      ctx.restore(); ctx.globalAlpha = 1;
       text(ctx, "판 B", 647, 116, { s: 13, w: "900", a: "center", c: v("--mist") });
       ctx.strokeStyle = v(col); ctx.lineWidth = 5;
       ctx.beginPath(); ctx.moveTo(445, 44); ctx.lineTo(445, 172); ctx.stroke();
@@ -455,17 +479,43 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
         ctx.fillStyle = v("--teal"); ctx.beginPath();
         ctx.moveTo(40, sea + 18); ctx.lineTo(mid - 30, sea + 18); ctx.lineTo(mid + 10, sea + 46); ctx.lineTo(40, sea + 46); ctx.closePath(); ctx.fill();
         ctx.save(); ctx.translate(mid - 30, sea + 20); ctx.rotate(0.85);
-        ctx.fillStyle = v("--teal"); ctx.fillRect(0, 0, 124, 26); ctx.restore();
+        ctx.fillStyle = v("--teal"); ctx.fillRect(0, 0, 96, 26);
+        ctx.strokeStyle = v("--panel"); ctx.globalAlpha = .6; ctx.lineWidth = 2;
+        for (var k = 0; k < 6; k++) { var sx = (T * (6 + spd * 3) + k * 22) % 104 - 8; ctx.beginPath(); ctx.moveTo(sx, 3); ctx.lineTo(sx, 23); ctx.stroke(); }
+        ctx.restore(); ctx.globalAlpha = 1;
+        ctx.save(); ctx.beginPath(); ctx.rect(40, sea + 18, mid - 30 - 40, 28); ctx.clip();
+        ctx.strokeStyle = v("--panel"); ctx.globalAlpha = .6; ctx.lineWidth = 2;
+        for (var k3 = 0; k3 < 20; k3++) { var fx = 40 + ((T * (6 + spd * 3) + k3 * 22) % 440); ctx.beginPath(); ctx.moveTo(fx, sea + 21); ctx.lineTo(fx, sea + 43); ctx.stroke(); }
+        ctx.restore(); ctx.globalAlpha = 1;
+        for (var z = 0; z < 3; z++) {                          /* 섭입대를 따라 깊어지는 지진 */
+          var bz = Math.max(0, Math.sin(T * 2.6 - z * 1.1));
+          ctx.globalAlpha = .3 + .7 * bz; ctx.fillStyle = v("--amber");
+          ctx.beginPath(); ctx.arc(mid - 18 + z * 20, sea + 34 + z * 26, 3 + bz * 3, 0, Math.PI * 2); ctx.fill();
+        }
+        ctx.globalAlpha = 1;
         ctx.fillStyle = v("--violet"); ctx.fillRect(mid + 16, sea + 18, 844 - mid - 16 - 20, 28);
         ctx.fillStyle = v("--coral"); ctx.beginPath();
         ctx.moveTo(660, sea + 18); ctx.lineTo(630, sea + 54); ctx.lineTo(690, sea + 54); ctx.closePath(); ctx.fill();
         text(ctx, "▼ 해구", mid - 6, sea + 12, { s: 11.5, w: "800", a: "center", c: v("--cold") });
-        text(ctx, "섭입하는 판", mid + 96, sea + 96, { s: 11.5, w: "800", c: v("--teal-700") });
+        text(ctx, "섭입하는 판", mid + 50, sea + 84, { s: 11.5, w: "800", c: v("--teal-700") });
         text(ctx, "🌋 호상 열도의 화산", 704, sea + 40, { s: 11.5, w: "800", c: v("--coral-700") });
         text(ctx, "밀도가 큰 판이 다른 판 아래로 가라앉습니다. 깊은 지진과 화산이 함께 일어나고, 지각이 사라집니다.", 46, bot - 14, { s: 11.5, c: v("--mist") });
       } else if (k === "발산형") {
         ctx.fillStyle = v("--teal"); ctx.fillRect(48, sea + 22, mid - 78, 26);
         ctx.fillStyle = v("--teal"); ctx.fillRect(mid + 30, sea + 22, 812 - mid - 30, 26);
+        var dv = 6 + spd * 3, dw = 24, doff = (T * dv) % (2 * dw);
+        ctx.fillStyle = v("--teal-700"); ctx.globalAlpha = .55;
+        ctx.save(); ctx.beginPath(); ctx.rect(48, sea + 22, mid - 78, 26); ctx.clip();
+        for (var bx = mid - 30 + 2 * dw - doff; bx > 48 - dw; bx -= 2 * dw) ctx.fillRect(bx - dw, sea + 22, dw, 26);
+        ctx.restore(); ctx.save(); ctx.beginPath(); ctx.rect(mid + 30, sea + 22, 812 - mid - 30, 26); ctx.clip();
+        for (var bx2 = mid + 30 - 2 * dw + doff; bx2 < 812 + dw; bx2 += 2 * dw) ctx.fillRect(bx2, sea + 22, dw, 26);
+        ctx.restore(); ctx.globalAlpha = 1;
+        for (var mq = 0; mq < 10; mq++) {
+          var pm = (T * 0.5 + mq / 10) % 1;
+          ctx.globalAlpha = .3 + .6 * pm; ctx.fillStyle = v("--amber");
+          ctx.beginPath(); ctx.arc(mid + Math.sin(mq * 2.1 + T * 2.5) * 8, bot - 24 - pm * (bot - sea - 50), 3 + pm * 2, 0, Math.PI * 2); ctx.fill();
+        }
+        ctx.globalAlpha = 1;
         ctx.fillStyle = v("--coral"); ctx.beginPath();
         ctx.moveTo(mid, sea + 4); ctx.lineTo(mid - 44, sea + 48); ctx.lineTo(mid + 44, sea + 48); ctx.closePath(); ctx.fill();
         ctx.strokeStyle = v("--coral"); ctx.fillStyle = v("--coral"); ctx.lineWidth = 4;
@@ -481,12 +531,28 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
         ctx.fillStyle = v("--violet"); ctx.fillRect(mid + 12, sea + 22, 812 - mid - 12, 40);
         ctx.strokeStyle = v("--violet"); ctx.lineWidth = 6;
         ctx.beginPath(); ctx.moveTo(mid, sea + 10); ctx.lineTo(mid, bot - 30); ctx.stroke();
+        var cyc = T % 3, qy = sea + 30 + (Math.floor(T / 3) * 37) % 60;
+        if (T > 0 && cyc < 0.6) {
+          ctx.globalAlpha = 1 - cyc / 0.6; ctx.strokeStyle = v("--amber"); ctx.lineWidth = 3;
+          ctx.beginPath(); ctx.arc(mid, qy, 6 + cyc * 60, 0, Math.PI * 2); ctx.stroke();
+          ctx.globalAlpha = 1; text(ctx, "지진!", mid + 14, qy - 10, { s: 11, w: "900", c: v("--amber-700") });
+        }
+        /* ⊗ ⊙ 기호가 어긋나며 움직인다 */
+        for (var r2 = 0; r2 < 3; r2++) {
+          var yy = sea + 30 + ((T * (8 + spd * 2) + r2 * 30) % 90);
+          ctx.globalAlpha = .5; ctx.fillStyle = v("--teal-700"); ctx.beginPath(); ctx.arc(mid - 40, yy, 3, 0, Math.PI * 2); ctx.fill();
+          var yy2 = sea + 120 - ((T * (8 + spd * 2) + r2 * 30) % 90);
+          ctx.fillStyle = v("--violet-700"); ctx.beginPath(); ctx.arc(mid + 40, yy2, 3, 0, Math.PI * 2); ctx.fill();
+        }
+        ctx.globalAlpha = 1;
         text(ctx, "⊗ 저쪽으로 미끄러짐", mid - 24, sea + 96, { s: 12, w: "800", a: "right", c: v("--teal-700") });
         text(ctx, "⊙ 이쪽으로 미끄러짐", mid + 24, sea + 96, { s: 12, w: "800", c: v("--violet-700") });
         text(ctx, "두 판이 어긋나며 스쳐 지나갑니다(변환 단층). 지각이 새로 생기지도, 사라지지도 않습니다.", 46, bot - 14, { s: 11.5, c: v("--mist") });
       }
 
-      var wdt = Math.abs(perp) * 100;
+    }
+    function info() {
+      var k = kind(ang), perp = spd * Math.cos(ang * D2R), para = spd * Math.sin(ang * D2R), wdt = Math.abs(perp) * 100;
       $("b-c1-info").innerHTML = "θ = " + ang + "°이므로 경계에 <b>수직인 성분</b>은 " + perp.toFixed(2) + " cm/년, <b>나란한 성분</b>은 "
         + para.toFixed(2) + " cm/년입니다. → <b>" + k + " 경계</b><br>"
         + (k === "보존형" ? "수직 성분이 거의 0이라 1,000만 년이 지나도 지각이 생기거나 사라지지 않습니다."
@@ -509,17 +575,18 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
       if (k === "보존형" && !got.t) { got.t = ch = true; }
       if (k === "발산형" && !got.d) { got.d = ch = true; }
       if (ch) { window.sthState("b2", got); check(); }
-      draw();
+      draw(); info();
     }
     $("b-ang").addEventListener("input", function (e) { ang = +e.target.value; $("b-ang-val").textContent = ang + "°"; upd(); });
-    $("b-spd").addEventListener("input", function (e) { spd = +e.target.value; $("b-spd-val").textContent = spd.toFixed(1); draw(); });
-    draw(); check();
+    $("b-spd").addEventListener("input", function (e) { spd = +e.target.value; $("b-spd-val").textContent = spd.toFixed(1); draw(); info(); });
+    draw(); info(); check();
+    window.sthAnimate(canvas, function (s4) { T = s4; draw(); });
   })();
 
   /* ---- 장면 3 : 판을 움직이는 힘 ---- */
   (function () {
     var canvas = $("b-c2"), ctx = window.setupCanvas(canvas), W = canvas._w, H = canvas._h;
-    var slab = 0, got = window.sthState("b3") || { slow: false, fast: false };
+    var slab = 0, T = 0, got = window.sthState("b3") || { slow: false, fast: false };
     var REAL = [["태평양판", 9.0], ["나스카판", 7.4], ["인도-호주판", 6.2], ["아프리카판", 2.1], ["북아메리카판", 1.9], ["유라시아판", 0.9]];
     function speed(s) { return 1.0 + 0.09 * s; }
 
@@ -534,13 +601,23 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
       ctx.moveTo(86, sea + 16); ctx.lineTo(56, sea + 52); ctx.lineTo(116, sea + 52); ctx.closePath(); ctx.fill();
       text(ctx, "해령", 86, sea + 12, { s: 11, w: "800", a: "center", c: v("--coral-700") });
       ctx.fillStyle = v("--teal"); ctx.fillRect(86, sea + 30, 300, 22);
+      /* 판이 해령에서 해구 쪽으로 흘러간다 — 빠르기는 내 모형의 속도에 비례 */
+      var fp = 4 + u * 5;
+      ctx.save(); ctx.beginPath(); ctx.rect(86, sea + 30, 300, 22); ctx.clip();
+      ctx.strokeStyle = v("--panel"); ctx.globalAlpha = .6; ctx.lineWidth = 2;
+      for (var k = 0; k < 14; k++) { var fx = 86 + ((T * fp + k * 24) % 312); ctx.beginPath(); ctx.moveTo(fx, sea + 33); ctx.lineTo(fx, sea + 49); ctx.stroke(); }
+      ctx.restore(); ctx.globalAlpha = 1;
       ctx.strokeStyle = v("--coral"); ctx.fillStyle = v("--coral"); ctx.lineWidth = 3;
-      window.drawArrow(ctx, 120, sea + 41, 196, sea + 41, 11);
+      ctx.setLineDash([9, 6]); ctx.lineDashOffset = -T * fp; ctx.beginPath(); ctx.moveTo(120, sea + 41); ctx.lineTo(186, sea + 41); ctx.stroke(); ctx.setLineDash([]); ctx.lineDashOffset = 0;
+      window.drawArrow(ctx, 180, sea + 41, 196, sea + 41, 11);
       text(ctx, "해령 밀기", 124, sea + 70, { s: 11, w: "800", c: v("--coral-700") });
       text(ctx, "▼ 해구", 392, sea + 12, { s: 11, w: "800", a: "center", c: v("--cold") });
       var sl = 24 + slab * 1.1;
       ctx.save(); ctx.translate(386, sea + 32); ctx.rotate(0.95);
-      ctx.fillStyle = v("--teal"); ctx.fillRect(0, 0, sl, 22); ctx.restore();
+      ctx.fillStyle = v("--teal"); ctx.fillRect(0, 0, sl, 22);
+      ctx.strokeStyle = v("--panel"); ctx.globalAlpha = .6; ctx.lineWidth = 2;
+      for (var k2 = 0; k2 < 8; k2++) { var sx = (T * fp + k2 * 24) % (sl + 24) - 4; if (sx < sl) { ctx.beginPath(); ctx.moveTo(sx, 3); ctx.lineTo(sx, 19); ctx.stroke(); } }
+      ctx.restore(); ctx.globalAlpha = 1;
       if (slab > 0) {
         ctx.strokeStyle = v("--violet"); ctx.fillStyle = v("--violet"); ctx.lineWidth = 3;
         window.drawArrow(ctx, 404, sea + 56, 404 + Math.min(sl, 90) * 0.58, sea + 56 + Math.min(sl, 90) * 0.82, 11);
@@ -564,6 +641,9 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
       text(ctx, "내 모형", x0 - 6, yM + 15, { s: 11, w: "900", a: "right", c: v("--coral-700") });
       text(ctx, u.toFixed(1), x0 + bw + 6, yM + 15, { s: 11, w: "900", c: v("--coral-700") });
 
+    }
+    function info() {
+      var u = speed(slab);
       $("b-c2-info").innerHTML = "섭입대 비율 <b>" + slab + "%</b> → 판의 이동 속도 <b>" + u.toFixed(1) + " cm/년</b>. "
         + (u <= 2.0 ? "가장자리에 해구가 거의 없는 판입니다. <b>유라시아판·아프리카판</b>처럼 느리게 움직입니다."
           : (u >= 9.0 ? "가장자리의 대부분이 해구인 판입니다. <b>태평양판</b>처럼 빠르게 움직입니다."
@@ -585,15 +665,16 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
       if (u <= 2.0 && !got.slow) { got.slow = ch = true; }
       if (u >= 9.0 && !got.fast) { got.fast = ch = true; }
       if (ch) { window.sthState("b3", got); check(); }
-      draw();
+      draw(); info();
     });
-    draw(); check();
+    draw(); info(); check();
+    window.sthAnimate(canvas, function (s4) { T = s4; draw(); });
   })();
 
   /* ---- 장면 4 : 하와이–엠퍼러 해산열 ---- */
   (function () {
     var canvas = $("b-c3"), ctx = window.setupCanvas(canvas), W = canvas._w, H = canvas._h;
-    var vv = 5.0, dir = 270, got = window.sthState("b4") || { v: 0, d: 0 };
+    var vv = 5.0, dir = 270, T = 0, got = window.sthState("b4") || { v: 0, d: 0 };
     var HX = 740, HY = 400, S = 0.055, AZH = 300, AZE = 345, BEND = 47, ENDA = 81;
     var OBS = [[28, 2400], [47, 3500], [81, 6000]];
     function az(a) { return [Math.sin(a * D2R), -Math.cos(a * D2R)]; }
@@ -649,13 +730,25 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
         ctx.fillStyle = v(q[1]); ctx.beginPath(); ctx.arc(p[0], p[1], 5.5, 0, Math.PI * 2); ctx.fill();
       });
 
+      /* 열점에서 태어난 화산이 판에 실려 내 모형의 길을 따라 옮겨 간다(1초에 1,000만 년) */
+      for (var gk = 0; gk < 4; gk++) {
+        var age = ((T * 10) + gk * ENDA / 4) % ENDA, gp = modPos(age, vv, dir), gr = age < 3 ? 4 + age * 2 : Math.max(4, 10 - age * 0.06);
+        ctx.globalAlpha = .9; ctx.fillStyle = v(age < 3 ? "--coral" : "--brand");
+        ctx.beginPath(); ctx.arc(gp[0], gp[1], gr, 0, Math.PI * 2); ctx.fill();
+        if (gk === 0) text(ctx, Math.round(age) + "백만 년", gp[0] + 10, gp[1] + 4, { s: 10.5, w: "800", c: v("--brand-700") });
+      }
+      ctx.globalAlpha = 1;
       /* 열점 */
-      ctx.fillStyle = v("--amber"); ctx.beginPath(); ctx.arc(HX, HY, 11, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = v("--amber"); ctx.globalAlpha = .3;
+      ctx.beginPath(); ctx.arc(HX, HY, 16 + 4 * Math.sin(T * 3), 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1;
+      ctx.beginPath(); ctx.arc(HX, HY, 11, 0, Math.PI * 2); ctx.fill();
       text(ctx, "🔥 열점 (거의 고정) · 하와이섬", HX - 16, HY + 26, { s: 11.5, w: "800", a: "right", c: v("--amber-700") });
 
       text(ctx, "● 관측된 해산열", 640, 60, { s: 11.5, w: "800", c: v("--mist") });
       text(ctx, "┄ 내 모형", 640, 80, { s: 11.5, w: "800", c: v("--coral-700") });
 
+    }
+    function info() {
       var e = worstV(vv);
       $("b-c3-info").innerHTML = "속도 <b>" + vv.toFixed(1) + " cm/년</b> → 세 관측점과의 최대 거리 차이 <b>" + num(e) + " km</b>" + (got.v ? " ✅" : "")
         + "<br>꺾인 뒤 해산열이 뻗은 방위각 <b>" + dir + "°</b>" + (got.d ? " ✅" : "")
@@ -674,15 +767,16 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
     $("b-v").addEventListener("input", function (e) {
       vv = +e.target.value; $("b-v-val").textContent = vv.toFixed(1);
       if (!got.v && worstV(vv) <= 400) { got.v = vv; window.sthState("b4", got); check(); }
-      draw();
+      draw(); info();
     });
     $("b-dir").addEventListener("input", function (e) {
       dir = +e.target.value;
       $("b-dir-val").textContent = dir + "°" + (dir <= 285 ? " 서" : (dir >= 350 ? " 북" : " 북서"));
       if (!got.d && Math.abs(dir - 345) <= 10) { got.d = dir; window.sthState("b4", got); check(); }
-      draw();
+      draw(); info();
     });
-    draw(); check();
+    draw(); info(); check();
+    window.sthAnimate(canvas, function (s4) { T = s4; draw(); });
   })();
 
   /* ---- 장면 5 : 두 가지 구조 운동 ---- */
