@@ -156,7 +156,7 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
       if (got.a) done("m1-2a");
       if (got.b) done("m1-2b");
       if (got.a && got.b) {
-        window.sthMission("m1-2", true, "<span class='m-tag'>미션 완료</span>오늘 노르웨이 남부는 <b>북위 60°</b>, 그런데 3억 년 전 그곳의 용암은 <b>북위 20°</b>에서 굳었습니다. 실제로 유럽의 석탄기 지층에는 열대 늪지 숲이 쌓여 만들어진 석탄이 들어 있습니다. 그 땅은 <b>적도 부근에서 북쪽으로 4,000 km 넘게 옮겨 온 것</b>입니다.");
+        window.sthMission("m1-2", true, "<span class='m-tag'>미션 완료</span>오늘 노르웨이 남부는 <b>북위 60°</b>, 그런데 3억 년 전 그곳의 용암은 <b>북위 20°</b>에서 굳었습니다. 실제로 유럽의 석탄기 지층에는 열대 늪지 숲이 쌓여 만들어진 석탄이 들어 있습니다. 그 땅은 <b>저위도(북위 20°)에서 북쪽으로 4,000 km 넘게 옮겨 온 것</b>입니다.");
         ep.clear(1);
       }
     }
@@ -428,7 +428,7 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
     var canvas = $("b-c1"), ctx = window.setupCanvas(canvas), W = canvas._w, H = canvas._h;
     var ang = 0, spd = 5, got = window.sthState("b2") || { c: false, t: false, d: false };
 
-    function kind(a) { return a <= 60 ? "수렴형" : (a >= 120 ? "발산형" : "보존형"); }
+    function kind(a) { return a <= 75 ? "수렴형" : (a >= 105 ? "발산형" : "보존형"); }
     function draw() {
       paper(ctx, W, H);
       var k = kind(ang), perp = spd * Math.cos(ang * D2R), para = spd * Math.sin(ang * D2R);
@@ -489,7 +489,7 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
       var wdt = Math.abs(perp) * 100;
       $("b-c1-info").innerHTML = "θ = " + ang + "° 이므로 경계에 <b>수직인 성분</b>은 " + perp.toFixed(2) + " cm/년, <b>나란한 성분</b>은 "
         + para.toFixed(2) + " cm/년입니다. → <b>" + k + " 경계</b><br>"
-        + (k === "보존형" ? "수직 성분이 거의 0이라 1,000만 년이 지나도 지각이 생기거나 사라지지 않습니다."
+        + (k === "보존형" ? "수직 성분이 아주 작아(두 판이 거의 나란히 스쳐 가) 1,000만 년이 지나도 지각이 거의 생기거나 사라지지 않습니다."
           : "이대로 1,000만 년이 흐르면 폭 <b>" + num(wdt) + " km</b>의 지각이 " + (perp > 0 ? "<b>사라집니다</b>." : "<b>새로 만들어집니다</b>."));
     }
     canvas._redraw = draw;
@@ -659,7 +659,7 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
       var e = worstV(vv);
       $("b-c3-info").innerHTML = "속도 <b>" + vv.toFixed(1) + " cm/년</b> → 세 관측점과의 최대 거리 차이 <b>" + num(e) + " km</b>" + (got.v ? " ✅" : "")
         + "<br>꺾인 뒤 해산열이 뻗은 방위각 <b>" + dir + "°</b>" + (got.d ? " ✅" : "")
-        + "<br>해산열이 뻗은 방향의 <b>반대쪽</b>이 판이 움직인 방향입니다.";
+        + "<br>열점에서 오래된 화산 쪽으로 뻗은 방향이 곧 <b>판이 움직인 방향</b>입니다.";
     }
     canvas._redraw = draw;
 
@@ -667,7 +667,7 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
       if (got.v) done("m2-4a");
       if (got.d) done("m2-4b");
       if (got.v && got.d) {
-        window.sthMission("m2-4", true, "<span class='m-tag'>미션 완료</span>속도는 약 <b>7.5 cm/년</b>, 엠퍼러 구간은 거의 <b>북쪽(방위각 345°)</b>으로 뻗어 있습니다. 속도는 그대로인데 방향만 바뀐 것 — 약 47백만 년 전 <b>태평양판이 방향을 튼 기록</b>입니다.");
+        window.sthMission("m2-4", true, "<span class='m-tag'>미션 완료</span>속도는 약 <b>7.5 cm/년</b>, 엠퍼러 구간은 거의 <b>북쪽(방위각 345°)</b>으로 뻗어 있습니다. 속도는 그대로인데 방향만 바뀐 것 — 약 4,700만 년 전 <b>태평양판이 방향을 튼 기록</b>입니다. (7.5 cm/년은 엠퍼러 구간까지 세 점에 맞춘 평균입니다. 하와이 구간만 보면 약 8.6 cm/년으로 조금 빠르고, 실제 자료 탭에서 섬 다섯 개로 구한 값은 약 9 cm/년입니다.)");
         ep.clear(3);
       }
     }
@@ -678,7 +678,7 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
     });
     $("b-dir").addEventListener("input", function (e) {
       dir = +e.target.value;
-      $("b-dir-val").textContent = dir + "°" + (dir <= 285 ? " 서" : (dir >= 350 ? " 북" : " 북서"));
+      $("b-dir-val").textContent = dir + "°" + (dir <= 285 ? " 서" : (dir >= 350 ? " 북" : (dir >= 330 ? " 북북서" : " 북서")));
       if (!got.d && Math.abs(dir - 345) <= 10) { got.d = dir; window.sthState("b4", got); check(); }
       draw();
     });
@@ -691,11 +691,11 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
     var p = window.sthState("p2") || "", g = window.sthState("b4") || {};
     $("b-vs").innerHTML = "<b>나의 첫 추리</b> " + (p || "기록 없음")
       + (p.indexOf("㉡") === 0 ? " — 정확했습니다." : " — 열점과 플룸이 답이었습니다.")
-      + "<br><b>내가 읽어 낸 판의 역사</b> 속도 " + (g.v ? g.v.toFixed(1) : "-") + " cm/년, 약 47백만 년 전 방향이 북북서 → 서북서로 바뀜";
+      + "<br><b>내가 읽어 낸 판의 역사</b> 속도 " + (g.v ? g.v.toFixed(1) : "-") + " cm/년, 약 4,700만 년 전 방향이 북북서 → 서북서로 바뀜";
   }
   function finish() {
     var g = window.sthState("b4") || {};
-    window.sthState("r2", "해결 · 태평양판 " + (g.v ? g.v.toFixed(1) : "-") + " cm/년, 47백만 년 전 방향 전환");
+    window.sthState("r2", "해결 · 태평양판 " + (g.v ? g.v.toFixed(1) : "-") + " cm/년, 4,700만 년 전 방향 전환");
   }
   window.sthSort({
     mount: "b-sort",
@@ -746,7 +746,7 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
   function logVisc(si, T, w) { return 0.12 * (si - 45) - 0.006 * (T - 1200) - 0.35 * w + 1.0; }
   function classify(si) {
     if (si < 52) return { m: "현무암질", vo: "순상 화산", rk: "현무암", st: "용암이 멀리까지 흘러가는 조용한 분출", ex: "제주 한라산, 하와이" };
-    if (si < 63) return { m: "안산암질", vo: "성층 화산", rk: "안산암", st: "용암류와 화산 쇄설물이 번갈아 쌓이는 분출", ex: "일본 후지산, 필리핀 마욘" };
+    if (si < 63) return { m: "안산암질", vo: "성층 화산", rk: "안산암", st: "용암류와 화산 쇄설물이 번갈아 쌓이는 분출", ex: "일본 사쿠라지마, 필리핀 마욘" };
     return { m: "유문암질", vo: "종상 화산", rk: "유문암", st: "기체가 갇혔다가 한꺼번에 터지는 폭발적 분출", ex: "백두산 정상부, 울릉도" };
   }
 
@@ -1187,7 +1187,7 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
       answer: 1,
       why: [
         "지진이 일어나는 순간 P파와 S파는 함께 출발합니다.",
-        "맞습니다. P파는 앞뒤로 밀고 당기는 종파라 더 빠르고, S파는 위아래로 흔드는 횡파라 느립니다. 그 시간 차가 PS시입니다.",
+        "맞습니다. P파는 진행 방향으로 밀고 당기는 종파, S파는 진행 방향에 수직으로 흔드는 횡파이고, 같은 암석 속에서는 P파가 S파보다 빠릅니다. 그 시간 차가 PS시입니다.",
         "둘 다 지구 속을 지나옵니다. 지표를 따라오는 것은 표면파이고, 가장 늦게 도착합니다.",
         "오히려 P파의 진폭이 더 작습니다. 그래서 초기 ‘미동’이라고 부릅니다."
       ],

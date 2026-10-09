@@ -117,7 +117,7 @@ function num(x, d) { return x.toLocaleString(undefined, { minimumFractionDigits:
       text(ctx, "충돌 에너지가 줄면 지구는 열을 우주로 내보내며 식는다", x0, 356, { s: 11, c: v("--mist") });
 
       var T0 = Math.round(T);
-      $("a-c1-info").innerHTML = "미행성이 오늘날의 <b>" + R + "배</b>로 떨어질 때 지표 온도는 약 <b>" + T0 + " ℃</b>입니다. "
+      $("a-c1-info").innerHTML = "미행성 충돌 빈도가 상대값 <b>" + R + "배</b>일 때 지표 온도는 약 <b>" + T0 + " ℃</b>입니다. "
         + (T >= 1200 ? "규산염 암석이 모두 녹아 <b>마그마 바다</b>가 되었습니다. 이 상태에서만 무거운 물질과 가벼운 물질이 자유롭게 자리를 바꿀 수 있습니다."
           : (T >= 700 ? "아직 뜨겁지만 지구 전체가 녹을 만큼은 아닙니다. 충돌을 더 잦게 해 보세요."
             : "충돌이 잦아들어 지표가 식고 <b>지각</b>이 굳기 시작합니다. 이때부터 화산 기체가 모여 원시 대기를 이룹니다."));
@@ -335,7 +335,7 @@ function num(x, d) { return x.toLocaleString(undefined, { minimumFractionDigits:
       text(ctx, K.name, cx, cy + rad + 34, { s: 15, w: "900", a: "center", c: v(K.col) });
       text(ctx, "지표 평균 온도 " + Math.round(w.T) + " ℃", cx, cy + rad + 58, { s: 13, w: "800", a: "center" });
       text(ctx, "대기를 붙잡는 힘 " + Math.round(w.keep * 100) + "% · 대기 CO₂ "
-        + (w.co2 >= 1 ? Math.round(w.co2) + "기압" : "0.04기압"), cx, cy + rad + 78, { s: 11.5, c: v("--mist"), a: "center" });
+        + (w.kind === "vapor" ? Math.round(w.co2) + "기압" : (w.kind === "ocean" ? "약 0.0004기압(0.04%)" : (w.kind === "ice" ? "적음" : "거의 없음"))), cx, cy + rad + 78, { s: 11.5, c: v("--mist"), a: "center" });
       text(ctx, "받는 햇빛 " + Math.round(w.sAbs) + " W/m² (지구 238)", cx, cy + rad + 96, { s: 11.5, c: v("--mist"), a: "center" });
 
       /* 오른쪽 : 갈림길 지도 */
@@ -439,7 +439,7 @@ function num(x, d) { return x.toLocaleString(undefined, { minimumFractionDigits:
         { id: "me", label: "수성", sub: "0.39 AU · 질량 0.06배" },
         { id: "ve", label: "금성", sub: "0.72 AU · 질량 0.82배" },
         { id: "ea", label: "지구", sub: "1.00 AU · 질량 1.00배" },
-        { id: "ma", label: "화성", sub: "1.52 AU · 질량 0.11배" }
+        { id: "ma", label: "화성", sub: "1.52 AU · 질량 0.10배" }
       ],
       items: CLUES,
       doneText: "모형이 예측한 그대로입니다.",
@@ -846,8 +846,8 @@ function num(x, d) { return x.toLocaleString(undefined, { minimumFractionDigits:
       /* 저장고 */
       var res = [
         { x: 40,  y: 40,  w: 200, h: 76, n: "기권 · 수증기", val: num(12.9 * sc, 1) + " 천 km³", c: "--brand" },
-        { x: 40,  y: 150, w: 200, h: 76, n: "지권 · 빙하", val: num(224000 * ice, 0) + " 천 km³", c: "--violet" },
-        { x: 40,  y: 260, w: 200, h: 76, n: "지권 · 지하수·하천", val: num(23576 * clamp(1 - ice, 0.02, 1), 0) + " 천 km³", c: "--teal" },
+        { x: 40,  y: 150, w: 200, h: 76, n: "수권 · 빙하", val: num(224000 * ice, 0) + " 천 km³", c: "--violet" },
+        { x: 40,  y: 260, w: 200, h: 76, n: "수권 · 지하수·하천", val: num(23576 * clamp(1 - ice, 0.02, 1), 0) + " 천 km³", c: "--teal" },
         { x: 470, y: 150, w: 210, h: 90, n: "수권 · 해양", val: num(1338000 - 224000 * ice + 24064, 0) + " 천 km³", c: "--brand-700" }
       ];
       res.forEach(function (r) {
@@ -1006,7 +1006,7 @@ function num(x, d) { return x.toLocaleString(undefined, { minimumFractionDigits:
     $("c-land").addEventListener("input", function (e) { k = +e.target.value; $("c-land-val").textContent = k.toFixed(1); draw(); });
     window.sthPick({
       mount: "c-q1",
-      q: "화산 활동이 갑자기 2배로 늘어도 대기 이산화 탄소가 2배보다 훨씬 더 늘지는 않습니다. 왜 그럴까요?",
+      q: "화산 활동이 갑자기 2배로 늘어도 대기 이산화 탄소가 끝없이 쌓이지 않고 새 균형점에서 멈춥니다. 왜 그럴까요?",
       options: [
         "바다가 이산화 탄소를 얼마든지 흡수해 주기 때문",
         "기온이 올라가면 비가 많아지고 규산염 풍화가 빨라져, 이산화 탄소를 더 빨리 치워 내기 때문",
@@ -1108,7 +1108,7 @@ function num(x, d) { return x.toLocaleString(undefined, { minimumFractionDigits:
       if (got.a) done("m3-4a");
       if (got.b) done("m3-4b");
       if (got.a && got.b) {
-        window.sthMission("m3-4", true, "<span class='m-tag'>미션 완료</span>얼음이 <b>풍화라는 브레이크</b>를 멈춰 세운 사이, 화산이 내보낸 이산화 탄소가 수천만 년 동안 쌓여 결국 지구를 녹였습니다. 실제 연구에서도 탈출에 필요한 CO₂는 약 0.1기압(10만 ppm 안팎)으로 추정합니다.");
+        window.sthMission("m3-4", true, "<span class='m-tag'>미션 완료</span>얼음이 <b>풍화라는 브레이크</b>를 멈춰 세운 사이, 화산이 내보낸 이산화 탄소가 수백만~수천만 년 동안 쌓여 결국 지구를 녹였습니다. 실제 연구에서도 탈출에 필요한 CO₂는 약 0.1기압(10만 ppm 안팎)으로 추정합니다.");
         ep.clear(3);
       }
     }
