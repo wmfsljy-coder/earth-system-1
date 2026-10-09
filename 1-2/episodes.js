@@ -379,7 +379,7 @@ function poly(ctx, pts, cx, cy, fill, stroke) {
       if (got.a) done("m1-4a");
       if (got.p) done("m1-4b");
       if (got.a && got.p) {
-        window.sthMission("m1-4", true, "<span class='m-tag'>미션 완료</span>대서양 중앙 해령은 한쪽으로 약 <b>2.5 cm/년</b>, 동태평양 해령은 약 <b>6 cm/년</b>. 손톱이 자라는 속도로 바다가 넓어지고 있었습니다. 1억 년이면 각각 2,500 km, 6,000 km입니다.");
+        window.sthMission("m1-4", true, "<span class='m-tag'>미션 완료</span><span data-place=10,-30,3,sv>대서양 중앙 해령은</span> 한쪽으로 약 <b>2.5 cm/년</b>, <span data-place=-10,-110,3,sv>동태평양 해령은</span> 약 <b>6 cm/년</b>. 손톱이 자라는 속도로 바다가 넓어지고 있었습니다. 1억 년이면 각각 2,500 km, 6,000 km입니다.");
         ep.clear(3); ep.clear(4);
       }
     }
