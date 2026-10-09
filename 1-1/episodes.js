@@ -1119,7 +1119,7 @@ function num(x, d) { return x.toLocaleString(undefined, { minimumFractionDigits:
 
     $("c-esc").addEventListener("input", function (e) { V = +e.target.value; $("c-esc-val").textContent = V.toFixed(1); });
     $("c-run").addEventListener("click", function () {
-      var sim = escapeRun(V), n = sim.t.length - 1, i = 0, btn = $("c-run");
+      var runV = V, sim = escapeRun(runV), n = sim.t.length - 1, i = 0, btn = $("c-run");
       btn.disabled = true;
       canvas._redraw = function () { chart(sim, Math.min(i, n)); };
       (function step() {
@@ -1127,7 +1127,7 @@ function num(x, d) { return x.toLocaleString(undefined, { minimumFractionDigits:
         chart(sim, i);
         if (i < n) { window.setTimeout(step, 22); return; }
         btn.disabled = false; btn.textContent = "▶ 다른 세기로 흘려보내기";
-        log.push({ v: V.toFixed(1), esc: sim.esc });
+        log.push({ v: runV.toFixed(1), esc: sim.esc });
         log = log.slice(-6);
         window.sthState("c4log", log);
         var ch = false;
