@@ -1,7 +1,8 @@
 /* 지구시스템과학1 Ⅰ-1 지구의 탄생과 물질의 순환 — 실제 자료
    r1 보스토크 빙하 코어: 빙하기는 얼마마다 돌아왔나, 이산화 탄소는 어떻게 따라갔나
    r2 지구가 숨 쉰다: 마우나로아 이산화 탄소의 계절 변화(탄소 순환)
-   자료: data/vostok.js (NOAA NCEI 고기후 자료, Petit 외 1999 · Barnola 외), data/co2-mlo.js (NOAA GML) — 공공 영역 */
+   r3 우리 동네 물의 순환 — 2025년 창원 강수량은 평년의 몇 %
+   자료: data/vostok.js (NOAA NCEI 고기후 자료, Petit 외 1999 · Barnola 외), data/co2-mlo.js (NOAA GML) — 공공 영역, data/cw155.js */
 (function () {
 "use strict";
 var VT = (window.REAL_VOSTOK || { temp: [] }).temp;       /* [얼음 나이(년 전), 기온 차 °C(현재 대비)] */
@@ -20,6 +21,11 @@ var SEA = (function () {                                 /* 13개월 중심 이�
 var YR = MM.length ? MM[0][0] + " ~ " + MM[MM.length - 1][0] : "";
 var SRC1 = "<small>출처: NOAA 국립환경정보센터(NCEI) 고기후 자료 — 남극 보스토크 빙하 코어 기온 차(Petit 외, 1999, Nature 399)와 이산화 탄소(Barnola 외). 기온 차는 얼음 속 수소 동위 원소 비로 구한 남극 기온의 현재 대비 차이입니다. 사본은 data/vostok.js.</small>";
 var SRC2 = "<small>출처: NOAA 지구감시연구소 GML, 마우나로아 관측소 월평균 이산화 탄소(" + YR + "). 13개월 이동 평균(추세)을 뺀 뒤 달마다 평균했습니다. 사본은 data/co2-mlo.js.</small>";
+var ZR = ((window.REAL_CW155 || {}).rows || []), ZP = {}; ZR.forEach(function (r) { ZP[r[0]] = r[5]; });
+var Z_NP = (window.REAL_CW155 || { normal: { P: 1534 } }).normal.P, Z_P25 = ZP[2025] || 1182, Z_PCT = Z_P25 / Z_NP * 100;
+var Z_M = ((window.REAL_CW155 || {}).monthP || []), Z_N9 = Z_M.slice(0, 9).reduce(function (s, v) { return s + v; }, 0);
+var Z_26 = (window.REAL_CW155 || {}).p2026 || null;
+var SRC_Z = "<small>출처: 기상청 날씨누리 과거 관측 일별 자료, 창원(155) 일강수량을 해마다 더한 값. 평년(1991 ~ 2020) " + Z_NP.toLocaleString() + " mm. 사본은 data/cw155.js.</small>";
 
 window.sthLab({
   mount: "real", key: "real", result: "rReal", label: "실제 자료",
@@ -121,6 +127,46 @@ window.sthLab({
     solution: "가장 많은 달 <b>5월</b>, 가장 적은 달 <b>9월</b>(10월도 거의 같음).",
     why: "북반구에는 육지와 숲이 남반구보다 훨씬 많습니다. 봄부터 여름까지 식물이 광합성으로 이산화 탄소를 빨아들여 9~10월에 가장 적어지고, 가을·겨울에는 잎이 지고 생물의 호흡과 분해가 이어져 다시 늘어 5월에 가장 많아집니다. 대기와 생물권 사이를 탄소가 해마다 오가는 <b>탄소 순환</b>이 그래프의 톱니로 보이는 것입니다.<br>"
       + "톱니가 해마다 조금씩 높아지는 것은 이 자연의 순환 위에 화석 연료에서 나온 탄소가 더해지기 때문입니다."
+  },
+  {
+    id: "r3", tag: "실제 자료 · 우리 동네 물의 순환", title: "2025년, 우리 동네 땅 1 m²에 내린 비", short: "한 해 강수",
+    who: "📍", name: "창원기상대(기상청)",
+    say: "“물의 순환에서 비는 바다와 하늘을 거쳐 땅으로 돌아오는 물입니다. 강수량 1 mm는 <b>땅 1 m²에 물 1 L</b>가 고인 것과 같아요. 아래는 진해와 가까운 <b>창원기상대</b>의 해마다 강수량입니다. 가장 최근에 한 해가 다 끝난 <b>2025년</b>의 강수량이 평년(1991 ~ 2020년 평균)의 몇 %였는지 구해 주세요.”",
+    predict: {
+      q: "강수량 1,000 mm는 운동장 1 m²에 물이 몇 L 내린 것일까요?",
+      options: ["㉠ 1 L", "㉡ 100 L", "㉢ 1,000 L(1 t)"],
+      answer: 2
+    },
+    task: "막대 위 값을 읽어 <b>2025년 강수량 ÷ 평년 × 100</b>을 슬라이더로 맞추세요(± 2 %).",
+    build: function (stage, api) {
+      var H = api.h, cv = api.canvas(280), ctx = cv.ctx, W = cv.W, k = 100;
+      var ys = ZR.map(function (r) { return r[0]; }), x0 = 50, x1 = 640, y0 = 24, y1 = 240, n = ys.length || 1, bw = (x1 - x0) / n;
+      function Y(v) { return y1 - v / 3000 * (y1 - y0); }
+      function draw() {
+        H.paper(ctx, W, cv.H); H.axes(ctx, x0, y0, x1, y1);
+        [0, 1000, 2000, 3000].forEach(function (v) { H.text(ctx, v, x0 - 8, Y(v) + 4, { s: 10, a: "right", c: H.v("--mist") }); if (v) H.dash(ctx, x0, Y(v), x1, Y(v), H.v("--line"), 0.5); });
+        H.text(ctx, "mm", x0 + 6, y0 - 8, { s: 11, w: "700", c: H.v("--mist") });
+        ZR.forEach(function (r, i) { var last = r[0] === 2025; H.box(ctx, x0 + i * bw + 1.5, Y(r[5]), bw - 3, y1 - Y(r[5]), last ? H.v("--coral-700") : H.v("--brand"), last ? 0.95 : 0.55); if (r[0] % 5 === 0) H.text(ctx, r[0], x0 + i * bw + bw / 2, y1 + 15, { s: 10, a: "center", c: H.v("--mist") }); });
+        H.dash(ctx, x0, Y(Z_NP), x1, Y(Z_NP), H.v("--amber-700"), 1.6);
+        H.text(ctx, "평년 " + Z_NP.toLocaleString() + " mm", x0 + 6, Y(Z_NP) - 6, { s: 11, w: "800", c: H.v("--amber-700") });
+        H.rows(ctx, 680, 34, [["2025년", Math.round(Z_P25).toLocaleString() + " mm", "--coral-700"], ["1 m²에 내린 물", Math.round(Z_P25).toLocaleString() + " L"], ["가장 많았던 해", (function () { var m = ZR.reduce(function (p, r) { return r[5] > p[5] ? r : p; }, [0, 0, 0, 0, 0, 0]); return m[0] + "년 " + Math.round(m[5]).toLocaleString() + " mm"; })()], ["내 답", k + " %", null, true]], 52);
+      }
+      cv.canvas._redraw = draw;
+      api.slider({ label: "2025년은 평년의", min: 40, max: 160, step: 1, value: 100, fmt: function (x) { return x + " %"; }, onInput: function (x) { k = x; api.changed(); draw(); } });
+      api.info("2026년은 9월까지 " + Math.round(Z_26 || 0).toLocaleString() + " mm로 평년 같은 기간(" + Math.round(Z_N9).toLocaleString() + " mm)의 " + (Z_26 ? Math.round(Z_26 / Z_N9 * 100) : 0) + " %였습니다. " + SRC_Z
+        + "<div data-link='{\"id\":\"kma-cw155\",\"title\":\"창원 과거 관측 일별 자료\",\"src\":\"기상청 날씨누리\",\"url\":\"https://www.weather.go.kr/w/weather/land/past-obs/obs-by-day.do?stn=155&obs=1\",\"ask\":\"지난달을 골라 비가 온 날과 그달 강수량을 더해 오세요. 평년보다 많았나요, 적었나요?\"}'></div>");
+      draw();
+      return {
+        judge: function () {
+          if (Math.abs(k - Z_PCT) <= 2) return { ok: true, msg: Math.round(Z_P25).toLocaleString() + " ÷ " + Z_NP.toLocaleString() + " × 100 ≈ " + Z_PCT.toFixed(0) + " %. 평년보다 비가 꽤 적은 해였습니다." };
+          return { ok: false, msg: k + " %는 " + (k < Z_PCT ? "적습니다" : "많습니다") + ". 2025년 값을 평년 값으로 나눠 100을 곱하세요." };
+        }
+      };
+    },
+    hints: ["2025년 " + Math.round(Z_P25).toLocaleString() + " mm, 평년 " + Z_NP.toLocaleString() + " mm", Math.round(Z_P25) + " ÷ " + Z_NP + " × 100 = ?"],
+    solution: Math.round(Z_P25).toLocaleString() + " ÷ " + Z_NP.toLocaleString() + " × 100 ≈ <b>" + Z_PCT.toFixed(0) + " %</b>.",
+    why: "2025년 창원의 땅 1 m²에는 물 약 " + Math.round(Z_P25).toLocaleString() + " L(약 1.2 t)가 내렸습니다. 운동장이 1만 m²라면 약 1만 2천 t입니다. 이 물은 일부는 다시 증발하고, 일부는 땅속으로 스며 지하수가 되며, 나머지는 하천을 따라 바다로 돌아가 물의 순환을 이어 갑니다.<br>"
+      + "그런데 2025년은 평년의 " + Z_PCT.toFixed(0) + " %, 2026년도 9월까지 평년의 " + (Z_26 ? Math.round(Z_26 / Z_N9 * 100) : 0) + " %로 비가 적은 해가 이어졌습니다. 해마다 강수량은 크게 달라서(가장 많은 해와 적은 해가 세 배 넘게 차이) 댐·저수지처럼 물을 저장해 두는 시설이 필요합니다."
   }
   ]
 });
