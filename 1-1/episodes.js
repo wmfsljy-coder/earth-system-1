@@ -414,7 +414,7 @@ function num(x, d) { return x.toLocaleString(undefined, { minimumFractionDigits:
     $("e1-wrap").hidden = false;
     var p = window.sthState("p1") || "";
     $("e1-vs").innerHTML = "<b>나의 첫 추리</b> " + (p || "기록 없음") + "<br>"
-      + (p.indexOf("㉡") === 0 ? "처음부터 정확히 짚었습니다. 이제 모형으로 증명까지 했네요."
+      + (p.indexOf("㉡") === 0 ? "처음부터 정확히 짚었습니다. 이제 모형으로 증명까지 했습니다."
         : "모형을 돌려 보니 재료나 우연한 충돌보다 <b>거리와 크기</b>가 결정적이었습니다. 생각을 증거로 고쳐 나가는 것이 과학입니다.");
   }
   function finish() { window.sthState("r1", "해결 · 첫 추리: " + (window.sthState("p1") || "-").slice(0, 60)); }
@@ -693,7 +693,7 @@ function num(x, d) { return x.toLocaleString(undefined, { minimumFractionDigits:
   /* ---- 장면 4 : 오존층 ---- */
   function ozone(pct) {
     var pal = pct / 21;
-    var rel = 100 * Math.pow(Math.max(pal, 0), 0.55);          // 오늘날을 100 으로 본 오존층 두께
+    var rel = 100 * Math.pow(Math.max(pal, 0), 0.55);          // 오늘날을 100으로 본 오존층 두께
     return { rel: rel, tr: Math.exp(-5.81 * rel / 100) };
   }
 
@@ -1078,7 +1078,7 @@ function num(x, d) { return x.toLocaleString(undefined, { minimumFractionDigits:
       }
       ctx.stroke();
       text(ctx, "🟠 대기 CO₂ (0 ~ " + num(Math.round(pMax)) + " ppm)", x0 + 4, y0 - 28, { s: 12, w: "800", c: v("--coral") });
-      text(ctx, "🔵 얼음 위 기온 (−60 ~ 0 ℃)", x0 + 260, y0 - 28, { s: 12, w: "800", c: v("--brand") });
+      text(ctx, "🔵 얼음 위 기온 (−60~0 ℃)", x0 + 260, y0 - 28, { s: 12, w: "800", c: v("--brand") });
 
       /* 오른쪽 : 현재 상태 */
       var xr = 674, cur = Math.min(upto, n);
