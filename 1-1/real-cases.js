@@ -154,7 +154,7 @@ window.sthLab({
       cv.canvas._redraw = draw;
       api.slider({ label: "2025년은 평년의", min: 40, max: 160, step: 1, value: 100, fmt: function (x) { return x + " %"; }, onInput: function (x) { k = x; api.changed(); draw(); } });
       api.info("2026년은 9월까지 " + Math.round(Z_26 || 0).toLocaleString() + " mm로 평년 같은 기간(" + Math.round(Z_N9).toLocaleString() + " mm)의 " + (Z_26 ? Math.round(Z_26 / Z_N9 * 100) : 0) + " %였습니다. " + SRC_Z
-        + "<div data-link='{\"id\":\"kma-cw155\",\"title\":\"창원 과거 관측 일별 자료\",\"src\":\"기상청 날씨누리\",\"url\":\"https://www.weather.go.kr/w/weather/land/past-obs/obs-by-day.do?stn=155&obs=1\",\"ask\":\"지난달을 골라 비가 온 날과 그달 강수량을 더해 오세요. 평년보다 많았나요, 적었나요?\"}'></div>");
+        + "<div data-link='{\"id\":\"kma-cw155\",\"title\":\"창원 과거 관측 일별 자료\",\"src\":\"기상청 날씨누리\",\"url\":\"https://www.weather.go.kr/w/weather/land/past-obs/obs-by-day.do?stn=155&obs=1\",\"ask\":\"지난달을 골라 비가 온 날 수와 그달 강수량(날마다의 일강수량을 모두 더한 값)을 구해 오세요. 그달 비는 땅 1 m²에 물 몇 L가 고인 것과 같나요?\"}'></div>");
       draw();
       return {
         judge: function () {
