@@ -5,6 +5,24 @@
          하와이 섬 나이 — Clague & Dalrymple (1987), USGS Professional Paper 1350의 K-Ar 연대. 거리는 킬라우에아에서 잰 대권 거리. */
 (function () {
 "use strict";
+
+/* ---- 스튜디오 말투 다듬기 (_tools/STUDIO_GUIDE.md): 수치 판은 흰 카드 위에, 물체는 입체로 ---- */
+var K = window.sthKit;
+function crows(H, ctx, x, y, list, gap) {
+  var g = gap || 34, cw = (ctx.canvas && ctx.canvas._w) || 900;
+  K.card(ctx, x - 16, y - 30, cw - x + 4, list.length * g + 22, null);
+  H.rows(ctx, x, y, list, gap);
+}
+function shadow(ctx, x, y, rx, ry) {
+  var g = ctx.createRadialGradient(x, y, 2, x, y, rx); g.addColorStop(0, "rgba(20,30,50,.30)"); g.addColorStop(1, "rgba(20,30,50,0)");
+  ctx.fillStyle = g; ctx.beginPath(); ctx.ellipse(x, y, rx, ry, 0, 0, 6.2832); ctx.fill();
+}
+function cone(ctx, x, y, h, w, hot) {
+  shadow(ctx, x + 3, y + 1, w * 1.3, w * .4);
+  var g = ctx.createLinearGradient(x - w, 0, x + w, 0); g.addColorStop(0, hot ? "#b0603a" : "#8a7a66"); g.addColorStop(.5, hot ? "#7a3a20" : "#6a5a4a"); g.addColorStop(1, hot ? "#4a2010" : "#3a3028");
+  ctx.fillStyle = g; ctx.beginPath(); ctx.moveTo(x - w, y); ctx.quadraticCurveTo(x - w * .25, y - h * .5, x - w * .18, y - h); ctx.lineTo(x + w * .18, y - h); ctx.quadraticCurveTo(x + w * .25, y - h * .5, x + w, y); ctx.closePath(); ctx.fill();
+  if (hot) K.glow(ctx, x, y - h, 3, "rgba(255,140,60,.95)", 3);
+}
 var S = (window.REAL_QUAKES_38N || { rows: [] }).rows;     /* [경도, 깊이 km, 규모] */
 var TRENCH = 144.0, KMPD = 87.5;                            /* 일본 해구 축 ≈ 동경 144°, 북위 38°에서 경도 1° ≈ 87.5 km */
 function xkm(lon) { return (TRENCH - lon) * KMPD; }         /* 해구에서 서쪽(대륙 쪽)으로 잰 거리 */
@@ -40,7 +58,8 @@ window.sthLab({
       function Y(d) { return y0 + d * KM; }
       function draw() {
         H.paper(ctx, W, cv.H);
-        ctx.fillStyle = H.v("--line"); ctx.fillRect(x0, y0 - 3, x1 - x0, 3);
+        var sg = ctx.createLinearGradient(0, y0 - 8, 0, y0); sg.addColorStop(0, "#9cc4e8"); sg.addColorStop(1, "#4a7fb8"); ctx.fillStyle = sg; ctx.fillRect(x0, y0 - 6, x1 - x0, 6);
+        ctx.fillStyle = "#6a9e4c"; ctx.fillRect(X(xkm(139.6)), y0 - 8, X(xkm(141.8)) - X(xkm(139.6)), 8); ctx.fillRect(x0, y0 - 8, Math.max(0, X(xkm(129.4)) - x0), 8); ctx.fillStyle = "rgba(60,40,20,.35)"; ctx.fillRect(x0, y0, x1 - x0, 2);
         [0, 100, 200, 300, 400, 500, 600].forEach(function (d) { H.text(ctx, d + " km", x0 + 2, Y(d) + 12, { s: 10, c: H.v("--mist") }); H.dash(ctx, x0, Y(d), x1, Y(d), H.v("--line"), 0.6); });
         [[144, "일본 해구"], [140.5, "일본 열도"], [133, "동해"], [128.5, "한반도 동해안"]].forEach(function (p) { H.text(ctx, p[1], X(xkm(p[0])), y0 - 10, { s: 10.5, w: "800", a: "center", c: H.v("--mist") }); });
         S.forEach(function (r) { var x = xkm(r[0]); if (x < -60 || x > 1400) return; H.dot(ctx, X(x), Y(r[1]), 1 + (r[2] - 4.5) * 0.9, r[1] >= 70 ? H.v("--rose-700") : H.v("--brand")); });
@@ -88,8 +107,8 @@ window.sthLab({
         var km = v * 10;                                          /* cm/년 → km/백만 년 */
         H.line(ctx, [[X(0), Y(0)], [X(Math.min(30, 2600 / km)), Y(Math.min(2600, km * 30))]], H.v("--amber-700"), 2.5);
         var e = 0;
-        ISL.forEach(function (s) { H.dot(ctx, X(s[3]), Y(s[4]), 6, H.v("--brand")); var low = s[0].charAt(0) === "오"; H.text(ctx, s[0], X(s[3]) + (low ? 0 : 9), Y(s[4]) + (low ? 20 : 4), { s: 10.5, w: "700", a: low ? "center" : "left", c: H.v("--brand-700") }); e += Math.abs(s[4] - km * s[3]); });
-        H.rows(ctx, 660, 40, [["내 판의 속력", v.toFixed(1) + " cm/년", null, true], ["점과 선의 평균 어긋남", (e / ISL.length).toFixed(0) + " km"], ["= 백만 년마다", (v * 10).toFixed(0) + " km"]], 60);
+        ISL.forEach(function (s) { cone(ctx, X(s[3]), Y(s[4]) + 5, s[3] < 1 ? 16 : 11, 8, s[3] < 1); var low = s[0].charAt(0) === "오"; H.text(ctx, s[0], X(s[3]) + (low ? 0 : 9), Y(s[4]) + (low ? 20 : 4), { s: 10.5, w: "700", a: low ? "center" : "left", c: H.v("--brand-700") }); e += Math.abs(s[4] - km * s[3]); });
+        crows(H, ctx, 660, 40, [["내 판의 속력", v.toFixed(1) + " cm/년", null, true], ["점과 선의 평균 어긋남", (e / ISL.length).toFixed(0) + " km"], ["= 백만 년마다", (v * 10).toFixed(0) + " km"]], 60);
       }
       cv.canvas._redraw = draw;
       api.slider({ label: "판의 속력", min: 2, max: 16, step: 0.1, value: 4, fmt: function (x) { return x.toFixed(1) + " cm/년"; }, onInput: function (x) { v = x; api.changed(); draw(); } });

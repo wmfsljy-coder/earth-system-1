@@ -5,6 +5,24 @@
    자료: data/vostok.js (NOAA NCEI 고기후 자료, Petit 외 1999 · Barnola 외), data/co2-mlo.js (NOAA GML) — 공공 영역, data/cw155.js */
 (function () {
 "use strict";
+
+/* ---- 스튜디오 말투 다듬기 (_tools/STUDIO_GUIDE.md): 수치 판은 흰 카드 위에, 물체는 입체로 ---- */
+var K = window.sthKit;
+function crows(H, ctx, x, y, list, gap) {
+  var g = gap || 34, cw = (ctx.canvas && ctx.canvas._w) || 900;
+  K.card(ctx, x - 16, y - 30, cw - x + 4, list.length * g + 22, null);
+  H.rows(ctx, x, y, list, gap);
+}
+function shadow(ctx, x, y, rx, ry) {
+  var g = ctx.createRadialGradient(x, y, 2, x, y, rx); g.addColorStop(0, "rgba(20,30,50,.30)"); g.addColorStop(1, "rgba(20,30,50,0)");
+  ctx.fillStyle = g; ctx.beginPath(); ctx.ellipse(x, y, rx, ry, 0, 0, 6.2832); ctx.fill();
+}
+function cone(ctx, x, y, h, w, hot) {
+  shadow(ctx, x + 3, y + 1, w * 1.3, w * .4);
+  var g = ctx.createLinearGradient(x - w, 0, x + w, 0); g.addColorStop(0, hot ? "#b0603a" : "#8a7a66"); g.addColorStop(.5, hot ? "#7a3a20" : "#6a5a4a"); g.addColorStop(1, hot ? "#4a2010" : "#3a3028");
+  ctx.fillStyle = g; ctx.beginPath(); ctx.moveTo(x - w, y); ctx.quadraticCurveTo(x - w * .25, y - h * .5, x - w * .18, y - h); ctx.lineTo(x + w * .18, y - h); ctx.quadraticCurveTo(x + w * .25, y - h * .5, x + w, y); ctx.closePath(); ctx.fill();
+  if (hot) K.glow(ctx, x, y - h, 3, "rgba(255,140,60,.95)", 3);
+}
 var VT = (window.REAL_VOSTOK || { temp: [] }).temp;       /* [얼음 나이(년 전), 기온 차 °C(현재 대비)] */
 var VC = (window.REAL_VOSTOK || { co2: [] }).co2;         /* [기체 나이(년 전), ppm] */
 var MM = (window.REAL_CO2 || { monthly: [] }).monthly;    /* [연도, 월, 월평균 ppm] */
@@ -105,7 +123,7 @@ window.sthLab({
           H.box(ctx, X(m) - 16, Math.min(Y(0), Y(SEA[m])), 32, Math.abs(Y(SEA[m]) - Y(0)), on ? H.v(on) : H.v("--line"), on ? 0.95 : 0.8);
           H.text(ctx, m + "월", X(m), y1 + 15, { s: 10.5, w: on ? "900" : "500", a: "center", c: on ? H.v(on) : H.v("--mist") });
         }
-        H.rows(ctx, 680, 50, [["가장 많은 달 (내 답)", hi + "월 " + (SEA[hi] >= 0 ? "+" : "") + SEA[hi].toFixed(2) + " ppm", "--coral-700"], ["가장 적은 달 (내 답)", lo + "월 " + (SEA[lo] >= 0 ? "+" : "") + SEA[lo].toFixed(2) + " ppm", "--brand-700"]], 62);
+        crows(H, ctx, 680, 50, [["가장 많은 달 (내 답)", hi + "월 " + (SEA[hi] >= 0 ? "+" : "") + SEA[hi].toFixed(2) + " ppm", "--coral-700"], ["가장 적은 달 (내 답)", lo + "월 " + (SEA[lo] >= 0 ? "+" : "") + SEA[lo].toFixed(2) + " ppm", "--brand-700"]], 62);
       }
       cv.canvas._redraw = draw;
       api.slider({ label: "가장 많은 달", min: 1, max: 12, step: 1, value: 1, fmt: function (x) { return x + "월"; }, onInput: function (x) { hi = x; api.changed(); draw(); } });
@@ -149,7 +167,7 @@ window.sthLab({
         ZR.forEach(function (r, i) { var last = r[0] === 2025; H.box(ctx, x0 + i * bw + 1.5, Y(r[5]), bw - 3, y1 - Y(r[5]), last ? H.v("--coral-700") : H.v("--brand"), last ? 0.95 : 0.55); if (r[0] % 5 === 0) H.text(ctx, r[0], x0 + i * bw + bw / 2, y1 + 15, { s: 10, a: "center", c: H.v("--mist") }); });
         H.dash(ctx, x0, Y(Z_NP), x1, Y(Z_NP), H.v("--amber-700"), 1.6);
         H.text(ctx, "평년 " + Z_NP.toLocaleString() + " mm", x0 + 6, Y(Z_NP) - 6, { s: 11, w: "800", c: H.v("--amber-700") });
-        H.rows(ctx, 680, 34, [["2025년", Math.round(Z_P25).toLocaleString() + " mm", "--coral-700"], ["1 m²에 내린 물", Math.round(Z_P25).toLocaleString() + " L"], ["가장 많았던 해", (function () { var m = ZR.reduce(function (p, r) { return r[5] > p[5] ? r : p; }, [0, 0, 0, 0, 0, 0]); return m[0] + "년 " + Math.round(m[5]).toLocaleString() + " mm"; })()], ["내 답", k + " %", null, true]], 52);
+        crows(H, ctx, 680, 34, [["2025년", Math.round(Z_P25).toLocaleString() + " mm", "--coral-700"], ["1 m²에 내린 물", Math.round(Z_P25).toLocaleString() + " L"], ["가장 많았던 해", (function () { var m = ZR.reduce(function (p, r) { return r[5] > p[5] ? r : p; }, [0, 0, 0, 0, 0, 0]); return m[0] + "년 " + Math.round(m[5]).toLocaleString() + " mm"; })()], ["내 답", k + " %", null, true]], 52);
       }
       cv.canvas._redraw = draw;
       api.slider({ label: "2025년은 평년의", min: 40, max: 160, step: 1, value: 100, fmt: function (x) { return x + " %"; }, onInput: function (x) { k = x; api.changed(); draw(); } });

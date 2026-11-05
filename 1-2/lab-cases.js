@@ -3,6 +3,24 @@
 (function () {
 "use strict";
 
+/* ---- 스튜디오 말투 다듬기 (_tools/STUDIO_GUIDE.md): 수치 판은 흰 카드 위에, 물체는 입체로 ---- */
+var K = window.sthKit;
+function crows(H, ctx, x, y, list, gap) {
+  var g = gap || 34, cw = (ctx.canvas && ctx.canvas._w) || 900;
+  K.card(ctx, x - 16, y - 30, cw - x + 4, list.length * g + 22, null);
+  H.rows(ctx, x, y, list, gap);
+}
+function shadow(ctx, x, y, rx, ry) {
+  var g = ctx.createRadialGradient(x, y, 2, x, y, rx); g.addColorStop(0, "rgba(20,30,50,.30)"); g.addColorStop(1, "rgba(20,30,50,0)");
+  ctx.fillStyle = g; ctx.beginPath(); ctx.ellipse(x, y, rx, ry, 0, 0, 6.2832); ctx.fill();
+}
+function cone(ctx, x, y, h, w, hot) {
+  shadow(ctx, x + 3, y + 1, w * 1.3, w * .4);
+  var g = ctx.createLinearGradient(x - w, 0, x + w, 0); g.addColorStop(0, hot ? "#b0603a" : "#8a7a66"); g.addColorStop(.5, hot ? "#7a3a20" : "#6a5a4a"); g.addColorStop(1, hot ? "#4a2010" : "#3a3028");
+  ctx.fillStyle = g; ctx.beginPath(); ctx.moveTo(x - w, y); ctx.quadraticCurveTo(x - w * .25, y - h * .5, x - w * .18, y - h); ctx.lineTo(x + w * .18, y - h); ctx.quadraticCurveTo(x + w * .25, y - h * .5, x + w, y); ctx.closePath(); ctx.fill();
+  if (hot) K.glow(ctx, x, y - h, 3, "rgba(255,140,60,.95)", 3);
+}
+
 window.sthLab({
   mount: "lab", key: "lab", result: "rLab",
   cases: [
@@ -28,7 +46,9 @@ window.sthLab({
         H.paper(ctx, W, cv.H);
         H.text(ctx, "지구 단면과 자기력선 (tan 복각 = 2 × tan 위도)", 40, 26, { s: 13.5, w: "900" });
         var cx = 200, cy = 175, R = 110;
-        ctx.strokeStyle = H.v("--line"); ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.stroke();
+        shadow(ctx, cx, cy + R + 14, R * 1.1, 14);
+        K.planet(ctx, cx, cy, R, "#6fb2ea", "#173c7a");
+        ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, R, 0, 6.2832); ctx.clip(); ctx.fillStyle = "rgba(110,160,90,.6)"; ctx.beginPath(); ctx.ellipse(cx - 30, cy - 40, 34, 22, .5, 0, 6.2832); ctx.fill(); ctx.beginPath(); ctx.ellipse(cx + 26, cy + 30, 26, 34, -.3, 0, 6.2832); ctx.fill(); ctx.restore();
         H.line(ctx, [[cx - R - 10, cy], [cx + R + 10, cy]], H.v("--mist"), 1);
         H.text(ctx, "적도", cx + R + 14, cy + 4, { s: 10.5, c: H.v("--mist") });
         H.text(ctx, "N", cx, cy - R - 8, { s: 12, w: "900", a: "center" }); H.text(ctx, "S", cx, cy + R + 18, { s: 12, w: "900", a: "center" });
@@ -42,7 +62,7 @@ window.sthLab({
         mark(NOW, "--mist", "지금 35°N");
         mark(lat, "--rose", "1억 년 전?");
         var I = incl(lat), s = speed(lat);
-        H.rows(ctx, 440, 60, [
+        crows(H, ctx, 440, 60, [
           ["내가 정한 옛 위도", (lat >= 0 ? "북위 " : "남위 ") + Math.abs(lat).toFixed(1) + "°"],
           ["그 위도의 복각", I.toFixed(1) + "° (측정값 −60°)", Math.abs(I - I0) <= 2 ? "--green-700" : "--rose-700"],
           ["지금까지 움직인 거리", Math.round((NOW - lat) * 111).toLocaleString() + " km"],
@@ -97,14 +117,14 @@ window.sthLab({
         H.text(ctx, "옐로스톤 (열점)", X(0), y - 24, { s: 11.5, w: "900", a: "center", c: H.v("--rose-700") });
         H.text(ctx, "🔥", X(0), y + 8, { s: 20, a: "center" });
         H.text(ctx, "← 남서쪽", X(760), y - 14, { s: 11, c: H.v("--mist") });
-        OBS.forEach(function (o, i) { if (i) { H.dot(ctx, X(o[1]), y, 7, H.v("--amber")); H.text(ctx, o[0] + "", X(o[1]), y + 26, { s: 11, w: "800", a: "center", c: H.v("--amber-700") }); } });
+        OBS.forEach(function (o, i) { if (i) { cone(ctx, X(o[1]), y + 4, 16, 10, false); H.text(ctx, o[0] + "", X(o[1]), y + 26, { s: 11, w: "800", a: "center", c: H.v("--amber-700") }); } });
         H.text(ctx, "노란 점 = 실제 화산의 나이 (백만 년)", 40, y + 54, { s: 11, c: H.v("--mist") });
         var yy = 230;
         H.line(ctx, [[X(0), yy], [X(760), yy]], H.v("--line"), 2);
         H.text(ctx, "내 모형이 예측한 화산 위치", 40, yy - 20, { s: 12, w: "800" });
         [0, 4, 8, 12, 16].forEach(function (t) {
           var km = (dir === "SW" ? 1 : -1) * v * 10 * t;
-          if (km >= 0 && km <= 760) { H.dot(ctx, X(km), yy, 7, H.v("--teal")); H.text(ctx, t + "", X(km), yy + 26, { s: 11, w: "800", a: "center", c: H.v("--teal-700") }); }
+          if (km >= 0 && km <= 760) { cone(ctx, X(km), yy + 4, t ? 14 : 18, 9, !t); H.text(ctx, t + "", X(km), yy + 26, { s: 11, w: "800", a: "center", c: H.v("--teal-700") }); }
         });
         if (dir === "NE") H.text(ctx, "판이 북동쪽으로 가면 옛 화산은 북동쪽에 남아야 합니다 (그림 밖)", 40, yy + 54, { s: 11, c: H.v("--rose-700") });
       }
@@ -164,7 +184,7 @@ window.sthLab({
         H.text(ctx, "경보 발령 " + tw.toFixed(1) + " s", gx1 - 4, GY(tw) + 14, { s: 11, w: "800", a: "right", c: H.v("--amber-700") });
         H.box(ctx, gx0, gy0, GX(b) - gx0, gy1 - gy0, H.v("--rose"), 0.12);
         H.text(ctx, "사각지대", (gx0 + GX(b)) / 2, gy0 + 16, { s: 11, w: "900", a: "center", c: H.v("--rose-700") });
-        H.rows(ctx, 610, 70, [
+        crows(H, ctx, 610, 70, [
           ["가장 가까운 관측소까지 P파", (gap / 2 / VP).toFixed(1) + " s"],
           ["경보 처리 시간", tp.toFixed(1) + " s"],
           ["사각지대 반지름", b.toFixed(1) + " km", b <= 20 ? "--green-700" : "--rose-700", true]

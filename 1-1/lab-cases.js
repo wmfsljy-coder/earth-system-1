@@ -3,6 +3,24 @@
 (function () {
 "use strict";
 
+/* ---- 스튜디오 말투 다듬기 (_tools/STUDIO_GUIDE.md): 수치 판은 흰 카드 위에, 물체는 입체로 ---- */
+var K = window.sthKit;
+function crows(H, ctx, x, y, list, gap) {
+  var g = gap || 34, cw = (ctx.canvas && ctx.canvas._w) || 900;
+  K.card(ctx, x - 16, y - 30, cw - x + 4, list.length * g + 22, null);
+  H.rows(ctx, x, y, list, gap);
+}
+function shadow(ctx, x, y, rx, ry) {
+  var g = ctx.createRadialGradient(x, y, 2, x, y, rx); g.addColorStop(0, "rgba(20,30,50,.30)"); g.addColorStop(1, "rgba(20,30,50,0)");
+  ctx.fillStyle = g; ctx.beginPath(); ctx.ellipse(x, y, rx, ry, 0, 0, 6.2832); ctx.fill();
+}
+function cone(ctx, x, y, h, w, hot) {
+  shadow(ctx, x + 3, y + 1, w * 1.3, w * .4);
+  var g = ctx.createLinearGradient(x - w, 0, x + w, 0); g.addColorStop(0, hot ? "#b0603a" : "#8a7a66"); g.addColorStop(.5, hot ? "#7a3a20" : "#6a5a4a"); g.addColorStop(1, hot ? "#4a2010" : "#3a3028");
+  ctx.fillStyle = g; ctx.beginPath(); ctx.moveTo(x - w, y); ctx.quadraticCurveTo(x - w * .25, y - h * .5, x - w * .18, y - h); ctx.lineTo(x + w * .18, y - h); ctx.quadraticCurveTo(x + w * .25, y - h * .5, x + w, y); ctx.closePath(); ctx.fill();
+  if (hot) K.glow(ctx, x, y - h, 3, "rgba(255,140,60,.95)", 3);
+}
+
 window.sthLab({
   mount: "lab", key: "lab", result: "rLab",
   cases: [
@@ -27,11 +45,16 @@ window.sthLab({
         H.paper(ctx, W, cv.H);
         H.text(ctx, "40억 년 전 지구의 에너지 장부", 40, 26, { s: 14, w: "900" });
         var T = temp(), frozen = T < 0;
-        ctx.fillStyle = frozen ? "#dbeefa" : H.v("--brand"); ctx.globalAlpha = frozen ? 1 : 0.45;
-        ctx.beginPath(); ctx.arc(180, 175, 110, 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1;
-        H.text(ctx, frozen ? "❄️ 바다가 얼었다" : (T > 5 ? "🌡️ 따뜻한 바다" : "🌊 얼지 않은 바다"), 180, 180, { s: 15, w: "900", a: "center" });
+        shadow(ctx, 186, 296, 120, 18);
+        K.sun(ctx, 52, 70, 9); K.planet(ctx, 52, 70, 12, "#ffe7a0", "#e8a23a");
+        H.text(ctx, "태양 70%", 52, 102, { s: 11, w: "800", a: "center", c: H.v("--mist") });
+        if (frozen) K.planet(ctx, 186, 178, 104, "#f4f9ff", "#7f9cbc"); else K.planet(ctx, 186, 178, 104, T > 5 ? "#5fb0f0" : "#4a9ae8", "#123a7a");
+        if (!frozen) { ctx.save(); ctx.beginPath(); ctx.arc(186, 178, 104, 0, 6.2832); ctx.clip(); ctx.fillStyle = "rgba(120,90,60,.55)"; ctx.beginPath(); ctx.ellipse(150, 150, 30, 20, .5, 0, 6.2832); ctx.fill(); ctx.restore(); }
+        var gl = ctx.createRadialGradient(186, 178, 100, 186, 178, 122); gl.addColorStop(0, "rgba(255,170,90," + (H.clamp(lk / 3, 0, 1) * .55 + .1).toFixed(2) + ")"); gl.addColorStop(1, "rgba(255,170,90,0)");
+        ctx.fillStyle = gl; ctx.beginPath(); ctx.arc(186, 178, 122, 0, 6.2832); ctx.fill();
+        K.bigText(ctx, frozen ? "바다가 얼었다" : (T > 5 ? "따뜻한 바다" : "얼지 않은 바다"), 186, 186, 20, frozen ? "#e8f2ff" : "#ffffff", "center");
         var gx = 380, y = 70;
-        H.rows(ctx, gx, y, [
+        crows(H, ctx, gx, y, [
           ["태양 밝기", Math.round(S * 100) + "% (지금 = 100%)"],
           ["온실 효과가 없을 때의 온도", teq().toFixed(1) + " ℃"],
           ["이산화 탄소 (지금의 몇 배)", Math.round(Math.pow(10, lk)).toLocaleString() + " 배"],
@@ -82,12 +105,16 @@ window.sthLab({
         H.paper(ctx, W, cv.H);
         H.text(ctx, "4Fe + 3O₂ → 2Fe₂O₃ (녹)", 40, 26, { s: 14, w: "900" });
         var L = left();
-        ctx.strokeStyle = H.v("--line"); ctx.lineWidth = 3; ctx.strokeRect(60, 60, 300, 200);
-        for (var i = 0; i < 60; i++) { if (i / 60 < L) H.dot(ctx, 80 + (i * 47) % 270, 80 + (i * 29) % 160, 5, H.v("--brand")); }
-        H.box(ctx, 160, 230, 100, 24, "#8a4b2a", 0.2 + 0.8 * Math.min(1, g / 0.4));
+        shadow(ctx, 214, 270, 180, 16);
+        var bg = ctx.createLinearGradient(60, 60, 360, 260); bg.addColorStop(0, "rgba(230,238,248,.95)"); bg.addColorStop(.5, "rgba(200,214,230,.85)"); bg.addColorStop(1, "rgba(170,186,206,.9)");
+        ctx.fillStyle = bg; ctx.beginPath(); ctx.roundRect(60, 60, 300, 200, 22); ctx.fill(); ctx.strokeStyle = "rgba(90,110,140,.6)"; ctx.lineWidth = 2; ctx.stroke();
+        ctx.fillStyle = "rgba(255,255,255,.55)"; ctx.beginPath(); ctx.roundRect(74, 70, 26, 170, 12); ctx.fill();
+        for (var i = 0; i < 60; i++) { if (i / 60 < L) { var ox = 80 + (i * 47) % 270, oy = 80 + (i * 29) % 140; K.planet(ctx, ox - 4, oy, 4.6, "#ff9a8a", "#a8261a"); K.planet(ctx, ox + 4, oy, 4.6, "#ff9a8a", "#a8261a"); } }
+        var rust = 0.2 + 0.8 * Math.min(1, g / 0.4), pg = ctx.createLinearGradient(0, 226, 0, 256); pg.addColorStop(0, "rgba(176,98,52," + rust + ")"); pg.addColorStop(1, "rgba(90,46,22," + rust + ")");
+        ctx.fillStyle = pg; ctx.beginPath(); ctx.roundRect(160, 228, 100, 28, 8); ctx.fill();
         H.text(ctx, "철 가루 " + g.toFixed(2) + " g", 210, 247, { s: 11, w: "800", a: "center", c: "#fff" });
-        H.text(ctx, "● 산소 분자", 70, 285, { s: 11, c: H.v("--brand-700") });
-        H.rows(ctx, 420, 70, [
+        H.text(ctx, "●● 산소 분자 O₂", 70, 288, { s: 11, w: "800", c: "#a8261a" });
+        crows(H, ctx, 420, 70, [
           ["처음 산소 (공기 500 mL의 21%)", (O2 * 1000).toFixed(2) + " mmol"],
           ["철 가루가 없앨 수 있는 산소", (Math.min(O2, g / 55.85 * 0.75) * 1000).toFixed(2) + " mmol"],
           ["남은 산소", (L * 100).toFixed(1) + "%", L <= 0.01 ? "--green-700" : "--rose-700", true]
@@ -150,7 +177,7 @@ window.sthLab({
         for (var i = 0; i <= Math.round(shown * 60); i++) pts.push([GX(i), GY(H.clamp(s[i], 5, 25))]);
         H.line(ctx, pts, H.v("--coral"), 3);
         var T = teq();
-        H.rows(ctx, 600, 60, [
+        crows(H, ctx, 600, 60, [
           ["화산의 CO₂ 공급", "지금의 " + V + " 배"],
           ["풍화로 빼내는 효율", "지금의 " + wt().toFixed(2) + " 배" + (cont === "eq" ? " (적도 대륙 ×1.5)" : "")],
           ["새 평형 기온", T.toFixed(1) + " ℃", Math.abs(T - 15) <= 0.5 ? "--green-700" : "--rose-700", true]
